@@ -7,15 +7,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Page {
-    private String name;
     protected HashMap<String,Page> subPages;
     protected Page parentPage;
     public static Scanner scanner;
     protected static ArrayList<Page> allPages = new ArrayList<Page>();
     protected Matcher matcher ;
 
-    public Page(String name, Page parentPage) {
-        this.name = name;
+    public Page( Page parentPage) {
         this.parentPage = parentPage;
     }
 
@@ -29,10 +27,6 @@ public abstract class Page {
 
     public void setSubPages(HashMap<String, Page> subPages) {
         this.subPages = subPages;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setMatcher(Matcher matcher) {

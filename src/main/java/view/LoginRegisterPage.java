@@ -4,14 +4,15 @@ import java.util.HashMap;
 
 public class LoginRegisterPage extends Page{
     public LoginRegisterPage( Page parentPage) {
-        super("Login/Register Page", parentPage);
+        super(parentPage);
         HashMap<String,Page> subPages = new HashMap<String, Page>();
-        subPages.put("create \\s account \\s (\\w+) \\s+ (\\S+)",createAccount());
-        subPages.put("login \\s (\\S+)",login());
+        subPages.put("create\\saccount\\s(\\S+)\\s+(\\S+)",createAccount());
+        subPages.put("login\\s(\\S+)",login());
+        subPages.put("back",new Back(this));
     }
 
     protected Page createAccount(){
-        return new Page("create account",this) {
+        return new Page(this) {
             @Override
             public void execute() {
 
@@ -20,7 +21,7 @@ public class LoginRegisterPage extends Page{
     }
 
     protected Page login(){
-        return new Page("login",this) {
+        return new Page(this) {
             @Override
             public void execute() {
 
