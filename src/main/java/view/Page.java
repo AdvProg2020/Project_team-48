@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Page {
-    protected HashMap<String,Page> subPages;
+    protected HashMap<String,Page> subPages = new HashMap<String, Page>();
     protected Page parentPage;
     public static Scanner scanner;
     protected static ArrayList<Page> allPages = new ArrayList<Page>();

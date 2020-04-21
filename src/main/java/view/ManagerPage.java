@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class ManagerPage extends Page{
     public ManagerPage(Page parentPage) {
         super(parentPage);
-        HashMap<String,Page> subPages = new HashMap<String, Page>();
         subPages.put("view\\spersonal\\sinfo",new PersonalInfo(this));
         subPages.put("manage\\susers",new ManageUsers(this));
         subPages.put("create\\sdiscount\\scode",CreateDiscountCode());
