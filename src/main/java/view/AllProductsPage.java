@@ -11,6 +11,7 @@ public class AllProductsPage extends Page {
         subPages.put("sorting",new Sorting(this));
         subPages.put("show\\sproducts",ShowProducts());
         subPages.put("show\\sproduct\\s(\\d+)",ShowProduct());
+        subPages.put("back",new Back(this));
 
     }
 
