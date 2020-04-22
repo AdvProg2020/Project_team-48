@@ -4,5 +4,6 @@ public class MainPage extends Page{
     Account account = null ;
     public MainPage() {
         super(null);
+        subPages.put("products", new AllProductsPage(this));
     }
 }

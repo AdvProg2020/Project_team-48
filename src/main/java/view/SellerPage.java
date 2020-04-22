@@ -12,6 +12,7 @@ public class SellerPage extends Page {
         subPages.put("remove\\sproduct\\s(\\S+)",RemoveProduct());
         subPages.put("show\\scategories",ShowCategories());
         subPages.put("view\\sbalance",ViewBalance());
+        subPages.put("back",new Back(this));
     }
 
     protected Page CompanyInformation(){

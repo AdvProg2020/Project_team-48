@@ -15,7 +15,9 @@ public class BuyerPage extends Page {
         subPages.put("view\\sorders",new ViewOrders(this));
         subPages.put("view\\sbalance",ViewBalance());
         subPages.put("view\\sdiscount\\scodes",ViewDiscountCodes());
+        subPages.put("back",new Back(this));
     }
+
 
     protected Page Purchase(){
         return new Page(this) {
