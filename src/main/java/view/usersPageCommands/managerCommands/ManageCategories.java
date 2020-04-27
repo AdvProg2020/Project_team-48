@@ -1,6 +1,5 @@
 package view.usersPageCommands.managerCommands;
 
-import org.graalvm.compiler.asm.aarch64.AArch64Assembler;
 import view.Page;
 
 public class ManageCategories extends Page {

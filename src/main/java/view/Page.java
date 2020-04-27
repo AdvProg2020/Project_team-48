@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Page {
-    protected HashMap<String,Page> subPages = new HashMap<String, Page>();
+    protected HashMap<String,Page> subPages = new HashMap<>();
     protected Page parentPage;
     public static Scanner scanner;
-    protected static ArrayList<Page> allPages = new ArrayList<Page>();
+    protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher ;
 
     public Page( Page parentPage) {
@@ -29,32 +29,28 @@ public abstract class Page {
         this.subPages = subPages;
     }
 
-    public void setMatcher(Matcher matcher) {
-        this.matcher = matcher;
+    public Matcher getMatcher() {
+        return matcher;
     }
 
     public void execute(){
-        Page nextPage = null;
         String chosenPage = scanner.nextLine();
-        nextPage = getMatchedPage(chosenPage);
-        nextPage.execute();
-
+         getMatchedPage(chosenPage).execute();
     }
 
     public Page getMatchedPage(String input){
         for (String pat:subPages.keySet()) {
-            if (getMatcher(input,pat) != null){
-                subPages.get(pat).setMatcher(getMatcher(input,pat));
+            if (setMatcher(input,pat) != null){
                 return subPages.get(pat);
             }
         }
         System.out.println("invalid command");
-        return null;
+        return this;
     }
 
-    public Matcher getMatcher(String input , String pat){
+    public Matcher setMatcher(String input , String pat){
         Pattern pattern = Pattern.compile(pat);
-        Matcher matcher = pattern.matcher(input);
+        matcher = pattern.matcher(input);
         if (matcher.matches()){
             return matcher;
         }
