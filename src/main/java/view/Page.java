@@ -13,7 +13,7 @@ public abstract class Page {
     protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher ;
 
-    public Page( Page parentPage) {
+    public Page(Page parentPage) {
         this.parentPage = parentPage;
     }
 
