@@ -10,7 +10,8 @@ public class ProductPage extends Page {
     int productId ;
     public ProductPage(Page parentPage) {
         super(parentPage);
-        productId = Integer.parseInt( parentPage.getMatcher().group(1));
+        this.name= "Product";
+       // productId = Integer.parseInt(parentPage.getMatcher().group(1));
         subPages.put("digest",new Digest(this));
         subPages.put("attributes",Attributes());
         subPages.put("Compare\\s(\\d+)", Compare());

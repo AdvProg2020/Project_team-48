@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class BuyerPage extends Page {
     public BuyerPage(Page parentPage) {
         super( parentPage);
+        this.name = "your account";
         subPages.put("view\\spersonal\\sinfo",new PersonalInfo(this));
         subPages.put("view\\scart",new ViewCart(this));
         subPages.put("purchase",Purchase());

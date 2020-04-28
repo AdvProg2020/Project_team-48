@@ -7,8 +7,9 @@ import java.util.HashMap;
 public class LoginRegisterPage extends Page{
     public LoginRegisterPage( Page parentPage) {
         super(parentPage);
-        subPages.put("create\\saccount\\s([manager|seller|buyer])\\s+(\\S+)",createAccount());
-        subPages.put("login\\s(\\S+)",login());
+        this.name= "login or register";
+        subPages.put("create account (manager|seller|buyer) (\\S+)",createAccount());
+        subPages.put("login (\\S+)",login());
         subPages.put("back",new Back(this));
     }
 

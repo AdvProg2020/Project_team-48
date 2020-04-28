@@ -1,5 +1,7 @@
 package view;
 
+import com.sun.tools.javac.Main;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -7,11 +9,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Page {
+    protected String name;
     protected HashMap<String,Page> subPages = new HashMap<>();
     protected Page parentPage;
-    public static Scanner scanner;
     protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher ;
+    static Scanner scanner = new Scanner(System.in);
 
     public Page(Page parentPage) {
         this.parentPage = parentPage;
@@ -19,10 +22,6 @@ public abstract class Page {
 
     public void setParentPage(Page parentPage) {
         this.parentPage = parentPage;
-    }
-
-    public static void setScanner(Scanner scanner) {
-        Page.scanner = scanner;
     }
 
     public void setSubPages(HashMap<String, Page> subPages) {
@@ -34,8 +33,9 @@ public abstract class Page {
     }
 
     public void execute(){
-        String chosenPage = scanner.nextLine();
-         getMatchedPage(chosenPage).execute();
+        System.out.println(name);
+        String chosenPage=scanner.nextLine();
+        getMatchedPage(chosenPage).execute();
     }
 
     public Page getMatchedPage(String input){

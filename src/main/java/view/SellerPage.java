@@ -5,13 +5,14 @@ import view.usersPageCommands.PersonalInfo;
 public class SellerPage extends Page {
     public SellerPage(Page parentPage) {
         super(parentPage);
-        subPages.put("view\\spersonal\\sinfo", new PersonalInfo(this));
-        subPages.put("view\\scompany\\sinformation",CompanyInformation());
-        subPages.put("view\\ssales\\shistory", SalesHistory());
-        subPages.put("add\\sproduct",AddProduct());
-        subPages.put("remove\\sproduct\\s(\\S+)",RemoveProduct());
-        subPages.put("show\\scategories",ShowCategories());
-        subPages.put("view\\sbalance",ViewBalance());
+        this.name = "your account";
+        subPages.put("view personal info", new PersonalInfo(this));
+        subPages.put("view company information",CompanyInformation());
+        subPages.put("view sales history", SalesHistory());
+        subPages.put("add product",AddProduct());
+        subPages.put("remove product(\\S+)",RemoveProduct());
+        subPages.put("show categories",ShowCategories());
+        subPages.put("view balance",ViewBalance());
         subPages.put("back",new Back(this));
     }
 

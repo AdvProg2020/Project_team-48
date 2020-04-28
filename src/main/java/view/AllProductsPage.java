@@ -7,6 +7,7 @@ import view.allProductsPageCommands.Sorting;
 public class AllProductsPage extends Page {
     public AllProductsPage(Page parentPage) {
         super(parentPage);
+        this . name = "product page";
         subPages.put("view\\scategories",ViewCategories());
         subPages.put("filtering",new Filtering(this));
         subPages.put("sorting",new Sorting(this));
