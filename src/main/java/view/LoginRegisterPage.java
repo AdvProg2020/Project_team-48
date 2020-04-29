@@ -1,6 +1,7 @@
 package view;
 
 import controller.LoginRegister;
+import models.Account;
 
 import java.util.HashMap;
 
@@ -17,11 +18,16 @@ public class LoginRegisterPage extends Page{
         return new Page(this) {
             @Override
             public void execute() {
+                Account account = null;
                 try {
-                    LoginRegister.createAccount(parentPage.getMatcher().group(1),parentPage.getMatcher().group(2));
+                    account = LoginRegister.createAccount(parentPage.getMatcher().group(1),parentPage.getMatcher().group(2));
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("username exist");
+                    new Back(this).execute();
                 }
+                System.out.println("password:");
+                account.setPassword(scanner.nextLine());
+                new Back(this).execute();
             }
         };
     }

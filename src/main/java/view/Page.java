@@ -14,7 +14,7 @@ public abstract class Page {
     protected Page parentPage;
     protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher ;
-    static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
 
     public Page(Page parentPage) {
         this.parentPage = parentPage;

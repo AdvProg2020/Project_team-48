@@ -26,13 +26,8 @@ public class Account {
     private ArrayList<BuyLog> buyLogsList;
     private int credit;
 
-    public Account(String username, String password, String firstName, String lastName, String email, int phoneNumber) {
+    public Account(String username) {
         this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
         allAccounts.add(this);
     }
 
@@ -52,6 +47,10 @@ public class Account {
             }
         }
         return false;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String toString(){
