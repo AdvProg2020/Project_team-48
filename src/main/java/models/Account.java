@@ -1,5 +1,8 @@
 package models;
 
+import view.*;
+import view.usersPageCommands.managerCommands.ManageAllProducts;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,7 +11,7 @@ enum AccountType{
     BUYER,
     SELLER
 }
-
+ 
 public class Account {
 
     public static ArrayList<Account> allAccounts = new ArrayList<>();
@@ -31,7 +34,7 @@ public class Account {
         allAccounts.add(this);
     }
 
-    public Account getUserByName(String username){
+    public static Account getUserByName(String username){
         for(Account account : allAccounts){
             if(username.equals(account.username)){
                 return account;
@@ -51,6 +54,48 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public Page getAccountPage(Page page) {
+        switch (accountType)
+        {
+            case SELLER: return new SellerPage(page);
+            case BUYER: return new BuyerPage(page);
+            case MANAGER: return new ManagerPage(page);
+            default: return page;
+        }
+    }
+
+    public static ArrayList<Account> getAllAccounts() {
+        return allAccounts;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String toString(){
