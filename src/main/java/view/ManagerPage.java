@@ -10,11 +10,11 @@ public class ManagerPage extends Page{
     public ManagerPage(Page parentPage) {
         super(parentPage);
         this.name = "your account";
-        subPages.put("view\\spersonal\\sinfo",new PersonalInfo(this));
-        subPages.put("manage\\susers",new ManageUsers(this));
-        subPages.put("create\\sdiscount\\scode",CreateDiscountCode());
-        subPages.put("Manage\\srequests",new ManageRequests(this));
-        subPages.put("manage\\scategories",new ManageCategories(this));
+        subPages.put("view personal info",new PersonalInfo(this));
+        subPages.put("manage users",new ManageUsers(this));
+        subPages.put("create discount code",CreateDiscountCode());
+        subPages.put("manage requests",new ManageRequests(this));
+        subPages.put("manage categories",new ManageCategories(this));
         subPages.put("back",new Back(this));
     }
 

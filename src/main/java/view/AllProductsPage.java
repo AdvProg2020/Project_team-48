@@ -8,11 +8,11 @@ public class AllProductsPage extends Page {
     public AllProductsPage(Page parentPage) {
         super(parentPage);
         this . name = "product page";
-        subPages.put("view\\scategories",ViewCategories());
+        subPages.put("view categories",ViewCategories());
         subPages.put("filtering",new Filtering(this));
         subPages.put("sorting",new Sorting(this));
-        subPages.put("show\\sproducts",ShowProducts());
-        subPages.put("show\\sproduct\\s(\\d+)", new ProductPage(this));
+        subPages.put("show products",ShowProducts());
+        subPages.put("show product [Product Name]", new ProductPage(this));
         subPages.put("back",new Back(this));
 
     }

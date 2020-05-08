@@ -8,8 +8,7 @@ public class MainPage extends Page{
         subPages.put("products", new AllProductsPage(this));
         subPages.put("offs",new OffsPage(this));
         if (account == null){
-            subPages.put("login register",new LoginRegisterPage(this));
+            subPages.put("login/register",new LoginRegisterPage(this));
         }
-        subPages.put("back",new Back(this));
     }
 }

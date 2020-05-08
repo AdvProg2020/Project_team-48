@@ -4,6 +4,7 @@ import com.sun.tools.javac.Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,12 +34,21 @@ public abstract class Page {
     }
 
     public void execute(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         System.out.println(name);
+        int cnt = 1;
+        for(String subPageName : subPages.keySet()) {
+            System.out.println(cnt + "- " + subPageName);
+            cnt++;
+        }
         String chosenPage=scanner.nextLine();
         getMatchedPage(chosenPage).execute();
     }
 
     public Page getMatchedPage(String input){
+        if(input.equals("back") && parentPage == null)
+            return this;
         for (String pat:subPages.keySet()) {
             if (setMatcher(input,pat) != null){
                 return subPages.get(pat);

@@ -8,7 +8,7 @@ public class OffsPage extends Page {
     public OffsPage(Page parentPage) {
         super(parentPage);
         this.name = "offs";
-        subPages.put("show\\sproduct\\s(\\d+)", new ProductPage(this));
+        subPages.put("show product [Product Name]", new ProductPage(this));
         subPages.put("filtering",new Filtering(this));
         subPages.put("sorting",new Sorting(this));
         subPages.put("back",new Back(this));

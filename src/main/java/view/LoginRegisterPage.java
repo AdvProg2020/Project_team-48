@@ -10,8 +10,8 @@ public class LoginRegisterPage extends Page{
     public LoginRegisterPage( Page parentPage) {
         super(parentPage);
         this.name= "login or register";
-        subPages.put("create account (manager|seller|buyer) (\\S+)",createAccount());
-        subPages.put("login (\\S+)",login());
+        subPages.put("create account [Manager,Buyer,Seller] [Username]",createAccount());
+        subPages.put("login [Username]",login());
         subPages.put("back",new Back(this));
     }
 

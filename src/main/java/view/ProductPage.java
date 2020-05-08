@@ -14,8 +14,8 @@ public class ProductPage extends Page {
        // productId = Integer.parseInt(parentPage.getMatcher().group(1));
         subPages.put("digest",new Digest(this));
         subPages.put("attributes",Attributes());
-        subPages.put("Compare\\s(\\d+)", Compare());
-        subPages.put("Comments",new Comments(this));
+        subPages.put("compare [Product Name]", Compare());
+        subPages.put("comments",new Comments(this));
         subPages.put("back",new Back(this));
 
     }

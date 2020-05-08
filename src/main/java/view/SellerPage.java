@@ -10,7 +10,7 @@ public class SellerPage extends Page {
         subPages.put("view company information",CompanyInformation());
         subPages.put("view sales history", SalesHistory());
         subPages.put("add product",AddProduct());
-        subPages.put("remove product(\\S+)",RemoveProduct());
+        subPages.put("remove product [Product Name]",RemoveProduct());
         subPages.put("show categories",ShowCategories());
         subPages.put("view balance",ViewBalance());
         subPages.put("back",new Back(this));

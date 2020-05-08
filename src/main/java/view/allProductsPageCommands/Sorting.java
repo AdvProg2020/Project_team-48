@@ -1,14 +1,18 @@
 package view.allProductsPageCommands;
 
+import view.Back;
 import view.Page;
 
 public class Sorting extends Page {
     public Sorting(Page parentPage) {
         super(parentPage);
-        subPages.put("show\\savailable\\ssorts",ShowAvailableSorts());
-        subPages.put("sort\\s(\\S+)",Sort());
-        subPages.put("current\\ssort",CurrentSort());
-        subPages.put("disable\\ssort",DisableSort());
+        this.name = "sort";
+        subPages.put("show available sorts",ShowAvailableSorts());
+        subPages.put("sort [Sort by]",Sort());
+        subPages.put("current sort",CurrentSort());
+        subPages.put("disable sort",DisableSort());
+        subPages.put("back",new Back(this));
+
     }
 
     protected Page ShowAvailableSorts(){

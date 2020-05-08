@@ -10,12 +10,12 @@ public class BuyerPage extends Page {
     public BuyerPage(Page parentPage) {
         super( parentPage);
         this.name = "your account";
-        subPages.put("view\\spersonal\\sinfo",new PersonalInfo(this));
-        subPages.put("view\\scart",new ViewCart(this));
+        subPages.put("view personal info",new PersonalInfo(this));
+        subPages.put("view cart",new ViewCart(this));
         subPages.put("purchase",Purchase());
-        subPages.put("view\\sorders",new ViewOrders(this));
-        subPages.put("view\\sbalance",ViewBalance());
-        subPages.put("view\\sdiscount\\scodes",ViewDiscountCodes());
+        subPages.put("view orders",new ViewOrders(this));
+        subPages.put("view balance",ViewBalance());
+        subPages.put("view discount codes",ViewDiscountCodes());
         subPages.put("back",new Back(this));
     }
 
