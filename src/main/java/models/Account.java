@@ -98,7 +98,15 @@ public class Account {
         return password;
     }
 
-    public String toString(){
-        return "This is a" + this.accountType + "!!";
+    @Override
+    public String toString() {
+        return
+                "username= " + username + "\n" +
+                "password= " + password + "\n" +
+                "firstName= " + firstName + "\n" +
+                "lastName= " + lastName + "\n" +
+                "email= " + email + "\n" +
+                "phoneNumber= " + phoneNumber
+                ;
     }
 }

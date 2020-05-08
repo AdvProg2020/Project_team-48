@@ -40,7 +40,13 @@ public class LoginRegister {
     }
 
     public static void login(Account account, Page page){
-        account.getAccountPage(page).execute();
+        if (page.getName().equals("main page")){
+            Page.setAccount(account);
+            account.getAccountPage(page).execute();
+        }else {
+            ///vaghti az peyjaye dige miaymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+        }
+
     }
 
 

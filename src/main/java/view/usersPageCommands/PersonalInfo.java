@@ -6,13 +6,13 @@ public class PersonalInfo extends Page {
     public PersonalInfo( Page parentPage) {
         super(parentPage);
         subPages.put("edit\\s(\\S+)",edit());
-
     }
 
     protected Page edit(){
         return new Page(this) {
             @Override
             public void execute() {
+                System.out.println(account);
             }
         };
     }

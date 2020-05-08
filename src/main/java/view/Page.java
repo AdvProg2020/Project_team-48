@@ -1,7 +1,9 @@
 package view;
 
 import com.sun.tools.javac.Main;
+import models.Account;
 
+import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -15,6 +17,7 @@ public abstract class Page {
     protected Page parentPage;
     protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher ;
+    protected static Account account = null;
     public static Scanner scanner = new Scanner(System.in);
 
     public Page(Page parentPage) {
@@ -31,6 +34,14 @@ public abstract class Page {
 
     public Matcher getMatcher() {
         return matcher;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static void setAccount(Account account) {
+        Page.account = account;
     }
 
     public void execute(){
