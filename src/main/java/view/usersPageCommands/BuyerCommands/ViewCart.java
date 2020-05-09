@@ -5,11 +5,11 @@ import view.Page;
 public class ViewCart extends Page {
     public ViewCart(Page parentPage) {
         super(parentPage);
-        subPages.put("show\\sproducts",ShowProduct());
-        subPages.put("view\\s(\\d+)",View());
-        subPages.put("increase\\s(\\d+)",Increase());
-        subPages.put("decrease\\s(\\d+)",Decrease());
-        subPages.put("show\\stotal\\sprice",ShowTotalPrice());
+        subPages.put("show products",ShowProduct());
+        subPages.put("view [productId]",View());
+        subPages.put("increase [productId]",Increase());
+        subPages.put("decrease [productId]",Decrease());
+        subPages.put("show total price",ShowTotalPrice());
         subPages.put("purchace",Purchase());
     }
 

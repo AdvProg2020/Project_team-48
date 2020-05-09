@@ -5,8 +5,8 @@ import view.Page;
 public class ViewOrders extends Page {
     public ViewOrders(Page parentPage) {
         super(parentPage);
-        subPages.put("show\\sorder\\s(\\d+)",ShowOrder());
-        subPages.put("rate\\s(\\d+)\\s([1-5])",Rate());
+        subPages.put("show order [orderId]", ShowOrder());
+        subPages.put("rate [productId] [1-5]", Rate());
     }
 
     protected Page ShowOrder(){

@@ -5,7 +5,7 @@ import view.Page;
 public class Comments extends Page {
     public Comments(Page parentPage) {
         super(parentPage);
-        subPages.put("Add\\scomment",AddComment());
+        subPages.put("Add comment",AddComment());
     }
 
     protected Page AddComment(){

@@ -9,22 +9,22 @@ import models.Seller;
 import view.Back;
 import view.Page;
 
+import java.util.Scanner;
+
 public class LoginRegister {
 
-    public static Account createAccount(String type, String username) throws Exception {
-        if (Account.existsUsername(username)) {
-            throw new ExistUsernameException("username exists");
-        }
-        if (type.equals("manager")) {
-            if (! Manager.getAllManagers().isEmpty()){
-                throw new ExistManagerException("manager exist");
-            }
-            return new Manager(username);
-        } else if (type.equals("seller")) {
-            return new Seller(username);
-        } else {
-            return new Buyer(username);
-        }
+    public static void createAccount() {
+        Scanner input = new Scanner(System.in);
+        String username = input.next();
+        String password = input.next();
+        String type = input.next();
+        System.out.println("User registered successfully(alaki masalan!)");
+    }
+    public static void login(){
+        Scanner input = new Scanner(System.in);
+        String username = input.next();
+        String password = input.next();
+        System.out.println("User logged in successfully(alaki masalan!)");
     }
 
     public static class ExistManagerException extends Exception{
@@ -38,18 +38,5 @@ public class LoginRegister {
             super(message);
         }
     }
-
-    public static void login(Account account, Page page){
-        if (page.getName().equals("main page")){
-            Page.setAccount(account);
-            account.getAccountPage(page).execute();
-        }else {
-            ///vaghti az peyjaye dige miaymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-        }
-
-    }
-
-
-
 
 }

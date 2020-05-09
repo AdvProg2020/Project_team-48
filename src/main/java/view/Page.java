@@ -45,8 +45,6 @@ public abstract class Page {
     }
 
     public void execute(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         System.out.println(name);
         int cnt = 1;
         for(String subPageName : subPages.keySet()) {

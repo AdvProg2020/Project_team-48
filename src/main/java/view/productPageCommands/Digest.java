@@ -5,8 +5,8 @@ import view.Page;
 public class Digest extends Page {
     public Digest(Page parentPage) {
         super(parentPage);
-        subPages.put("add\\sto\\scart",AddToCart());
-        subPages.put("select\\sseller\\s(\\S+)",SelectSeller());
+        subPages.put("add to cart",AddToCart());
+        subPages.put("select seller [seller_username]",SelectSeller());
 
     }
 

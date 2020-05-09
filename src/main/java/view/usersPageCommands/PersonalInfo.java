@@ -3,9 +3,10 @@ package view.usersPageCommands;
 import view.Page;
 
 public class PersonalInfo extends Page {
-    public PersonalInfo( Page parentPage) {
+    public PersonalInfo(Page parentPage) {
         super(parentPage);
-        subPages.put("edit\\s(\\S+)",edit());
+        this.name = "View Personal Information";
+        subPages.put("edit [field]", edit());
     }
 
     protected Page edit(){

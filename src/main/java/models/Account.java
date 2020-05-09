@@ -15,6 +15,7 @@ enum AccountType{
 public class Account {
 
     public static ArrayList<Account> allAccounts = new ArrayList<>();
+    public static boolean isAUserLoggedIn = false;
 
     protected String username;
     protected String password;
@@ -108,5 +109,10 @@ public class Account {
                 "email= " + email + "\n" +
                 "phoneNumber= " + phoneNumber
                 ;
+    }
+
+    public static String accountType()
+    {
+        return "buyer";
     }
 }
