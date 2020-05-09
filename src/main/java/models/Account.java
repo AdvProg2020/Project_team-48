@@ -114,5 +114,10 @@ public class Account {
     public static String accountType()
     {
         return "buyer";
+    }  // in chieeeeeeeeeeeeeeeeeeeeee???????????
+
+    public static void remove(Account account){
+        allAccounts.remove(account);
     }
+
 }

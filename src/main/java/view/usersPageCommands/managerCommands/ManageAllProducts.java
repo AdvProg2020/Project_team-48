@@ -5,7 +5,7 @@ import view.Page;
 public class ManageAllProducts extends Page {
     public ManageAllProducts(Page parentPage) {
         super(parentPage);
-        subPages.put("remove\\s(\\S+)",Remove());
+        subPages.put("remove (\\S+)",Remove());
     }
 
     protected Page Remove(){

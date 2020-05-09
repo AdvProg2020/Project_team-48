@@ -19,15 +19,15 @@ public class PersonalInfo extends Page {
         return new Page(this) {
             @Override
             public void execute() {
-                if (parentPage.getMatcher().equals("name")){
+                if (parentPage.getMatcher().group(1).equals("name")){
                     Page.account.setFirstName(scanner.next());
-                }else if (parentPage.getMatcher().equals("last name")){
+                }else if (parentPage.getMatcher().group(1).equals("last name")){
                     Page.account.setLastName(scanner.nextLine());
-                }else if (parentPage.getMatcher().equals("email")){
+                }else if (parentPage.getMatcher().group(1).equals("email")){
                     Page.account.setEmail(scanner.nextLine());
-                }else if (parentPage.getMatcher().equals("phone number")){
+                }else if (parentPage.getMatcher().group(1).equals("phone number")){
                     Page.account.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
-                }else if (parentPage.getMatcher().equals("password")){
+                }else if (parentPage.getMatcher().group(1).equals("password")){
                     Page.account.setPassword(scanner.nextLine());
                 }
             }

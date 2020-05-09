@@ -1,20 +1,21 @@
 package view.usersPageCommands.managerCommands;
 
+import controller.Manager;
 import view.Page;
 
 public class ManageUsers extends Page {
     public ManageUsers( Page parentPage) {
         super(parentPage);
-        subPages.put("view\\s(\\S+)",View());
-        subPages.put("delete\\suser\\s(\\S+)",DeleteUser());
-        subPages.put("create\\smanager\\sprofile",CreateManagerProfile());
+        subPages.put("view (\\S+)",View());
+        subPages.put("delete user (\\S+)",DeleteUser());
+        subPages.put("create manager profile",CreateManagerProfile());
     }
 
     protected Page View(){
         return new Page(this) {
             @Override
             public void execute() {
-
+                // innnnnnn chiiiiiiiiiiiii kar mikoneeeeeeeeeeeeeeeeeeeeeeeeeee
             }
         };
     }
@@ -23,7 +24,7 @@ public class ManageUsers extends Page {
         return new Page(this) {
             @Override
             public void execute() {
-
+                Manager.deleteUser(parentPage.getMatcher().group(1));
             }
         };
     }
@@ -32,7 +33,7 @@ public class ManageUsers extends Page {
         return new Page(this) {
             @Override
             public void execute() {
-
+                //bad az zadane register iinam bezannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
             }
         };
     }
