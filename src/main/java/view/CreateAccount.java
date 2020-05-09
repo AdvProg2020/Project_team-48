@@ -1,5 +1,8 @@
 package view;
 
+import controller.LoginRegister;
+import models.Account;
+
 import java.util.Scanner;
 
 public class CreateAccount extends Page{

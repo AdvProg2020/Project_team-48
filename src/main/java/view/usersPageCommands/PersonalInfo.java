@@ -9,11 +9,27 @@ public class PersonalInfo extends Page {
         subPages.put("edit [field]", edit());
     }
 
+    @Override
+    public void execute() {
+        System.out.println(account);
+        super.execute();
+    }
+
     protected Page edit(){
         return new Page(this) {
             @Override
             public void execute() {
-                System.out.println(account);
+                if (parentPage.getMatcher().equals("name")){
+                    Page.account.setFirstName(scanner.next());
+                }else if (parentPage.getMatcher().equals("last name")){
+                    Page.account.setLastName(scanner.nextLine());
+                }else if (parentPage.getMatcher().equals("email")){
+                    Page.account.setEmail(scanner.nextLine());
+                }else if (parentPage.getMatcher().equals("phone number")){
+                    Page.account.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+                }else if (parentPage.getMatcher().equals("password")){
+                    Page.account.setPassword(scanner.nextLine());
+                }
             }
         };
     }
