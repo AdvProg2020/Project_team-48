@@ -48,7 +48,7 @@ public abstract class Page {
         System.out.println(name);
         int cnt = 1;
         for(String subPageName : subPages.keySet()) {
-            System.out.println(cnt + "- " + subPageName);
+            System.out.println(cnt + "- " + subPages.get(subPageName).name);
             cnt++;
         }
         String chosenPage=scanner.nextLine();

@@ -5,10 +5,9 @@ import view.Page;
 public class ViewDiscountCodes extends Page {
     public ViewDiscountCodes(Page parentPage) {
         super(parentPage);
-        subPages.put("view\\sdiscount\\scode\\s(\\S+)",ViewDiscountCode());
-        subPages.put("edit\\sdiscount\\scode\\s(\\S+)",EditDiscountCode());
-        subPages.put("remove\\sdiscount\\scode\\s(\\S+)",RemoveDiscountCode());
-
+        subPages.put("view discount code (\\S+)",ViewDiscountCode());
+        subPages.put("edit discount code (\\S+)",EditDiscountCode());
+        subPages.put("remove discount code (\\S+)",RemoveDiscountCode());
     }
 
     protected Page ViewDiscountCode(){

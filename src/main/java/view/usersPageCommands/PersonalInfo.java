@@ -1,5 +1,6 @@
 package view.usersPageCommands;
 
+import view.Back;
 import view.Page;
 
 public class PersonalInfo extends Page {
@@ -7,6 +8,7 @@ public class PersonalInfo extends Page {
         super(parentPage);
         this.name = "View Personal Information";
         subPages.put("edit [field]", edit());
+        subPages.put("back",new Back(this));
     }
 
     @Override
@@ -30,6 +32,7 @@ public class PersonalInfo extends Page {
                 }else if (parentPage.getMatcher().group(1).equals("password")){
                     Page.account.setPassword(scanner.nextLine());
                 }
+                new Back(this).execute();
             }
         };
     }

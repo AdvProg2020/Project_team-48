@@ -1,6 +1,7 @@
 package view.usersPageCommands.managerCommands;
 
 import controller.Manager;
+import view.Back;
 import view.Page;
 
 public class ManageUsers extends Page {
@@ -9,6 +10,7 @@ public class ManageUsers extends Page {
         subPages.put("view (\\S+)",View());
         subPages.put("delete user (\\S+)",DeleteUser());
         subPages.put("create manager profile",CreateManagerProfile());
+        subPages.put("back", new Back(this) );
     }
 
     protected Page View(){
@@ -25,6 +27,7 @@ public class ManageUsers extends Page {
             @Override
             public void execute() {
                 Manager.deleteUser(parentPage.getMatcher().group(1));
+                new Back(this).execute();
             }
         };
     }
