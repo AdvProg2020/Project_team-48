@@ -7,13 +7,14 @@ public class PersonalInfo extends Page {
     public PersonalInfo(Page parentPage) {
         super(parentPage);
         this.name = "View Personal Information";
-        subPages.put("edit [field]", edit());
+        edit().setName("Edit");
+        subPages.put("edit (email|name|last name|phone number|password)", edit());
         subPages.put("back",new Back(this));
     }
 
     @Override
     public void execute() {
-        System.out.println(account);
+        System.out.println(Page.getAccount());
         super.execute();
     }
 
@@ -22,15 +23,15 @@ public class PersonalInfo extends Page {
             @Override
             public void execute() {
                 if (parentPage.getMatcher().group(1).equals("name")){
-                    Page.account.setFirstName(scanner.next());
+                    Page.getAccount().setFirstName(scanner.next());
                 }else if (parentPage.getMatcher().group(1).equals("last name")){
-                    Page.account.setLastName(scanner.nextLine());
+                    Page.getAccount().setLastName(scanner.nextLine());
                 }else if (parentPage.getMatcher().group(1).equals("email")){
-                    Page.account.setEmail(scanner.nextLine());
+                    Page.getAccount().setEmail(scanner.nextLine());
                 }else if (parentPage.getMatcher().group(1).equals("phone number")){
-                    Page.account.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+                    Page.getAccount().setPhoneNumber(Integer.parseInt(scanner.nextLine()));
                 }else if (parentPage.getMatcher().group(1).equals("password")){
-                    Page.account.setPassword(scanner.nextLine());
+                    Page.getAccount().setPassword(scanner.nextLine());
                 }
                 new Back(this).execute();
             }

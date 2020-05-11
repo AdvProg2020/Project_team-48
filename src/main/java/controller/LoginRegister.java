@@ -2,10 +2,7 @@ package controller;
 
 
 import com.sun.tools.javac.Main;
-import models.Account;
-import models.Buyer;
-import models.Manager;
-import models.Seller;
+import models.*;
 import view.Back;
 import view.Page;
 
@@ -23,14 +20,15 @@ public class LoginRegister {
             }
             return new Manager(username);
         } else if (type.equals("seller")) {
-            return new Seller(username);
+            Seller seller = new Seller(username);
+            new Request(seller);
+            return seller;
         } else {
             return new Buyer(username);
         }
     }
     public static void login(Account account, Page page){
-        account.getAccountPage(page).execute();
-        if (page.getName().equals("main page")){
+        if (page.getName().equals("Login/Register Page")){
             Page.setAccount(account);
             account.getAccountPage(page).execute();
         }else {

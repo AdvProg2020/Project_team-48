@@ -32,7 +32,6 @@ public class Account {
 
     public Account(String username) {
         this.username = username;
-        allAccounts.add(this);
     }
 
     public static Account getUserByName(String username){
@@ -91,10 +90,6 @@ public class Account {
         return allAccounts;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -110,11 +105,6 @@ public class Account {
                 "phoneNumber= " + phoneNumber
                 ;
     }
-
-    public static String accountType()
-    {
-        return "buyer";
-    }  // in chieeeeeeeeeeeeeeeeeeeeee???????????
 
     public static void remove(Account account){
         allAccounts.remove(account);

@@ -1,12 +1,14 @@
 package view.usersPageCommands.managerCommands;
 
-import controller.Manager;
+import controller.ManagerControl;
 import models.Product;
 import view.Page;
 
 public class ManageAllProducts extends Page {
     public ManageAllProducts(Page parentPage) {
         super(parentPage);
+        this.name="Manage all products";
+        Remove().setName("Remove product");
         subPages.put("remove (\\S+)",Remove());
     }
 
@@ -17,7 +19,7 @@ public class ManageAllProducts extends Page {
                 if ( ! Product.existProduct(Integer.parseInt(parentPage.getMatcher().group(1)))){
                     System.out.println("The product does not exist");
                 }else{
-                    Manager.deleteProduct(Integer.parseInt(parentPage.getMatcher().group(1)));
+                    ManagerControl.deleteProduct(Integer.parseInt(parentPage.getMatcher().group(1)));
                 }
             }
         };

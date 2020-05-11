@@ -1,14 +1,21 @@
 package models;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 
 public class Manager extends Account {
-    public static ArrayList<Manager> allManagers = new ArrayList<>();
+    private static ArrayList<Manager> allManagers = new ArrayList<>();
+    private    ArrayList<Request> allRequests = new ArrayList<>();
 
     public Manager(String username) {
         super(username);
         allManagers.add(this);
         super.setAccountType(AccountType.MANAGER);
+        allAccounts.add(this);
+    }
+
+    public ArrayList<Request> getAllRequests() {
+        return allRequests;
     }
 
     public void addManager(Manager manager){

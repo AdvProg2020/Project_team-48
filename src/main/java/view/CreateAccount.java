@@ -15,9 +15,14 @@ public class CreateAccount extends Page{
 
     @Override
     public void execute() {
+       returnExceptions(parentPage.getMatcher().group(1),parentPage.getMatcher().group(2));
+       new Back(this).execute();
+    }
+
+    public void returnExceptions(String type,String name){
         Account account = null;
         try {
-            account = LoginRegister.createAccount(parentPage.getMatcher().group(1),parentPage.getMatcher().group(2));
+            account = LoginRegister.createAccount(type,name);
         } catch (LoginRegister.ExistUsernameException e) {
             System.out.println("username exist");
             new Back(this).execute();
@@ -27,10 +32,10 @@ public class CreateAccount extends Page{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        getInfo();
+        getInfo(account);
     }
 
-    private void getInfo(){
+    public void getInfo(Account account){
         System.out.println("password:");
         account.setPassword(scanner.nextLine());
         System.out.println("name:");
@@ -40,12 +45,15 @@ public class CreateAccount extends Page{
         System.out.println("email:");
         account.setEmail(scanner.nextLine());
         System.out.println("phone number:");
-        account.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+        try {
+            account.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+        }catch (Exception e){
+            System.out.println("it should be numbers");
+        }
         if (parentPage.getMatcher().group(1).equals("seller")){
             System.out.println("organization:");
             Seller seller = (Seller) account;
             seller.setOrganization(scanner.nextLine());
         }
-        new Back(this).execute();
     }
 }

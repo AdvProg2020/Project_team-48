@@ -17,7 +17,7 @@ public abstract class Page {
     protected Page parentPage;
     protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher ;
-    protected static Account account = null;
+    private static Account account = null;
     public static Scanner scanner = new Scanner(System.in);
 
     public Page(Page parentPage) {
@@ -38,6 +38,14 @@ public abstract class Page {
 
     public String getName() {
         return name;
+    }
+
+    public static Account getAccount() {
+        return account;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public static void setAccount(Account account) {

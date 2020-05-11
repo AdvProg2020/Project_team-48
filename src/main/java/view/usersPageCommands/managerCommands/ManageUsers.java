@@ -1,12 +1,18 @@
 package view.usersPageCommands.managerCommands;
 
-import controller.Manager;
+import controller.ManagerControl;
+import models.Account;
 import view.Back;
+import view.CreateAccount;
 import view.Page;
 
 public class ManageUsers extends Page {
     public ManageUsers( Page parentPage) {
         super(parentPage);
+        this.name = "Manage Users";
+        View().setName("View user");
+        DeleteUser().setName("Delete user");
+        CreateManagerProfile().setName("Create manager profile");
         subPages.put("view (\\S+)",View());
         subPages.put("delete user (\\S+)",DeleteUser());
         subPages.put("create manager profile",CreateManagerProfile());
@@ -17,7 +23,8 @@ public class ManageUsers extends Page {
         return new Page(this) {
             @Override
             public void execute() {
-                // innnnnnn chiiiiiiiiiiiii kar mikoneeeeeeeeeeeeeeeeeeeeeeeeeee
+               System.out.println( Account.getUserByName(parentPage.getMatcher().group()));
+               new Back(this).execute();
             }
         };
     }
@@ -26,7 +33,7 @@ public class ManageUsers extends Page {
         return new Page(this) {
             @Override
             public void execute() {
-                Manager.deleteUser(parentPage.getMatcher().group(1));
+                ManagerControl.deleteUser(parentPage.getMatcher().group(1));
                 new Back(this).execute();
             }
         };
@@ -36,7 +43,8 @@ public class ManageUsers extends Page {
         return new Page(this) {
             @Override
             public void execute() {
-                //bad az zadane register iinam bezannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+                new CreateAccount(this).returnExceptions("manager",scanner.nextLine());
+                new Back(this).execute();
             }
         };
     }

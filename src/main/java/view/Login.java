@@ -14,8 +14,8 @@ public class Login extends Page{
 
     @Override
     public void execute() {
-        Account account;
-        if ((account = Account.getUserByName(parentPage.getMatcher().group(1)) )== null){
+        Account account = Account.getUserByName(parentPage.getMatcher().group(1)) ;
+        if (account == null){
             System.out.println("username does not exist");
             new Back(this).execute();
         }else{
