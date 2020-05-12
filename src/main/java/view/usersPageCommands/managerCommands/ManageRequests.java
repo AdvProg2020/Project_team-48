@@ -8,11 +8,7 @@ import view.Page;
 
 public class ManageRequests extends Page {
     public ManageRequests(Page parentPage) {
-        super(parentPage);
-        this.name = "Manage requests";
-        Details().setName("Details");
-        Accept().setName("Accept");
-        Decline().setName("Decline");
+        super(parentPage,"manage requests");
         subPages.put("details (\\S+)",Details());
         subPages.put("accept (\\S+)", Accept());
         subPages.put("decline (\\S+)", Decline());
@@ -28,30 +24,30 @@ public class ManageRequests extends Page {
     }
 
     protected Page Details(){
-        return new Page(this) {
+        return new Page(this,"details") {
             @Override
             public void execute() {
-                System.out.println(Request.getRequestById(Integer.parseInt(parentPage.getMatcher().group())));
+                System.out.println(Request.getRequestById(Integer.parseInt(parentPage.getMatcher().group(1))));
                 new Back(this).execute();
             }
         };
     }
 
     protected Page Accept(){
-        return new Page(this) {
+        return new Page(this,"accept") {
             @Override
             public void execute() {
-                Request.acceptRequest(Integer.parseInt(parentPage.getMatcher().group()));
+                Request.acceptRequest(Integer.parseInt(parentPage.getMatcher().group(1)));
                 new Back(this).execute();
             }
         };
     }
 
     protected Page Decline(){
-        return new Page(this) {
+        return new Page(this,"decline") {
             @Override
             public void execute() {
-                Request.remove(Integer.parseInt(parentPage.getMatcher().group()));
+                Request.remove(Integer.parseInt(parentPage.getMatcher().group(1)));
                 new Back(this).execute();
             }
         };

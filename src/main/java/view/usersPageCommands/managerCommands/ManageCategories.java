@@ -8,8 +8,7 @@ import view.Page;
 
 public class ManageCategories extends Page {
     public ManageCategories(Page parentPage) {
-        super(parentPage);
-        this.name = "Manage categories";
+        super(parentPage,"mange categories");
         subPages.put("edit (\\S+)", Edit());
         subPages.put("add (\\S+)",Add());
         subPages.put("remove (\\S+)",Remove());
@@ -24,11 +23,10 @@ public class ManageCategories extends Page {
     }
 
     protected Page Edit(){
-        this.name="Edit";
-        return new Page(this) {
+        return new Page(this,"edit") {
             @Override
             public void execute() {
-                if (Category.existCategory(parentPage.getMatcher().group())){
+                if (Category.existCategory(parentPage.getMatcher().group(1))){
                     System.out.println("What do you want to edit?");
                     String input = scanner.nextLine();
                     if (input.equals("name")){
@@ -37,10 +35,10 @@ public class ManageCategories extends Page {
                             System.out.println("name exists");
                             new Back(this).execute();
                         }else {
-                            Category.getCategoryByName(parentPage.getMatcher().group()).setName(categoryName);
+                            Category.getCategoryByName(parentPage.getMatcher().group(1)).setName(categoryName);
                         }
                     }else if (input.equals("attributes")){
-                        Category.getCategoryByName(parentPage.getMatcher().group()).setAttribute(scanner.nextLine());
+                        Category.getCategoryByName(parentPage.getMatcher().group(1)).setAttribute(scanner.nextLine());
                     }else{
                         System.out.println("invalid input");
                     }
@@ -53,11 +51,10 @@ public class ManageCategories extends Page {
     }
 
     protected Page Add(){
-
-        return new Page(this) {
+        return new Page(this,"add") {
             @Override
             public void execute() {
-                if (Category.existCategory(parentPage.getMatcher().group())){
+                if (Category.existCategory(parentPage.getMatcher().group(1))){
                     System.out.println("Category exist with this name");
                 }else{
                     System.out.println("attribute:");
@@ -66,7 +63,7 @@ public class ManageCategories extends Page {
                     String subpage = scanner.nextLine();
                     System.out.println("products:");
                     String products = scanner.nextLine();
-                    ManagerControl.addCategory(parentPage.getMatcher().group() ,attribute,subpage,products);
+                    ManagerControl.addCategory(parentPage.getMatcher().group(1) ,attribute,subpage,products);
                 }
                 new Back(this).execute();
             }
@@ -74,11 +71,11 @@ public class ManageCategories extends Page {
     }
 
     protected Page Remove(){
-        return new Page(this) {
+        return new Page(this,"remove") {
             @Override
             public void execute() {
-                if (Category.existCategory(parentPage.getMatcher().group())){
-                    Category.remove(Category.getCategoryByName(parentPage.getMatcher().group()));
+                if (Category.existCategory(parentPage.getMatcher().group(1))){
+                    Category.remove(Category.getCategoryByName(parentPage.getMatcher().group(1)));
                 }else {
                     System.out.println("Category does not exist");
                 }

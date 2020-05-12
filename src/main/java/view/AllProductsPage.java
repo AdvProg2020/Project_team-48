@@ -6,8 +6,7 @@ import view.allProductsPageCommands.Sorting;
 
 public class AllProductsPage extends Page {
     public AllProductsPage(Page parentPage) {
-        super(parentPage);
-        this . name = "product page";
+        super(parentPage,"products page");
         subPages.put("view categories",ViewCategories());
         subPages.put("filtering",new Filtering(this));
         subPages.put("sorting",new Sorting(this));
@@ -18,7 +17,7 @@ public class AllProductsPage extends Page {
     }
 
     protected Page ViewCategories(){
-        return new Page(this) {
+        return new Page(this , "view categories") {
             @Override
             public void execute() {
 
@@ -27,7 +26,7 @@ public class AllProductsPage extends Page {
     }
 
     protected Page ShowProducts(){
-        return new Page(this) {
+        return new Page(this,"show products") {
             @Override
             public void execute() {
 

@@ -6,14 +6,12 @@ import view.Page;
 
 public class ManageAllProducts extends Page {
     public ManageAllProducts(Page parentPage) {
-        super(parentPage);
-        this.name="Manage all products";
-        Remove().setName("Remove product");
+        super(parentPage,"manage all products");
         subPages.put("remove (\\S+)",Remove());
     }
 
     protected Page Remove(){
-        return new Page(this) {
+        return new Page(this,"remove") {
             @Override
             public void execute() {
                 if ( ! Product.existProduct(Integer.parseInt(parentPage.getMatcher().group(1)))){

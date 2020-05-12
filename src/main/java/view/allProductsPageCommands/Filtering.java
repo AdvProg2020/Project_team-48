@@ -5,7 +5,7 @@ import view.Page;
 
 public class Filtering extends Page {
     public Filtering(Page parentPage) {
-        super(parentPage);
+        super(parentPage,"Filtering");
         subPages.put("show available filters",ShowAvailableFilters());
         subPages.put("filter [Filter Name]",Filter());
         subPages.put("current filters",CurrentFilters());
@@ -15,7 +15,7 @@ public class Filtering extends Page {
     }
 
     protected Page ShowAvailableFilters(){
-        return new Page(this) {
+        return new Page(this,"Show available filters") {
             @Override
             public void execute() {
 
@@ -24,7 +24,7 @@ public class Filtering extends Page {
     }
 
     protected Page Filter(){
-        return new Page(this) {
+        return new Page(this,"Filter") {
             @Override
             public void execute() {
 
@@ -33,7 +33,7 @@ public class Filtering extends Page {
     }
 
     protected Page CurrentFilters(){
-        return new Page(this) {
+        return new Page(this,"current filters") {
             @Override
             public void execute() {
 
@@ -42,7 +42,7 @@ public class Filtering extends Page {
     }
 
     protected Page DisableFilter(){
-        return new Page(this) {
+        return new Page(this , "disable filter") {
             @Override
             public void execute() {
 

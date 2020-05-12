@@ -4,12 +4,12 @@ import controller.LoginRegister;
 import models.Account;
 import models.Seller;
 
+import java.time.format.SignStyle;
 import java.util.Scanner;
 
 public class CreateAccount extends Page{
     public CreateAccount(Page parentPage){
-        super(parentPage);
-        this.name = "Create Account";
+        super(parentPage,"create account");
         subPages.put("back", new Back(this));
     }
 
@@ -32,10 +32,10 @@ public class CreateAccount extends Page{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        getInfo(account);
+        getInfo(account,parentPage.getMatcher().group(1));
     }
 
-    public void getInfo(Account account){
+    public void getInfo(Account account, String type){
         System.out.println("password:");
         account.setPassword(scanner.nextLine());
         System.out.println("name:");
@@ -50,7 +50,7 @@ public class CreateAccount extends Page{
         }catch (Exception e){
             System.out.println("it should be numbers");
         }
-        if (parentPage.getMatcher().group(1).equals("seller")){
+        if (type.equals("seller")){
             System.out.println("organization:");
             Seller seller = (Seller) account;
             seller.setOrganization(scanner.nextLine());

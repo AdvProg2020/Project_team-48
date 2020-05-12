@@ -28,11 +28,12 @@ public class LoginRegister {
         }
     }
     public static void login(Account account, Page page){
-        if (page.getName().equals("Login/Register Page")){
+        if (page.getName().equalsIgnoreCase("login/register Page")){
             Page.setAccount(account);
             account.getAccountPage(page).execute();
         }else {
-            ///vaghti az peyjaye dige miaymmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+            Page.setAccount(account);
+            page.execute();
         }
 
     }

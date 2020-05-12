@@ -2,17 +2,12 @@ package view.usersPageCommands.managerCommands;
 
 import controller.ManagerControl;
 import models.Discount;
-import models.Manager;
 import view.Back;
 import view.Page;
 
 public class ViewDiscountCodes extends Page {
     public ViewDiscountCodes(Page parentPage) {
-        super(parentPage);
-        this.name = "View discount codes";
-        ViewDiscountCode().setName("View discount");
-        EditDiscountCode().setName("Edit discount code");
-        RemoveDiscountCode().setName("Remove discount code");
+        super(parentPage,"view discount codes");
         subPages.put("view discount code (\\S+)",ViewDiscountCode());
         subPages.put("edit discount code (\\S+)",EditDiscountCode());
         subPages.put("remove discount code (\\S+)",RemoveDiscountCode());
@@ -27,7 +22,7 @@ public class ViewDiscountCodes extends Page {
     }
 
     protected Page ViewDiscountCode(){
-        return new Page(this) {
+        return new Page(this,"view discount code") {
             @Override
             public void execute() {
                 ManagerControl.viewDiscount(Integer.parseInt(parentPage.getMatcher().group(1)));
@@ -37,7 +32,7 @@ public class ViewDiscountCodes extends Page {
     }
 
     protected Page EditDiscountCode(){
-        return new Page(this) {
+        return new Page(this,"edit discount code") {
             @Override
             public void execute() {
                 int code ;
@@ -52,7 +47,7 @@ public class ViewDiscountCodes extends Page {
     }
 
     protected Page RemoveDiscountCode(){
-        return new Page(this) {
+        return new Page(this, "remove discount code") {
             @Override
             public void execute() {
                 ManagerControl.removeDiscount(Integer.parseInt(parentPage.getMatcher().group(1)));

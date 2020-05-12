@@ -5,8 +5,7 @@ import view.Page;
 
 public class Sorting extends Page {
     public Sorting(Page parentPage) {
-        super(parentPage);
-        this.name = "sort";
+        super(parentPage, "sort");
         subPages.put("show available sorts",ShowAvailableSorts());
         subPages.put("sort [Sort by]",Sort());
         subPages.put("current sort",CurrentSort());
@@ -16,7 +15,7 @@ public class Sorting extends Page {
     }
 
     protected Page ShowAvailableSorts(){
-        return new Page(this) {
+        return new Page(this,"show available sorts") {
             @Override
             public void execute() {
 
@@ -25,7 +24,7 @@ public class Sorting extends Page {
     }
 
     protected Page Sort(){
-        return new Page(this) {
+        return new Page(this,"sort") {
             @Override
             public void execute() {
 
@@ -34,7 +33,7 @@ public class Sorting extends Page {
     }
 
     protected Page CurrentSort(){
-        return new Page(this) {
+        return new Page(this, "current sort") {
             @Override
             public void execute() {
 
@@ -43,7 +42,7 @@ public class Sorting extends Page {
     }
 
     protected Page DisableSort(){
-        return new Page(this) {
+        return new Page(this,"disable sort") {
             @Override
             public void execute() {
 

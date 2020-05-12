@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 public class Login extends Page{
     public Login(Page parentPage){
-        super(parentPage);
-        this.name = "Login";
+        super(parentPage,"login");
         subPages.put("back", new Back(this));
     }
 

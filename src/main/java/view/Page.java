@@ -20,8 +20,9 @@ public abstract class Page {
     private static Account account = null;
     public static Scanner scanner = new Scanner(System.in);
 
-    public Page(Page parentPage) {
+    public Page(Page parentPage ,String name) {
         this.parentPage = parentPage;
+        this.name = name;
     }
 
     public void setParentPage(Page parentPage) {

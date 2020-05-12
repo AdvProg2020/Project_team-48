@@ -6,24 +6,25 @@ import view.usersPageCommands.managerCommands.ManageCategories;
 import view.usersPageCommands.managerCommands.ManageRequests;
 import view.usersPageCommands.managerCommands.ManageUsers;
 import view.usersPageCommands.PersonalInfo;
+import view.usersPageCommands.managerCommands.ViewDiscountCodes;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ManagerPage extends Page{
     public ManagerPage(Page parentPage) {
-        super(parentPage);
-        this.name = "your account";
-        CreateDiscountCode().setName("Create discount code");
+        super(parentPage,"your account(manager");
         subPages.put("view personal info",new PersonalInfo(this));
         subPages.put("manage users",new ManageUsers(this));
         subPages.put("create discount code",CreateDiscountCode());
+        subPages.put("view discount codes",new ViewDiscountCodes(this));
         subPages.put("manage requests",new ManageRequests(this));
         subPages.put("manage categories",new ManageCategories(this));
         subPages.put("back",new Back(this));
     }
 
     protected Page CreateDiscountCode(){
-        return new Page(this) {
+        return new Page(this,"create discount code") {
             @Override
             public void execute() {
                 System.out.println("discount code:");

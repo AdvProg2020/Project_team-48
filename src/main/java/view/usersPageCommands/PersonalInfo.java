@@ -5,10 +5,8 @@ import view.Page;
 
 public class PersonalInfo extends Page {
     public PersonalInfo(Page parentPage) {
-        super(parentPage);
-        this.name = "View Personal Information";
-        edit().setName("Edit");
-        subPages.put("edit (email|name|last name|phone number|password)", edit());
+        super(parentPage,"view personal info");
+        subPages.put("edit (email|name|last name|phone number|password)", Edit());
         subPages.put("back",new Back(this));
     }
 
@@ -18,12 +16,12 @@ public class PersonalInfo extends Page {
         super.execute();
     }
 
-    protected Page edit(){
-        return new Page(this) {
+    protected Page Edit(){
+        return new Page(this,"edit") {
             @Override
             public void execute() {
                 if (parentPage.getMatcher().group(1).equals("name")){
-                    Page.getAccount().setFirstName(scanner.next());
+                    Page.getAccount().setFirstName(scanner.nextLine());
                 }else if (parentPage.getMatcher().group(1).equals("last name")){
                     Page.getAccount().setLastName(scanner.nextLine());
                 }else if (parentPage.getMatcher().group(1).equals("email")){
@@ -33,7 +31,7 @@ public class PersonalInfo extends Page {
                 }else if (parentPage.getMatcher().group(1).equals("password")){
                     Page.getAccount().setPassword(scanner.nextLine());
                 }
-                new Back(this).execute();
+                new Back(parentPage).execute();
             }
         };
     }

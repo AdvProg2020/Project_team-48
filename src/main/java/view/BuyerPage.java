@@ -8,8 +8,7 @@ import java.util.HashMap;
 
 public class BuyerPage extends Page {
     public BuyerPage(Page parentPage) {
-        super(parentPage);
-        this.name = "your account";
+        super(parentPage,"your account(buyer)");
         subPages.put("view personal info",new PersonalInfo(this));
         subPages.put("view cart",new ViewCart(this));
         subPages.put("purchase", Purchase());
@@ -21,7 +20,7 @@ public class BuyerPage extends Page {
 
 
     protected Page Purchase(){
-        return new Page(this) {
+        return new Page(this,"purchase") {
             @Override
             public void execute() {
 
@@ -30,7 +29,7 @@ public class BuyerPage extends Page {
     }
 
     protected Page ViewBalance(){
-        return new Page(this) {
+        return new Page(this,"view balance") {
             @Override
             public void execute() {
 
@@ -39,7 +38,7 @@ public class BuyerPage extends Page {
     }
 
     protected Page ViewDiscountCodes(){
-        return new Page(this) {
+        return new Page(this, " view discount code") {
             @Override
             public void execute() {
 

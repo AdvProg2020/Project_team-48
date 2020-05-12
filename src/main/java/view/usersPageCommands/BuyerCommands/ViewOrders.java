@@ -4,13 +4,13 @@ import view.Page;
 
 public class ViewOrders extends Page {
     public ViewOrders(Page parentPage) {
-        super(parentPage);
+        super(parentPage,"view orders");
         subPages.put("show order [orderId]", ShowOrder());
         subPages.put("rate [productId] [1-5]", Rate());
     }
 
     protected Page ShowOrder(){
-        return new Page(this) {
+        return new Page(this,"show order") {
             @Override
             public void execute() {
 
@@ -19,7 +19,7 @@ public class ViewOrders extends Page {
     }
 
     protected Page Rate(){
-        return new Page(this) {
+        return new Page(this,"rate") {
             @Override
             public void execute() {
 

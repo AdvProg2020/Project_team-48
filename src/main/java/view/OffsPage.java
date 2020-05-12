@@ -6,8 +6,7 @@ import view.allProductsPageCommands.Sorting;
 
 public class OffsPage extends Page {
     public OffsPage(Page parentPage) {
-        super(parentPage);
-        this.name = "offs";
+        super(parentPage,"offs");
         subPages.put("show product [Product Name]", new ProductPage(this));
         subPages.put("filtering",new Filtering(this));
         subPages.put("sorting",new Sorting(this));

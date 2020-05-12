@@ -9,8 +9,7 @@ import java.util.Comparator;
 public class ProductPage extends Page {
     int productId ;
     public ProductPage(Page parentPage) {
-        super(parentPage);
-        this.name= "Product";
+        super(parentPage,"product");
        // productId = Integer.parseInt(parentPage.getMatcher().group(1));
         subPages.put("digest",new Digest(this));
         subPages.put("attributes",Attributes());
@@ -21,7 +20,7 @@ public class ProductPage extends Page {
     }
 
     protected Page Attributes(){
-        return new Page(this) {
+        return new Page(this,"attributes") {
             @Override
             public void execute() {
 
@@ -30,7 +29,7 @@ public class ProductPage extends Page {
     }
 
     protected Page Compare(){
-        return new Page(this) {
+        return new Page(this,"compare") {
             @Override
             public void execute() {
 
