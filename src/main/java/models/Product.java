@@ -2,36 +2,33 @@ package models;
 
 import java.util.ArrayList;
 
-enum ProductState{
 
-}
 
  public class Product {
      private int productId;
-     private ProductState productState;
+     private String productState;
      private String name;
      private String brand;
      private int price;
      private int existing;
-     private ArrayList<Seller> productSellers;
+     private Seller seller;
+     private ArrayList<Buyer> productBuyers = new ArrayList<>();
      private Category category;
      private String details;
      private Rating buyersRating;
      private ArrayList<Comment> allComments;
-     private static ArrayList<Product> allProduct;
+     private static ArrayList<Product> allProduct =new ArrayList<>();
 
-     public Product(int productId, ProductState productState, String name, String brand, int price, int existing, ArrayList<Seller> productSellers, Category category, String details, Rating buyersRating, ArrayList<Comment> allComments) {
-         this.productId = productId;
-         this.productState = productState;
+     public Product(String name, String brand, int price, int existing, Seller seller, String details) {
          this.name = name;
          this.brand = brand;
          this.price = price;
          this.existing = existing;
-         this.productSellers = productSellers;
-         this.category = category;
+         this.seller = seller;
          this.details = details;
-         this.buyersRating = buyersRating;
-         this.allComments = allComments;
+         this.productState = "requested";
+         allProduct.add(this);
+         productId = allProduct.size();
      }
 
      public static boolean existProduct(int id){
@@ -56,6 +53,45 @@ enum ProductState{
          allProduct.remove(product);
      }
 
+     @Override
+     public String toString() {
+         return "productId=" + productId +
+                 ", productState=" + productState +
+                 ", name='" + name +
+                 ", brand='" + brand +
+                 ", price=" + price +
+                 ", existing=" + existing +
+                 ", seller=" + seller +
+                 ", productBuyers=" + productBuyers +
+                 ", category=" + category +
+                 ", details='" + details +
+                 ", buyersRating=" + buyersRating +
+                 ", allComments=" + allComments
+                 ;
+     }
 
+     public String getName() {
+         return name;
+     }
+
+     public ArrayList<Buyer> getProductBuyers() {
+         return productBuyers;
+     }
+
+     public void setPrice(int price) {
+         this.price = price;
+     }
+
+     public void setExisting(int existing) {
+         this.existing = existing;
+     }
+
+     public String getProductState() {
+         return productState;
+     }
+
+     public void setProductState(String productState) {
+         this.productState = productState;
+     }
  }
 

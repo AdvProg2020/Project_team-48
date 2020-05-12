@@ -2,7 +2,6 @@ package view.usersPageCommands.managerCommands;
 
 import controller.ManagerControl;
 import models.Category;
-import models.Manager;
 import view.Back;
 import view.Page;
 

@@ -6,7 +6,6 @@ public class MainPage extends Page{
         subPages.put("products", new AllProductsPage(this));
         subPages.put("offs",new OffsPage(this));
         if(getAccount()!= null) {
-            subPages.put("logout", new Logout(this));
             subPages.put("User Page", getAccount().getAccountPage(this));
         }
         else

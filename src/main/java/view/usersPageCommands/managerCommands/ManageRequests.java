@@ -16,8 +16,7 @@ public class ManageRequests extends Page {
 
     @Override
     public void execute() {
-        Manager manager = (Manager) getAccount();
-        for (Request request : manager.getAllRequests()) {
+        for (Request request : Request.getRequests()) {
             System.out.println(request.getRequestId());
         }
         super.execute();

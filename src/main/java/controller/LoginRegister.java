@@ -1,12 +1,8 @@
 package controller;
 
 
-import com.sun.tools.javac.Main;
 import models.*;
-import view.Back;
 import view.Page;
-
-import java.util.Scanner;
 
 public class LoginRegister {
 
@@ -21,7 +17,7 @@ public class LoginRegister {
             return new Manager(username);
         } else if (type.equals("seller")) {
             Seller seller = new Seller(username);
-            new Request(seller);
+            new Request(seller).addSeller(seller);
             return seller;
         } else {
             return new Buyer(username);

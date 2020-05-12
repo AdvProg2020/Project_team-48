@@ -23,6 +23,11 @@ public abstract class Page {
     public Page(Page parentPage ,String name) {
         this.parentPage = parentPage;
         this.name = name;
+        if (account != null)subPages.put("logout",new Logout(this));
+        subPages.put("back",new Back(this));
+    }
+
+    protected Page() {
     }
 
     public void setParentPage(Page parentPage) {

@@ -34,6 +34,10 @@ public class Account {
         this.username = username;
     }
 
+    public int getCredit() {
+        return credit;
+    }
+
     public static Account getUserByName(String username){
         for(Account account : allAccounts){
             if(username.equals(account.username)){
@@ -110,4 +114,7 @@ public class Account {
         allAccounts.remove(account);
     }
 
+    public ArrayList<SellLog> getSellLogsList() {
+        return sellLogsList;
+    }
 }
