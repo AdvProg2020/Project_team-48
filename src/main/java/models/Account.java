@@ -23,6 +23,7 @@ public class Account {
     protected String lastName;
     protected String email;
     protected int phoneNumber;
+    protected String address;
     protected Date lastLoggedIn;
     private AccountType accountType;
     private ArrayList<Off> offCodes;
@@ -32,6 +33,14 @@ public class Account {
 
     public Account(String username) {
         this.username = username;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public int getCredit() {

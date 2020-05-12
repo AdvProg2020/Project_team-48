@@ -27,7 +27,8 @@ public abstract class Page {
         subPages.put("back",new Back(this));
     }
 
-    protected Page() {
+    public Page getParentPage() {
+        return parentPage;
     }
 
     public void setParentPage(Page parentPage) {

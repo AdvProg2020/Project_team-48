@@ -4,13 +4,16 @@ import com.google.gson.internal.$Gson$Preconditions;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.logging.Handler;
 
 public class Discount{
     private int discountCode;
     private String startDate;
     private String finishDate;
+    private int max;
     private int discountPercent;
-    private int repeat;
+    private HashMap<Account , Integer> repeat = new HashMap<>() ;
     private ArrayList<Account> allDiscountedUsers = new ArrayList<>();
     private static ArrayList<Discount> allDiscounts = new ArrayList<>();
 
@@ -19,9 +22,20 @@ public class Discount{
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.discountPercent = discountPercent;
-        this.repeat = repeat;
         this.allDiscountedUsers = allDiscountedUsers;
         allDiscounts.add(this);
+    }
+
+    public ArrayList<Account> getAllDiscountedUsers() {
+        return allDiscountedUsers;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public int getDiscountPercent() {
+        return discountPercent;
     }
 
     public static ArrayList<Discount> getAllDiscounts() {
@@ -69,4 +83,22 @@ public class Discount{
     public static void remove(int code){
         allDiscounts.remove(getDiscountByCode(code));
     }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getFinishDate() {
+        return finishDate;
+    }
+
+    public void decreaseRepeat(Account account){
+        for (Account account1 : repeat.keySet()) {
+            if (account == account1){
+                int rep = repeat.get(account);
+                repeat.replace(account,rep );
+            }
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
      private int existing;
      private Seller seller;
      private ArrayList<Buyer> productBuyers = new ArrayList<>();
+     private int rate;
      private Category category;
      private String details;
      private Rating buyersRating;
@@ -29,6 +30,10 @@ import java.util.ArrayList;
          this.productState = "requested";
          allProduct.add(this);
          productId = allProduct.size();
+     }
+
+     public void setRate(int rate) {
+         this.rate = rate + this.rate;
      }
 
      public static boolean existProduct(int id){
@@ -92,6 +97,10 @@ import java.util.ArrayList;
 
      public void setProductState(String productState) {
          this.productState = productState;
+     }
+
+     public int getPrice() {
+         return price;
      }
  }
 
