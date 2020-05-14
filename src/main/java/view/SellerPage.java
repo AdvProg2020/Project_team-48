@@ -6,6 +6,7 @@ import models.Category;
 import models.Product;
 import models.Seller;
 import view.usersPageCommands.PersonalInfo;
+import view.usersPageCommands.ViewBalance;
 import view.usersPageCommands.sellerCommands.ManageProducts;
 
 public class SellerPage extends Page {
@@ -17,7 +18,7 @@ public class SellerPage extends Page {
         subPages.put("add product",AddProduct());
         subPages.put("remove product (\\S+)",RemoveProduct());
         subPages.put("show categories",ShowCategories());
-        subPages.put("view balance",ViewBalance());
+        subPages.put("view balance",new ViewBalance(this));
         subPages.put("manage products", new ManageProducts(this));
         subPages.put("back",new Back(this));
     }
@@ -84,13 +85,4 @@ public class SellerPage extends Page {
         };
     }
 
-    protected Page ViewBalance(){
-        return new Page(this,"view balance") {
-            @Override
-            public void execute() {
-               System.out.println( Page.getAccount().getCredit());
-               new Back(this).execute();
-            }
-        };
-    }
 }

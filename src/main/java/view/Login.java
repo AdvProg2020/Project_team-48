@@ -13,7 +13,11 @@ public class Login extends Page{
 
     @Override
     public void execute() {
-        Account account = Account.getUserByName(parentPage.getMatcher().group(1)) ;
+        login(parentPage.getMatcher().group(1));
+    }
+
+    public void login(String string){
+        Account account = Account.getUserByName(string) ;
         if (account == null){
             System.out.println("username does not exist");
             new Back(this).execute();
@@ -26,5 +30,6 @@ public class Login extends Page{
                 new Back(this).execute();
             }
         }
+
     }
 }

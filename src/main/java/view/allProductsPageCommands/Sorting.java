@@ -7,7 +7,7 @@ public class Sorting extends Page {
     public Sorting(Page parentPage) {
         super(parentPage, "sort");
         subPages.put("show available sorts",ShowAvailableSorts());
-        subPages.put("sort [Sort by]",Sort());
+        subPages.put("sort (\\S+)",Sort());
         subPages.put("current sort",CurrentSort());
         subPages.put("disable sort",DisableSort());
         subPages.put("back",new Back(this));

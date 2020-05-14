@@ -1,16 +1,14 @@
 package view;
 
+import models.Product;
 import view.productPageCommands.Comments;
 import view.productPageCommands.Digest;
 
-import java.util.Collections;
-import java.util.Comparator;
 
 public class ProductPage extends Page {
-    int productId ;
-    public ProductPage(Page parentPage) {
+    public ProductPage(Page parentPage, Product product ) {
         super(parentPage,"product");
-       // productId = Integer.parseInt(parentPage.getMatcher().group(1));
+        this.product = product;
         subPages.put("digest",new Digest(this));
         subPages.put("attributes",Attributes());
         subPages.put("compare [Product Name]", Compare());
@@ -23,7 +21,8 @@ public class ProductPage extends Page {
         return new Page(this,"attributes") {
             @Override
             public void execute() {
-
+                System.out.println(product);
+                new Back(this).execute();
             }
         };
     }
@@ -32,7 +31,9 @@ public class ProductPage extends Page {
         return new Page(this,"compare") {
             @Override
             public void execute() {
-
+                System.out.println(Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))));
+                System.out.println(product);
+                new Back(this).execute();
             }
         };
     }

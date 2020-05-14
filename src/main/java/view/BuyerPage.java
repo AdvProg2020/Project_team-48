@@ -5,6 +5,7 @@ import models.Discount;
 import view.usersPageCommands.BuyerCommands.ViewCart;
 import view.usersPageCommands.BuyerCommands.ViewOrders;
 import view.usersPageCommands.PersonalInfo;
+import view.usersPageCommands.ViewBalance;
 
 public class BuyerPage extends Page {
     public BuyerPage(Page parentPage) {
@@ -12,21 +13,10 @@ public class BuyerPage extends Page {
         subPages.put("view personal info",new PersonalInfo(this));
         subPages.put("view cart",new ViewCart(this));
         subPages.put("view orders",new ViewOrders(this));
-        subPages.put("view balance", ViewBalance());
+        subPages.put("view balance", new ViewBalance(this));
         subPages.put("view discount codes",ViewDiscountCodes());
     }
 
-
-
-    protected Page ViewBalance(){
-        return new Page(this,"view balance") {
-            @Override
-            public void execute() {
-                System.out.println( Page.getAccount().getCredit());
-                new Back(this).execute();
-            }
-        };
-    }
 
     protected Page ViewDiscountCodes(){
         return new Page(this, " view discount code") {

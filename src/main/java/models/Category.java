@@ -54,4 +54,13 @@ public class Category{
     public static void remove(Category category){
         allCategories.remove(category);
     }
+
+    @Override
+    public String toString() {
+        return
+                "name='" + name +
+                ", attribute='" + attribute +
+                ", subCategory=" + subCategory +
+                ", allProducts=" + allProducts ;
+    }
 }

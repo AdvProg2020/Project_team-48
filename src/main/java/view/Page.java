@@ -2,6 +2,7 @@ package view;
 
 import com.sun.tools.javac.Main;
 import models.Account;
+import models.Product;
 
 import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Page {
+    protected Product product;
     protected String name;
     protected HashMap<String,Page> subPages = new HashMap<>();
     protected Page parentPage;
@@ -25,6 +27,13 @@ public abstract class Page {
         this.name = name;
         if (account != null)subPages.put("logout",new Logout(this));
         subPages.put("back",new Back(this));
+    }
+
+    protected Page() {
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     public Page getParentPage() {
