@@ -2,6 +2,7 @@ package controller;
 
 
 import models.*;
+import view.LoginRegisterPage;
 import view.Page;
 
 public class LoginRegister {
@@ -23,15 +24,9 @@ public class LoginRegister {
             return new Buyer(username);
         }
     }
-    public static void login(Account account, Page page){
-        if (page.getName().equalsIgnoreCase("login/register Page")){
+    public static void login(Account account){
             Page.setAccount(account);
-            account.getAccountPage(page).execute();
-        }else {
-            Page.setAccount(account);
-            page.execute();
-        }
-
+            Page.getLoginRegisterPage().execute();
     }
 
     public static class ExistManagerException extends Exception{

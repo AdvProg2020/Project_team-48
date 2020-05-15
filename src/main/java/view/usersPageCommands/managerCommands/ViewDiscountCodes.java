@@ -35,9 +35,20 @@ public class ViewDiscountCodes extends Page {
         return new Page(this,"edit discount code") {
             @Override
             public void execute() {
-                int code ;
-                if (Discount.existCode(code = Integer.parseInt(parentPage.getMatcher().group(1)))){
-                    Discount.getDiscountByCode(code).setDiscountCode(Integer.parseInt(scanner.nextLine()));
+                int code= Integer.parseInt(parentPage.getMatcher().group(1));
+                if (Discount.existCode(code)){
+                    Discount discount =Discount.getDiscountByCode(code);
+                    System.out.println("which field do you want to edit?");
+                    String input = scanner.nextLine();
+                    if (input.equals("start date")){
+                        discount.setStartDate(scanner.nextLine());
+                    }else if (input.equals("finish date")){
+                        discount.setFinishDate(scanner.nextLine());
+                    }else if (input.equals("maximum amount")){
+                        discount.setMax(Integer.parseInt(scanner.nextLine()));
+                    }else if (input.equals("percent")){
+                        discount.setDiscountPercent(Integer.parseInt(scanner.nextLine()));
+                    }
                 }else{
                     System.out.println("code does not exist");
                 }

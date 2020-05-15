@@ -4,6 +4,7 @@ import models.Buyer;
 import models.Product;
 import view.Back;
 import view.Login;
+import view.LoginRegisterPage;
 import view.Page;
 
 public class Digest extends Page {
@@ -28,8 +29,8 @@ public class Digest extends Page {
             @Override
             public void execute() {
                 if (Page.getAccount() == null){
-                    System.out.println("login first:\n insert username:");
-                    new Login(this).execute();
+                    System.out.println("login first:");
+                    new LoginRegisterPage(this).execute();
                 }else {
                    Buyer buyer = (Buyer)Page.getAccount() ;
                    buyer.getCart().addProductToCart(product);

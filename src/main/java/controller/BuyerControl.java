@@ -3,13 +3,14 @@ package controller;
 import models.*;
 import view.Page;
 
-import java.awt.image.AreaAveragingScaleFilter;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BuyerControl {
     public static boolean checkDiscount(Account account, Discount discount) {
         Buyer buyer = (Buyer) account;
-        if (checkDate(discount.getStartDate(), discount.getFinishDate())) {
+        if (discount.getStartDate().isBefore(LocalDateTime.now()) && discount.getFinishDate().isAfter(LocalDateTime.now())) {
             if (discount.getAllDiscountedUsers().contains(account)) {
                 return true;
             }
@@ -18,23 +19,33 @@ public class BuyerControl {
         return false;
     }
 
-    public static boolean checkDate(String start, String end) {
-        return true;////////////////////////////////////////////////////////////////////////////////
-    }
 
     public static boolean purchase(Account account, Discount discount) {
         Buyer buyer = (Buyer) account;
         int price = buyer.getCart().getTotalPrice();
         if (discount != null) {
-            if (discount.getMax() > price * discount.getDiscountPercent() / 100) {
-                price = price - (int) ((price * discount.getDiscountPercent()) / 100);
-            } else {
-                price = price - discount.getMax();
+            if (discount.getStartDate().isBefore(LocalDateTime.now()) && discount.getFinishDate().isAfter(LocalDateTime.now())){
+                for (Account user : discount.getAllDiscountedUsers()) {
+                    if (account == user){
+                        if (discount.getMax() > price * discount.getDiscountPercent() / 100) {
+                            price = price - (int) ((price * discount.getDiscountPercent()) / 100);
+                        } else {
+                            price = price - discount.getMax();
+                        }
+                    }
+                }
             }
+
         }
         if (account.getCredit() >= price) {
             account.setCredit(account.getCredit() - price);
             new BuyLog(((Buyer) account).getCart().getProducts(),discount.getDiscountPercent(), (Buyer) account);
+
+            for (Product product : ((Buyer) account).getCart().getProducts()) {
+                product.getSeller().setCredit(product.getSeller().getCredit() + product.getPrice());
+                product.setExisting(product.getExisting()-1);
+                new SellLog(product , LocalDateTime.now() ,((Buyer)account));
+            }
             ((Buyer) account).getCart().clear();
             discount.decreaseRepeat(account);
             return true;

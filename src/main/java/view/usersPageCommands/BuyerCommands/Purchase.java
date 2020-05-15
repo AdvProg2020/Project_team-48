@@ -23,11 +23,11 @@ public class Purchase extends Page {
         ReceiverInformation().execute();
     }
 
-    protected Page ReceiverInformation(){
-        return new Page(this,"receiver information") {
+    protected Page ReceiverInformation() {
+        return new Page(this, "receiver information") {
             @Override
             public void execute() {
-                subPages.put("discount code",DiscountCode());
+                subPages.put("discount code", DiscountCode());
                 System.out.println("enter your address");
                 Page.getAccount().setAddress(scanner.nextLine());
                 DiscountCode().execute();
@@ -35,38 +35,38 @@ public class Purchase extends Page {
         };
     }
 
-    protected Page DiscountCode(){
-        return new Page(this,"discount code") {
+    protected Page DiscountCode() {
+        return new Page(this, "discount code") {
             @Override
             public void execute() {
                 subPages.put("payment", Payment());
                 System.out.println("Do you have discount code");
-                if (scanner.nextLine().equals("yes")){
+                if (scanner.nextLine().equals("yes")) {
                     int code = Integer.parseInt(scanner.nextLine());
-                   if( BuyerControl.checkDiscount(Page.getAccount(),Discount.getDiscountByCode(code))){
-                       discount = Discount.getDiscountByCode(code);
-                   }
+                    if (BuyerControl.checkDiscount(Page.getAccount(), Discount.getDiscountByCode(code))) {
+                        discount = Discount.getDiscountByCode(code);
+                    }
                 }
                 Payment().execute();
             }
         };
     }
 
-    protected Page Payment(){
-        return new Page(this,"payment") {
+    protected Page Payment() {
+        return new Page(this, "payment") {
             @Override
             public void execute() {
                 System.out.println("Do you want to complete purchase?");
                 String input = scanner.nextLine();
-                if (input.equals("yes")){
-                    if (BuyerControl.purchase(Page.getAccount() , discount)){
+                if (input.equals("yes")) {
+                    if (BuyerControl.purchase(Page.getAccount(), discount)) {
                         System.out.println("your action was successful");
                         this.getParentPage().getParentPage().getParentPage().getParentPage().execute();
-                    }else{
+                    } else {
                         System.out.println("you do not have enough credit");
                         new Back(this).execute();
                     }
-                }else if (input.equals("no")){
+                } else if (input.equals("no")) {
                     new Back(this).execute();
                 }
             }

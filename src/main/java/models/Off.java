@@ -1,5 +1,8 @@
 package models;
 
+import javax.sql.rowset.serial.SerialStruct;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,14 +12,15 @@ public class Off{
     private int offId ;
     private ArrayList<Product> products = new ArrayList<>();
     private String  offStatus;
-    private String startDate;
-    private String finishDate;
+    private LocalDateTime startDate;
+    private LocalDateTime finishDate;
     private int offAmount;
     private static ArrayList<Off> offs = new ArrayList<>();
 
-    public Off(String startDate, String finishDate, int offAmount,ArrayList product) {
-        this.startDate = startDate;
-        this.finishDate = finishDate;
+    public Off(String startDate, String finishDate, int offAmount,ArrayList<Product> product) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+        this.startDate = LocalDateTime.parse(startDate , formatter);
+        this.finishDate = LocalDateTime.parse(finishDate , formatter);
         this.offAmount = offAmount;
         this.products = product;
         offs.add(this);
@@ -41,11 +45,11 @@ public class Off{
         return offs;
     }
 
-    public String getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public String getFinishDate() {
+    public LocalDateTime getFinishDate() {
         return finishDate;
     }
 
@@ -73,11 +77,13 @@ public class Off{
     }
 
     public void setStartDate(String startDate) {
-        this.startDate = startDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+        this.startDate = LocalDateTime.parse(startDate, formatter);
     }
 
     public void setFinishDate(String finishDate) {
-        this.finishDate = finishDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+        this.finishDate = LocalDateTime.parse(finishDate, formatter);
     }
 
     public void setOffAmount(int offAmount) {

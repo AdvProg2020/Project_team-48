@@ -10,6 +10,11 @@ public class Logout extends Page{
     @Override
     public void execute() {
         Page.setAccount(null);
-        new MainPage(parentPage).execute();
+        if (parentPage.name.equals("your account(manager)") || parentPage.name.equals("your account(buyer)") || parentPage.name.equals("your account(seller)")){
+            new MainPage(parentPage).execute();
+        }else{
+            parentPage.execute();
+        }
+
     }
 }
