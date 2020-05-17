@@ -33,7 +33,12 @@ public class ViewCart extends Page {
         return new Page(this,"view") {
             @Override
             public void execute() {
-                System.out.println(Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))));
+                Buyer buyer= (Buyer)Page.getAccount();
+                if (buyer.getCart().getProducts().contains(Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))))) {
+                    System.out.println(Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))));
+                }else{
+                    System.out.println("product does not exist in your cart");
+                }
                 new Back(this).execute();
             }
         };

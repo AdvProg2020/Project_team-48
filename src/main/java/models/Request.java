@@ -88,8 +88,8 @@ public class Request {
             Seller seller = (Seller) request.account;
             seller.add();
         } else if (products.contains(request.account)) {
-            if (request.product.getProductState().equals("requested")) {
-                request.product.setProductState("accepted");
+            if (Product.getRequested().contains(request.product)) {
+                Product.addProduct(request.product);
             } else if (request.price != null) {
                 request.product.setPrice(request.price);
             } else if (request.existing != null) {
@@ -97,8 +97,8 @@ public class Request {
             }
             products.remove(request.account);
         } else {
-            if (request.off.getOffStatus().equals("requested")) {
-                request.off.setOffStatus("accepted");
+            if (Off.getRequested().contains(request.off)) {
+                Off.addOff(request.off);
             } else if (request.amount != null) {
                 request.off.setOffAmount(request.amount);
             } else if (request.product != null) {

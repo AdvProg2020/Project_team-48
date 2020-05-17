@@ -1,25 +1,27 @@
 package models;
 
 import java.awt.image.AreaAveragingScaleFilter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Product {
     private int productId;
-    private String productState;
+    private static ArrayList<Product> requested = new ArrayList<>();
     private String name;
     protected String brand;
     protected int price;
     protected int existing;
     private Seller seller;
     private ArrayList<Buyer> productBuyers = new ArrayList<>();
-    private int rate;
+    private float rate;
     private Category category;
     private String details;
-    private Rating buyersRating;
-    private ArrayList<Comment> allComments;
+    private ArrayList<Comment> allComments = new ArrayList<>();
     private static ArrayList<Product> allProduct = new ArrayList<>();
     private static ArrayList<Product> filteredProduct = new ArrayList<>();
     private static ArrayList<Filter> currentFilters = new ArrayList<>();
+    private static int size = 0 ;
+    private static int ratedBuyers = 0;
 
     public Product(String name, String brand, int price, int existing, Seller seller, String details) {
         this.name = name;
@@ -28,22 +30,20 @@ public class Product {
         this.existing = existing;
         this.seller = seller;
         this.details = details;
-        this.productState = "requested";
-        allProduct.add(this);
-        filteredProduct.add(this);
-        productId = allProduct.size();
+        this.requested.add(this);
+        productId = size++;
     }
 
     public Product() {
     }
 
-    public void setRate(int rate) {
-        this.rate = rate + this.rate;
+    public void addBuyers(Account account){
+        productBuyers.add((Buyer)account);
     }
 
-
-    public String getBrand() {
-        return brand;
+    public void setRate(float rate) {
+        this.rate = (this.rate * ratedBuyers + rate) / (ratedBuyers + 1);
+        ratedBuyers++;
     }
 
     public int getExisting() {
@@ -54,16 +54,12 @@ public class Product {
         return seller;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
     public Category getCategory() {
         return category;
-    }
-
-    public Rating getBuyersRating() {
-        return buyersRating;
     }
 
     public static boolean existProduct(int id) {
@@ -95,7 +91,6 @@ public class Product {
     @Override
     public String toString() {
         return "productId=" + productId +
-                ", productState=" + productState +
                 ", name='" + name +
                 ", brand='" + brand +
                 ", price=" + price +
@@ -104,13 +99,23 @@ public class Product {
                 ", productBuyers=" + productBuyers +
                 ", category=" + category +
                 ", details='" + details +
-                ", buyersRating=" + buyersRating +
+                ", rate=" + rate +
                 ", allComments=" + allComments
                 ;
     }
 
+    public static void addProduct(Product product){
+        allProduct.add(product);
+        requested.remove(product);
+        filteredProduct.add(product);
+    }
+
     public String getName() {
         return name;
+    }
+
+    public static ArrayList<Product> getRequested() {
+        return requested;
     }
 
     public ArrayList<Buyer> getProductBuyers() {
@@ -125,15 +130,16 @@ public class Product {
         this.existing = existing;
     }
 
-    public String getProductState() {
-        return productState;
-    }
-
-    public void setProductState(String productState) {
-        this.productState = productState;
-    }
-
     public int getPrice() {
+        for (Off off : Off.getOffs()) {
+            for (Product product : off.getProducts()) {
+                if (product == this){
+                    if (off.getStartDate().isBefore(LocalDateTime.now()) && off.getFinishDate().isAfter(LocalDateTime.now())){
+                        return (int)(price * off.getOffAmount() / 100);
+                    }
+                }
+            }
+        }
         return price;
     }
 

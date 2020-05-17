@@ -10,12 +10,13 @@ import java.util.Date;
 
 public class Off{
     private int offId ;
-    private ArrayList<Product> products = new ArrayList<>();
-    private String  offStatus;
+    private ArrayList<Product> products ;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
     private int offAmount;
     private static ArrayList<Off> offs = new ArrayList<>();
+    private static ArrayList<Off> requested = new ArrayList<>();
+    private static int size = 0 ;
 
     public Off(String startDate, String finishDate, int offAmount,ArrayList<Product> product) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
@@ -23,13 +24,21 @@ public class Off{
         this.finishDate = LocalDateTime.parse(finishDate , formatter);
         this.offAmount = offAmount;
         this.products = product;
-        offs.add(this);
-        this .offId = offs.size();
-        offStatus ="requested";
+        this.offId = size ++;
+        this.requested.add(this);
     }
 
-    public void setOffStatus(String offStatus) {
-        this.offStatus = offStatus;
+    public static void addOff(Off off){
+        offs.add(off);
+        requested.remove(off);
+    }
+
+    public static ArrayList<Off> getRequested() {
+        return requested;
+    }
+
+    public int getOffAmount() {
+        return offAmount;
     }
 
     public static Off getOffById(int id){
@@ -57,19 +66,18 @@ public class Off{
         return offId;
     }
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public String toString() {
         return "offId=" + offId +
                 ", product=" + products +
-                ", offStatus='" + offStatus +
                 ", startDate='" + startDate +
                 ", finishDate='" + finishDate +
                 ", offAmount=" + offAmount
                 ;
-    }
-
-    public String getOffStatus() {
-        return offStatus;
     }
 
     public void setProducts(ArrayList<Product> products) {

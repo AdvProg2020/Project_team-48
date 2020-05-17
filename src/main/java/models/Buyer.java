@@ -1,7 +1,10 @@
 package models;
 
+import java.util.ArrayList;
+
 public class Buyer extends Account {
     private Cart cart;
+    private ArrayList<BuyLog> buyLogs = new ArrayList<>();
 
     public Buyer(String username) {
         super(username);
@@ -11,5 +14,13 @@ public class Buyer extends Account {
 
     public Cart getCart() {
         return cart;
+    }
+
+    public void addBuyLog(BuyLog buyLog){
+        buyLogs.add(buyLog);
+    }
+
+    public ArrayList<BuyLog> getBuyLogs() {
+        return buyLogs;
     }
 }

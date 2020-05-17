@@ -39,15 +39,17 @@ public class BuyerControl {
         }
         if (account.getCredit() >= price) {
             account.setCredit(account.getCredit() - price);
-            new BuyLog(((Buyer) account).getCart().getProducts(),discount.getDiscountPercent(), (Buyer) account);
+            ((Buyer)account).addBuyLog(new BuyLog(((Buyer) account).getCart().getProducts(),discount.getDiscountPercent(), (Buyer) account));
 
             for (Product product : ((Buyer) account).getCart().getProducts()) {
                 product.getSeller().setCredit(product.getSeller().getCredit() + product.getPrice());
                 product.setExisting(product.getExisting()-1);
+                product.addBuyers(account);
                 new SellLog(product , LocalDateTime.now() ,((Buyer)account));
             }
             ((Buyer) account).getCart().clear();
             discount.decreaseRepeat(account);
+
             return true;
         }
         return false ;
