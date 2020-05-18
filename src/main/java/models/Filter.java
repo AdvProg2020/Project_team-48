@@ -2,14 +2,14 @@ package models;
 
 import java.util.ArrayList;
 
-public class Filter extends Product{
+public class Filter extends Product {
     private String filterName;
     private static ArrayList<Filter> filters = new ArrayList<>();
     private static String brandFilter;
     private static int priceFilter;
 
-    public Filter( String filterName) {
-        this.filterName = filterName ;
+    public Filter(String filterName) {
+        this.filterName = filterName;
         filters.add(this);
     }
 
@@ -37,9 +37,9 @@ public class Filter extends Product{
         return filters;
     }
 
-    public static Filter getFilterByName(String name){
+    public static Filter getFilterByName(String name) {
         for (Filter filter : filters) {
-            if (filter.filterName.equals(name)){
+            if (filter.filterName.equals(name)) {
                 return filter;
             }
         }

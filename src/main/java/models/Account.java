@@ -6,12 +6,12 @@ import view.usersPageCommands.managerCommands.ManageAllProducts;
 import java.util.ArrayList;
 import java.util.Date;
 
-enum AccountType{
+enum AccountType {
     MANAGER,
     BUYER,
     SELLER
 }
- 
+
 public class Account {
 
     public static ArrayList<Account> allAccounts = new ArrayList<>();
@@ -47,18 +47,18 @@ public class Account {
         return credit;
     }
 
-    public static Account getUserByName(String username){
-        for(Account account : allAccounts){
-            if(username.equals(account.username)){
+    public static Account getUserByName(String username) {
+        for (Account account : allAccounts) {
+            if (username.equals(account.username)) {
                 return account;
             }
         }
         return null;
     }
 
-    public static boolean existsUsername(String username){
+    public static boolean existsUsername(String username) {
         for (Account account : allAccounts) {
-            if (username.equals(account.username)){
+            if (username.equals(account.username)) {
                 return true;
             }
         }
@@ -90,12 +90,15 @@ public class Account {
     }
 
     public Page getAccountPage(Page page) {
-        switch (accountType)
-        {
-            case SELLER: return new SellerPage(page);
-            case BUYER: return new BuyerPage(page);
-            case MANAGER: return new ManagerPage(page);
-            default: return page;
+        switch (accountType) {
+            case SELLER:
+                return new SellerPage(page);
+            case BUYER:
+                return new BuyerPage(page);
+            case MANAGER:
+                return new ManagerPage(page);
+            default:
+                return page;
         }
     }
 
@@ -111,15 +114,15 @@ public class Account {
     public String toString() {
         return
                 "username= " + username + "\n" +
-                "password= " + password + "\n" +
-                "firstName= " + firstName + "\n" +
-                "lastName= " + lastName + "\n" +
-                "email= " + email + "\n" +
-                "phoneNumber= " + phoneNumber
+                        "password= " + password + "\n" +
+                        "firstName= " + firstName + "\n" +
+                        "lastName= " + lastName + "\n" +
+                        "email= " + email + "\n" +
+                        "phoneNumber= " + phoneNumber
                 ;
     }
 
-    public static void remove(Account account){
+    public static void remove(Account account) {
         allAccounts.remove(account);
     }
 

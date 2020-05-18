@@ -9,16 +9,16 @@ import view.usersPageCommands.ViewBalance;
 
 public class BuyerPage extends Page {
     public BuyerPage(Page parentPage) {
-        super(parentPage,"your account(buyer)");
-        subPages.put("view personal info",new PersonalInfo(this));
-        subPages.put("view cart",new ViewCart(this));
-        subPages.put("view orders",new ViewOrders(this));
+        super(parentPage, "your account(buyer)");
+        subPages.put("view personal info", new PersonalInfo(this));
+        subPages.put("view cart", new ViewCart(this));
+        subPages.put("view orders", new ViewOrders(this));
         subPages.put("view balance", new ViewBalance(this));
-        subPages.put("view discount codes",ViewDiscountCodes());
+        subPages.put("view discount codes", ViewDiscountCodes());
     }
 
 
-    protected Page ViewDiscountCodes(){
+    protected Page ViewDiscountCodes() {
         return new Page(this, " view discount code") {
             @Override
             public void execute() {

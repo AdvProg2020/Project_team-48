@@ -21,17 +21,17 @@ public class Cart {
     public int getTotalPrice() {
         int total = 0;
         for (Product product : amountOfProducts.keySet()) {
-            total = total + product.getPrice()* amountOfProducts.get(product);
+            total = total + product.getPrice() * amountOfProducts.get(product);
         }
         return total;
     }
 
-    public void clear(){
+    public void clear() {
         products.clear();
         amountOfProducts.clear();
     }
 
-    public void addProductToCart(Product product){
+    public void addProductToCart(Product product) {
         products.add(product);
     }
 }

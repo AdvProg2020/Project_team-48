@@ -22,8 +22,8 @@ public class Discount {
     public Discount(int discountCode, String startDate, String finishDate, int discountPercent, int repeat, ArrayList<Account> allDiscountedUsers, int max) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
         this.discountCode = discountCode;
-        this.startDate = LocalDateTime.parse(startDate,formatter);
-        this.finishDate = LocalDateTime.parse(finishDate,formatter);
+        this.startDate = LocalDateTime.parse(startDate, formatter);
+        this.finishDate = LocalDateTime.parse(finishDate, formatter);
         this.discountPercent = discountPercent;
         this.allDiscountedUsers = allDiscountedUsers;
         for (Account user : allDiscountedUsers) {
@@ -106,12 +106,12 @@ public class Discount {
 
     public void setStartDate(String startDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.startDate = LocalDateTime.parse(startDate , formatter);
+        this.startDate = LocalDateTime.parse(startDate, formatter);
     }
 
     public void setFinishDate(String finishDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.finishDate = LocalDateTime.parse(finishDate , formatter);
+        this.finishDate = LocalDateTime.parse(finishDate, formatter);
     }
 
     public void setMax(int max) {

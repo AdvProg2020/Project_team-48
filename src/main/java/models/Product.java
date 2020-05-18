@@ -20,7 +20,7 @@ public class Product {
     private static ArrayList<Product> allProduct = new ArrayList<>();
     private static ArrayList<Product> filteredProduct = new ArrayList<>();
     private static ArrayList<Filter> currentFilters = new ArrayList<>();
-    private static int size = 0 ;
+    private static int size = 0;
     private static int ratedBuyers = 0;
 
     public Product(String name, String brand, int price, int existing, Seller seller, String details) {
@@ -37,8 +37,12 @@ public class Product {
     public Product() {
     }
 
-    public void addBuyers(Account account){
-        productBuyers.add((Buyer)account);
+    public static ArrayList<Product> getAllProduct() {
+        return allProduct;
+    }
+
+    public void addBuyers(Account account) {
+        productBuyers.add((Buyer) account);
     }
 
     public void setRate(float rate) {
@@ -104,7 +108,7 @@ public class Product {
                 ;
     }
 
-    public static void addProduct(Product product){
+    public static void addProduct(Product product) {
         allProduct.add(product);
         requested.remove(product);
         filteredProduct.add(product);
@@ -133,9 +137,9 @@ public class Product {
     public int getPrice() {
         for (Off off : Off.getOffs()) {
             for (Product product : off.getProducts()) {
-                if (product == this){
-                    if (off.getStartDate().isBefore(LocalDateTime.now()) && off.getFinishDate().isAfter(LocalDateTime.now())){
-                        return (int)(price * off.getOffAmount() / 100);
+                if (product == this) {
+                    if (off.getStartDate().isBefore(LocalDateTime.now()) && off.getFinishDate().isAfter(LocalDateTime.now())) {
+                        return (int) (price * off.getOffAmount() / 100);
                     }
                 }
             }

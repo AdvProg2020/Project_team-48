@@ -83,7 +83,11 @@ public class Request {
 
     public static void acceptRequest(int id) {
         Request request = getRequestById(id);
-        if (sellers.contains(request.account)) {
+        if (request == null) {
+            System.out.println("request does not exist");
+            return;
+        }
+        if (request.account != null && sellers.contains(request.account)) {
             sellers.remove(request.account);
             Seller seller = (Seller) request.account;
             seller.add();

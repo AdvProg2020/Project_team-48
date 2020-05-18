@@ -39,8 +39,8 @@ public class ViewOrders extends Page {
             @Override
             public void execute() {
                 if (Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))).getProductBuyers().contains(Page.getAccount())) {
-                   new Rating(Page.getAccount(), Integer.parseInt(parentPage.getMatcher().group(2)), Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))));
-                   product.setRate(Integer.parseInt(parentPage.getMatcher().group(2)));
+                    new Rating(Page.getAccount(), Integer.parseInt(parentPage.getMatcher().group(2)), Product.getProductById(Integer.parseInt(parentPage.getMatcher().group(1))));
+                    product.setRate(Integer.parseInt(parentPage.getMatcher().group(2)));
                 } else {
                     System.out.println("you have not bought this product");
                 }

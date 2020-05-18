@@ -9,7 +9,7 @@ import view.Page;
 
 public class ManageUsers extends Page {
     public ManageUsers(Page parentPage) {
-        super(parentPage,"Manage Users");
+        super(parentPage, "Manage Users");
         subPages.put("view (\\S+)", View());
         subPages.put("delete user (\\S+)", DeleteUser());
         subPages.put("create manager profile", CreateManagerProfile());
@@ -17,7 +17,7 @@ public class ManageUsers extends Page {
     }
 
     protected Page View() {
-        return new Page(this,"View") {
+        return new Page(this, "View") {
             @Override
             public void execute() {
                 System.out.println(Account.getUserByName(parentPage.getMatcher().group(1)));
@@ -27,7 +27,7 @@ public class ManageUsers extends Page {
     }
 
     protected Page DeleteUser() {
-        return new Page(this,"Delete user") {
+        return new Page(this, "Delete user") {
             @Override
             public void execute() {
                 ManagerControl.deleteUser(parentPage.getMatcher().group(1));
@@ -37,7 +37,7 @@ public class ManageUsers extends Page {
     }
 
     protected Page CreateManagerProfile() {
-        return new Page(this,"Create manager profile") {
+        return new Page(this, "Create manager profile") {
             @Override
             public void execute() {
                 System.out.println("name:");

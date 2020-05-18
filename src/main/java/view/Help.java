@@ -1,8 +1,8 @@
 package view;
 
-public class Help extends Page{
-    public Help(Page parentPage ) {
-        super(parentPage , "help");
+public class Help extends Page {
+    public Help(Page parentPage) {
+        super(parentPage, "help");
     }
 
     @Override

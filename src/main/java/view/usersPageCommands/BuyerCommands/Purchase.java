@@ -1,13 +1,10 @@
 package view.usersPageCommands.BuyerCommands;
 
 import controller.BuyerControl;
-import models.Buyer;
 import models.Discount;
-import models.Product;
 import view.Back;
 import view.Page;
 
-import java.sql.ParameterMetaData;
 
 public class Purchase extends Page {
 

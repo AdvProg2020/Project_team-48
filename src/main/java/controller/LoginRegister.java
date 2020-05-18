@@ -12,7 +12,7 @@ public class LoginRegister {
             throw new ExistUsernameException("username exists");
         }
         if (type.equals("manager")) {
-            if (! Manager.getAllManagers().isEmpty()){
+            if (!Manager.getAllManagers().isEmpty()) {
                 throw new ExistManagerException("manager exist");
             }
             return new Manager(username);
@@ -24,18 +24,19 @@ public class LoginRegister {
             return new Buyer(username);
         }
     }
-    public static void login(Account account){
-            Page.setAccount(account);
-            Page.getLoginRegisterPage().execute();
+
+    public static void login(Account account) {
+        Page.setAccount(account);
+        Page.getLoginRegisterPage().execute();
     }
 
-    public static class ExistManagerException extends Exception{
+    public static class ExistManagerException extends Exception {
         public ExistManagerException(String message) {
             super(message);
         }
     }
 
-    public static class ExistUsernameException extends Exception{
+    public static class ExistUsernameException extends Exception {
         public ExistUsernameException(String message) {
             super(message);
         }

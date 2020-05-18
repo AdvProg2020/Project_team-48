@@ -3,7 +3,6 @@ package view;
 import models.Category;
 import models.Product;
 import view.allProductsPageCommands.Filtering;
-import view.allProductsPageCommands.ShowProduct;
 import view.allProductsPageCommands.Sorting;
 
 public class AllProductsPage extends Page {
@@ -34,7 +33,10 @@ public class AllProductsPage extends Page {
         return new Page(this, "show products") {
             @Override
             public void execute() {
-
+                for (Product product1 : Product.getAllProduct()) {
+                    System.out.println(product1.getName() + product1.getPrice());
+                }
+                new Back(this).execute();
             }
         };
     }
@@ -44,9 +46,9 @@ public class AllProductsPage extends Page {
             @Override
             public void execute() {
                 int id = Integer.parseInt(parentPage.getMatcher().group(1));
-                if (Product.getProductById(id) != null){
-                    new ProductPage(parentPage,Product.getProductById(id));
-                }else{
+                if (Product.getProductById(id) != null) {
+                    new ProductPage(parentPage, Product.getProductById(id));
+                } else {
                     System.out.println("product does not exist");
                 }
             }

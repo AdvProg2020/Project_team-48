@@ -1,7 +1,5 @@
 package view;
 
-import models.*;
-
 public class MainPage extends Page {
     public MainPage(Page parentPage) {
         super(parentPage, "main page");

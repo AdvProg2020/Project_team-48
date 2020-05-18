@@ -13,7 +13,7 @@ public class Manager extends Account {
         allAccounts.add(this);
     }
 
-    public void addManager(Manager manager){
+    public void addManager(Manager manager) {
         allManagers.add(manager);
     }
 

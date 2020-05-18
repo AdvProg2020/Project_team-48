@@ -16,7 +16,7 @@ public class Buyer extends Account {
         return cart;
     }
 
-    public void addBuyLog(BuyLog buyLog){
+    public void addBuyLog(BuyLog buyLog) {
         buyLogs.add(buyLog);
     }
 

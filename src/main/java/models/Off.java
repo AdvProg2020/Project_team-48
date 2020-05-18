@@ -7,28 +7,27 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-
-public class Off{
-    private int offId ;
-    private ArrayList<Product> products ;
+public class Off {
+    private int offId;
+    private ArrayList<Product> products;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
     private int offAmount;
     private static ArrayList<Off> offs = new ArrayList<>();
     private static ArrayList<Off> requested = new ArrayList<>();
-    private static int size = 0 ;
+    private static int size = 0;
 
-    public Off(String startDate, String finishDate, int offAmount,ArrayList<Product> product) {
+    public Off(String startDate, String finishDate, int offAmount, ArrayList<Product> product) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.startDate = LocalDateTime.parse(startDate , formatter);
-        this.finishDate = LocalDateTime.parse(finishDate , formatter);
+        this.startDate = LocalDateTime.parse(startDate, formatter);
+        this.finishDate = LocalDateTime.parse(finishDate, formatter);
         this.offAmount = offAmount;
         this.products = product;
-        this.offId = size ++;
+        this.offId = size++;
         this.requested.add(this);
     }
 
-    public static void addOff(Off off){
+    public static void addOff(Off off) {
         offs.add(off);
         requested.remove(off);
     }
@@ -41,9 +40,9 @@ public class Off{
         return offAmount;
     }
 
-    public static Off getOffById(int id){
+    public static Off getOffById(int id) {
         for (Off off : offs) {
-            if (off.offId == id){
+            if (off.offId == id) {
                 return off;
             }
         }

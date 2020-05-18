@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Rating{
+public class Rating {
     private Account user;
     private int mark;
     private Product product;
@@ -15,4 +15,5 @@ public class Rating{
         product.setRate(mark);
         ratings.add(this);
     }
+
 }

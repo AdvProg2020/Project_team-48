@@ -5,9 +5,9 @@ import view.Page;
 
 public class PersonalInfo extends Page {
     public PersonalInfo(Page parentPage) {
-        super(parentPage,"view personal info");
+        super(parentPage, "view personal info");
         subPages.put("edit (email|name|last name|phone number|password)", Edit());
-        subPages.put("back",new Back(this));
+        subPages.put("back", new Back(this));
     }
 
     @Override
@@ -16,19 +16,19 @@ public class PersonalInfo extends Page {
         super.execute();
     }
 
-    protected Page Edit(){
-        return new Page(this,"edit") {
+    protected Page Edit() {
+        return new Page(this, "edit") {
             @Override
             public void execute() {
-                if (parentPage.getMatcher().group(1).equals("name")){
+                if (parentPage.getMatcher().group(1).equals("name")) {
                     Page.getAccount().setFirstName(scanner.nextLine());
-                }else if (parentPage.getMatcher().group(1).equals("last name")){
+                } else if (parentPage.getMatcher().group(1).equals("last name")) {
                     Page.getAccount().setLastName(scanner.nextLine());
-                }else if (parentPage.getMatcher().group(1).equals("email")){
+                } else if (parentPage.getMatcher().group(1).equals("email")) {
                     Page.getAccount().setEmail(scanner.nextLine());
-                }else if (parentPage.getMatcher().group(1).equals("phone number")){
+                } else if (parentPage.getMatcher().group(1).equals("phone number")) {
                     Page.getAccount().setPhoneNumber(Integer.parseInt(scanner.nextLine()));
-                }else if (parentPage.getMatcher().group(1).equals("password")){
+                } else if (parentPage.getMatcher().group(1).equals("password")) {
                     Page.getAccount().setPassword(scanner.nextLine());
                 }
                 new Back(parentPage).execute();

@@ -3,11 +3,9 @@ package view;
 import controller.LoginRegister;
 import models.Account;
 
-import java.util.Scanner;
-
-public class Login extends Page{
-    public Login(Page parentPage){
-        super(parentPage,"login");
+public class Login extends Page {
+    public Login(Page parentPage) {
+        super(parentPage, "login");
         subPages.put("back", new Back(this));
     }
 
@@ -16,16 +14,16 @@ public class Login extends Page{
         login(parentPage.getMatcher().group(1));
     }
 
-    public void login(String string){
-        Account account = Account.getUserByName(string) ;
-        if (account == null){
+    public void login(String string) {
+        Account account = Account.getUserByName(string);
+        if (account == null) {
             System.out.println("username does not exist");
             new Back(this).execute();
-        }else{
+        } else {
             System.out.println("password:");
-            if(account.getPassword().equals(Page.scanner.nextLine())){
-                LoginRegister.login(account,this.parentPage);
-            }else {
+            if (account.getPassword().equals(Page.scanner.nextLine())) {
+                LoginRegister.login(account);
+            } else {
                 System.out.println("password is wrong");
                 new Back(this).execute();
             }

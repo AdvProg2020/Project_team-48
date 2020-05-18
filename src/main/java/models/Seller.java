@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Seller extends Account{
+public class Seller extends Account {
     private String organization;
     private ArrayList<Product> products = new ArrayList<>();
     private static ArrayList<Seller> allSellers = new ArrayList<>();
@@ -16,7 +16,7 @@ public class Seller extends Account{
         this.organization = organization;
     }
 
-    public void add(){
+    public void add() {
         allSellers.add(this);
         Account.allAccounts.add(this);
     }
@@ -28,4 +28,5 @@ public class Seller extends Account{
     public ArrayList<Product> getProducts() {
         return products;
     }
+
 }

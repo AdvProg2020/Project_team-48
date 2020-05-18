@@ -32,18 +32,18 @@ public class Filtering extends Page {
         return new Page(this, "Filter") {
             @Override
             public void execute() {
-                if (parentPage.getMatcher().group(1).equals("existing")){
+                if (parentPage.getMatcher().group(1).equals("existing")) {
                     for (Product product1 : Product.filterByExisting()) {
                         System.out.println(product1);
                     }
-                }else if (parentPage.getMatcher().group(1).equals("price")){
+                } else if (parentPage.getMatcher().group(1).equals("price")) {
                     System.out.println("enter price");
                     int price = Integer.parseInt(scanner.nextLine());
                     Filter.setPriceFilter(price);
                     for (Product product1 : Product.filterByPrice(price)) {
                         System.out.println(product1);
                     }
-                }else if (parentPage.getMatcher().group(1).equals("Brand")){
+                } else if (parentPage.getMatcher().group(1).equals("Brand")) {
                     System.out.println("enter brand");
                     String brand = scanner.nextLine();
                     Filter.setBrandFilter(brand);

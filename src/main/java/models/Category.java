@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Category{
+public class Category {
     private String name;
     private String attribute;
     private Category subCategory;
@@ -25,18 +25,18 @@ public class Category{
         return name;
     }
 
-    public static boolean existCategory(String name){
+    public static boolean existCategory(String name) {
         for (Category category : allCategories) {
-            if (category.name.equals(name)){
+            if (category.name.equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static Category getCategoryByName(String name){
+    public static Category getCategoryByName(String name) {
         for (Category category : allCategories) {
-            if (category.name.equals(name)){
+            if (category.name.equals(name)) {
                 return category;
             }
         }
@@ -51,7 +51,7 @@ public class Category{
         this.attribute = attribute;
     }
 
-    public static void remove(Category category){
+    public static void remove(Category category) {
         allCategories.remove(category);
     }
 
@@ -59,8 +59,8 @@ public class Category{
     public String toString() {
         return
                 "name='" + name +
-                ", attribute='" + attribute +
-                ", subCategory=" + subCategory +
-                ", allProducts=" + allProducts ;
+                        ", attribute='" + attribute +
+                        ", subCategory=" + subCategory +
+                        ", allProducts=" + allProducts;
     }
 }

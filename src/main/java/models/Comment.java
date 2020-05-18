@@ -9,11 +9,11 @@ public class Comment {
     private String commentStatus;
 
 
-    public Comment(Account user, Product product, String comment,String title) {
+    public Comment(Account user, Product product, String comment, String title) {
         this.user = user;
         this.product = product;
         this.comment = comment;
-        this.comment = comment ;
+        this.comment = comment;
         product.addComment(this);
     }
 }

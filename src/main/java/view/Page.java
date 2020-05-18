@@ -1,13 +1,10 @@
 package view;
 
-import com.sun.tools.javac.Main;
 import models.Account;
 import models.Product;
 
-import java.nio.channels.AcceptPendingException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,29 +14,27 @@ public abstract class Page {
     protected String name;
     protected HashMap<String, Page> subPages = new HashMap<>();
     protected Page parentPage;
-    protected static ArrayList<Page> allPages = new ArrayList<>();
     protected Matcher matcher;
     private static Account account = null;
     public static Scanner scanner = new Scanner(System.in);
-    private static Page loginRegisterPage ;
+    private static Page loginRegisterPage;
 
     public Page(Page parentPage, String name) {
         this.parentPage = parentPage;
         this.name = name;
         if (account != null) subPages.put("logout", new Logout(this));
-        else{
-            subPages.put("login register" , new LoginRegisterPage(this));
-        }
-        subPages.put("back", new Back(this));
-        subPages.put("help", new Help(this));
+        else if (!this.name.equals("login/register page") && !this.name.equals("login") && !this.name.equals("create account") && !this.name.equals("back") && !this.name.equals("help")) {
+            subPages.put("login register", new LoginRegisterPage(this));
+        } else if (!this.name.equals("back")) subPages.put("back", new Back(this));
+        else subPages.put("help", new Help(this));
     }
 
     public HashMap<String, Page> getSubPages() {
         return subPages;
     }
 
-    public ArrayList<String> getSubPagesKey(){
-       return (ArrayList<String>) subPages.keySet();
+    public ArrayList<String> getSubPagesKey() {
+        return (ArrayList<String>) subPages.keySet();
     }
 
     public static Page getLoginRegisterPage() {
@@ -47,7 +42,7 @@ public abstract class Page {
     }
 
     public void setLoginRegisterPage(Page loginRegisterPage) {
-        this.loginRegisterPage = loginRegisterPage;
+        Page.loginRegisterPage = loginRegisterPage;
     }
 
     protected Page() {
