@@ -22,7 +22,7 @@ public class Account {
     protected String firstName;
     protected String lastName;
     protected String email;
-    protected int phoneNumber;
+    protected String phoneNumber;
     protected String address;
     protected Date lastLoggedIn;
     private AccountType accountType;
@@ -30,13 +30,38 @@ public class Account {
     private ArrayList<SellLog> sellLogsList;
     private ArrayList<BuyLog> buyLogsList;
     private int credit;
+    protected ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public Account(String username) {
         this.username = username;
     }
 
+    public ArrayList<Discount> getAllDiscounts() {
+        return allDiscounts;
+    }
+
     public void setCredit(int credit) {
         this.credit = credit;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setAddress(String address) {
@@ -81,7 +106,7 @@ public class Account {
         this.email = email;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -89,16 +114,16 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public Page getAccountPage(Page page) {
+    public String getAccountPage() {
         switch (accountType) {
             case SELLER:
-                return new SellerPage(page);
+                return "../view/SellerPage.fxml";
             case BUYER:
-                return new BuyerPage(page);
+                return "../view/BuyerPage.fxml";
             case MANAGER:
-                return new ManagerPage(page);
+                return "../view/ManagerPage.fxml";
             default:
-                return page;
+                return "";
         }
     }
 
