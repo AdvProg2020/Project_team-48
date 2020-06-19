@@ -1,5 +1,7 @@
 package main;
 
+
+
 import models.*;
 
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class Main extends Application {
 
 
     public static void setScene(String fxml) throws IOException {
-        Parent root = root = FXMLLoader.load(Main.class.getResource(fxml));
+        Parent root  = FXMLLoader.load(Main.class.getResource(fxml));
         stage.setScene(new Scene(root, 300, 275));
         stage.show();
     }
@@ -32,14 +34,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root;
+        FXMLLoader root =null;
         if (Manager.getAllManagers().isEmpty()){
-           root = FXMLLoader.load(getClass().getResource("/RegisterManagerPage.fxml"));
+            root = new FXMLLoader(Main.class.getResource("/fxml/RegisterManagerPage.fxml"));
         }else {
             root = FXMLLoader.load(getClass().getResource("/MainPage.fxml"));
         }
         primaryStage.setTitle("Shop!");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene( root.load(), 300, 275));
         primaryStage.show();
         stage = primaryStage;
     }
