@@ -45,7 +45,7 @@ public class CreateAccount extends Page {
         account.setEmail(scanner.nextLine());
         System.out.println("phone number:");
         try {
-            account.setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+            account.setPhoneNumber(scanner.nextLine());
         } catch (Exception e) {
             System.out.println("it should be numbers");
         }

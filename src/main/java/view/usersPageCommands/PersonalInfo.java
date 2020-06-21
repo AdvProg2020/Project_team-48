@@ -27,7 +27,7 @@ public class PersonalInfo extends Page {
                 } else if (parentPage.getMatcher().group(1).equals("email")) {
                     Page.getAccount().setEmail(scanner.nextLine());
                 } else if (parentPage.getMatcher().group(1).equals("phone number")) {
-                    Page.getAccount().setPhoneNumber(Integer.parseInt(scanner.nextLine()));
+                    Page.getAccount().setPhoneNumber(scanner.nextLine());
                 } else if (parentPage.getMatcher().group(1).equals("password")) {
                     Page.getAccount().setPassword(scanner.nextLine());
                 }
