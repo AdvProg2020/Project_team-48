@@ -32,7 +32,7 @@ public class RegisterPage {
         String email = emailText.toString();
         String company = companyText.toString();
 
-        if (accountType == "buyer"){
+        if (accountType.equalsIgnoreCase("buyer")){
             Buyer buyer = new Buyer(username);
             buyer.setFirstName(name);
             buyer.setPassword(password);
@@ -40,7 +40,7 @@ public class RegisterPage {
             buyer.setEmail(email);
             buyer.setPhoneNumber(phoneNumber);
             Main.setScene("../view/BuyerPage.fxml");
-        }else if (accountType == "seller"){
+        }else if (accountType.equalsIgnoreCase("seller")){
             Seller seller = new Seller(username);
             seller.setFirstName(name);
             seller.setPassword(password);
