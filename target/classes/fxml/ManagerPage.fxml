@@ -56,7 +56,6 @@
                 <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="25.0" prefWidth="121.0" text="logout" />
             </children>
         </VBox>
-        <Button layoutX="52.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#back" text="back" />
         <Label fx:id="discountLabel" layoutX="522.0" layoutY="58.0" />
     </children>
 </Pane>

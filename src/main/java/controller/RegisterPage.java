@@ -8,6 +8,7 @@ import main.Main;
 import models.Buyer;
 import models.Seller;
 
+
 import java.io.IOException;
 
 public class RegisterPage {

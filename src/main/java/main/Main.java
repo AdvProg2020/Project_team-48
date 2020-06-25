@@ -12,6 +12,7 @@ import models.Product;
 import view.MainPage;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 
 public class Main extends Application {
@@ -44,30 +45,31 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader root =null;
+        Parent root ;
         if (Manager.getAllManagers().isEmpty()){
-            root = new FXMLLoader(Main.class.getResource(getAddress("./resources/fxml/RegisterManagerPage")));
+            root = FXMLLoader.load(getClass().getResource("/fxml/RegisterManagerPAge.fxml"));
         }else {
-            root = FXMLLoader.load(getClass().getResource(getAddress("MainPage")));
+            root = FXMLLoader.load(getClass().getResource("/fxml/MainPage.fxml"));
         }
         primaryStage.setTitle("Shop!");
-        primaryStage.setScene(new Scene( root.load(), 650, 325));
+
+        primaryStage.setScene(new Scene(root, 650, 325));
         primaryStage.show();
         stage = primaryStage;
     }
 
     public static String getAddress(String fxml){
-        return "../fxml/" + fxml + ".fxml";
+        return  "/fxml/" + fxml + ".fxml";
     }
 
 
     public static void main(String[] args) {
-        Filter filter1 = new Filter("brand");
-        Filter filter2 = new Filter("existing");
-        Filter filter3 = new Filter("price");
+        //Filter filter1 = new Filter("brand");
+        //Filter filter2 = new Filter("existing");
+        //Filter filter3 = new Filter("price");
 
         launch(args);
-        new MainPage(null).execute();
+        //new MainPage(null).execute();
     }
     
 }
