@@ -35,7 +35,7 @@ public class ManagerControl {
 
     public static void removeDiscount(int code) {
         if (Discount.existCode(code)) {
-            Discount.remove(code);
+            Discount.getDiscountByCode(code).remove();
         } else {
             System.out.println("code does not exist");
         }

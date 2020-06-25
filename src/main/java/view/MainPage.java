@@ -6,16 +6,16 @@ public class MainPage extends Page {
         subPages.put("products", new AllProductsPage(this));
         subPages.put("offs", new OffsPage(this));
         if (getAccount() != null) {
-            //subPages.put("my account", MyAccount());
+            subPages.put("my account", MyAccount());
         }
     }
 
-    //protected Page MyAccount() {
-        //return new Page(this, "my account") {
-            //@Override
-            //public void execute() {
-              //  getAccount().getAccountPage().execute();
-            //}
-        //};
-    //}
+    protected Page MyAccount() {
+        return new Page(this, "my account") {
+            @Override
+            public void execute() {
+                //getAccount().getAccountPage(parentPage).execute();
+            }
+        };
+    }
 }

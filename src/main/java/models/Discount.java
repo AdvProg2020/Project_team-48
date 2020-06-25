@@ -1,13 +1,9 @@
 package models;
 
-import com.google.gson.internal.$Gson$Preconditions;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.logging.Handler;
 
 public class Discount {
     private int discountCode;
@@ -32,6 +28,8 @@ public class Discount {
         allDiscounts.add(this);
         this.max = max;
     }
+
+
 
     public ArrayList<Account> getAllDiscountedUsers() {
         return allDiscountedUsers;
@@ -83,8 +81,15 @@ public class Discount {
                 ;
     }
 
-    public static void remove(int code) {
-        allDiscounts.remove(getDiscountByCode(code));
+    public  void remove() {
+        allDiscounts.remove(this);
+        for (Account user : allDiscountedUsers) {
+            for (Discount discount : user.getAllDiscounts()) {
+                if (discount == this){
+                    user.removeDiscount(this);
+                }
+            }
+        }
     }
 
     public LocalDateTime getStartDate() {

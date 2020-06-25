@@ -1,6 +1,5 @@
 package models;
 
-import view.*;
 import view.usersPageCommands.managerCommands.ManageAllProducts;
 
 import java.util.ArrayList;
@@ -34,10 +33,15 @@ public class Account {
 
     public Account(String username) {
         this.username = username;
+        this.credit = 0 ;
     }
 
     public ArrayList<Discount> getAllDiscounts() {
         return allDiscounts;
+    }
+
+    public void removeDiscount(Discount discount){
+        allDiscounts.remove(discount);
     }
 
     public void setCredit(int credit) {

@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.scene.SnapshotResult;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -32,7 +31,7 @@ public class RegisterPage {
         String email = emailText.toString();
         String company = companyText.toString();
 
-        if (accountType.equalsIgnoreCase("buyer")){
+        if (accountType == "buyer"){
             Buyer buyer = new Buyer(username);
             buyer.setFirstName(name);
             buyer.setPassword(password);
@@ -40,7 +39,7 @@ public class RegisterPage {
             buyer.setEmail(email);
             buyer.setPhoneNumber(phoneNumber);
             Main.setScene("../view/BuyerPage.fxml");
-        }else if (accountType.equalsIgnoreCase("seller")){
+        }else if (accountType == "seller"){
             Seller seller = new Seller(username);
             seller.setFirstName(name);
             seller.setPassword(password);

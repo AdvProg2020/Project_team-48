@@ -1,7 +1,5 @@
 package models;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Date;
 

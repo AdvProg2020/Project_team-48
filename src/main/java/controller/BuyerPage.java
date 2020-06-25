@@ -35,7 +35,7 @@ public class BuyerPage implements Initializable {
     }
 
     public void showLogPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/LogPage.fxml");
+        Main.setScene("../view/BuyLogPage.fxml");
     }
 
     @Override

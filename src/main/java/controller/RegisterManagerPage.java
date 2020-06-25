@@ -1,11 +1,8 @@
 package controller;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import models.Account;
 import models.Manager;
 import main.Main;
 

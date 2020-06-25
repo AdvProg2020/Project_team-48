@@ -4,9 +4,6 @@ import controller.LoginRegister;
 import models.Account;
 import models.Seller;
 
-import java.time.format.SignStyle;
-import java.util.Scanner;
-
 public class CreateAccount extends Page {
     public CreateAccount(Page parentPage) {
         super(parentPage, "create account");
