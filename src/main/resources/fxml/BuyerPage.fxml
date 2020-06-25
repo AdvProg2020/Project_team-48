@@ -27,14 +27,14 @@
             </VBox>
             <VBox spacing="9.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="82.0" text="jhgjh" />
+                  <Label fx:id="nameLabel" prefHeight="17.0" prefWidth="82.0" text="Label" />
                   <Label fx:id="familyNameLabel" text="Label" />
                   <Label fx:id="passwordLabel" text="Label" />
                   <Label fx:id="emailLabel" text="Label" />
                   <Label fx:id="usernameLabel" text="Label" />
                   <Label fx:id="phoneNumberLabel" text="Label" />
                   <Label text="buyer" />
-                  <Label fx:id="creditLabel" prefHeight="17.0" prefWidth="33.0" text="e" />
+                  <Label fx:id="creditLabel" prefHeight="17.0" prefWidth="33.0" text="0" />
                </children>
             </VBox>
          </children>
@@ -50,10 +50,9 @@
               </Button>
             <Button mnemonicParsing="false" onMouseClicked="#showDiscount" prefHeight="19.0" prefWidth="75.0" text="discount" />
             <Button mnemonicParsing="false" onMouseClicked="#edit" prefHeight="25.0" prefWidth="75.0" text="edit" />
-            <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="25.0" prefWidth="75.0" text="logout" />
          </children>
       </VBox>
-      <Button layoutX="52.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#back" text="back" />
+      <Button layoutX="52.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#logout" text="logout" />
       <Label fx:id="discountLabel" layoutX="522.0" layoutY="58.0" />
     </children>
 </Pane>

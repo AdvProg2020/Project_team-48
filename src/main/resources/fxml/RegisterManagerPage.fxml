@@ -11,7 +11,7 @@
             <image>
                 <Image url="@../resources/background.png" />
             </image></ImageView>
-        <Button layoutX="252.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="38.0" prefWidth="159.0" text="register">
+        <Button layoutX="252.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="38.0" prefWidth="159.0" text="register manager">
             <effect>
                 <ColorAdjust />
             </effect>
@@ -29,5 +29,6 @@
         <Label layoutX="431.0" layoutY="6.0" prefHeight="25.0" prefWidth="149.0" text="*" textFill="#b60f0f" />
         <Label layoutX="431.0" layoutY="49.0" prefHeight="25.0" prefWidth="149.0" text="*" textFill="#bb1616" />
         <Label layoutX="431.0" layoutY="100.0" prefHeight="25.0" prefWidth="149.0" text="*" textFill="#b60a0a" />
+      <Label fx:id="warning" layoutX="250.0" layoutY="263.0" prefHeight="17.0" prefWidth="159.0" textFill="#a70909" />
     </children>
 </Pane>

@@ -1,8 +1,6 @@
 package controller;
 
 import models.*;
-import view.Page;
-
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,13 +37,17 @@ public class BuyerControl {
         }
         if (account.getCredit() >= price) {
             account.setCredit(account.getCredit() - price);
-            ((Buyer) account).addBuyLog(new BuyLog(((Buyer) account).getCart().getProducts(), discount.getDiscountPercent(), (Buyer) account));
+            BuyLog buyLog = new BuyLog(((Buyer) account).getCart().getProducts(), discount.getDiscountPercent(), (Buyer) account);
+            ((Buyer) account).addBuyLog(buyLog);
+            Account buyerAccount = account;
+            buyerAccount.addBuyLog(buyLog);
 
             for (Product product : ((Buyer) account).getCart().getProducts()) {
                 product.getSeller().setCredit(product.getSeller().getCredit() + product.getPrice());
                 product.setExisting(product.getExisting() - 1);
                 product.addBuyers(account);
-                new SellLog(product, LocalDateTime.now(), ((Buyer) account));
+                Account sellerAccount = product.getSeller();
+                sellerAccount.addSellLog(new SellLog(product, LocalDateTime.now(), ((Buyer) account)));
             }
             ((Buyer) account).getCart().clear();
             discount.decreaseRepeat(account);

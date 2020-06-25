@@ -2,10 +2,10 @@ package view;
 
 import controller.ManagerControl;
 import models.Discount;
+import view.usersPageCommands.PersonalInfo;
 import view.usersPageCommands.managerCommands.ManageCategories;
 import view.usersPageCommands.managerCommands.ManageRequests;
 import view.usersPageCommands.managerCommands.ManageUsers;
-import view.usersPageCommands.PersonalInfo;
 import view.usersPageCommands.managerCommands.ViewDiscountCodes;
 
 

@@ -21,6 +21,10 @@ public class SellLog {
         sellLogs.add(this);
     }
 
+    public int getLogId() {
+        return logId;
+    }
+
     @Override
     public String toString() {
         return

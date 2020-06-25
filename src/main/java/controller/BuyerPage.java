@@ -22,7 +22,7 @@ public class BuyerPage implements Initializable {
     public Label discountLabel;
 
     public void showCartPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/CartPage.fxml");
+        Main.setScene("CartPage");
     }
 
     public void showDiscount(MouseEvent mouseEvent) {
@@ -35,7 +35,7 @@ public class BuyerPage implements Initializable {
     }
 
     public void showLogPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/BuyLogPage.fxml");
+        Main.setScene("BuyLogPage");
     }
 
     @Override
@@ -51,15 +51,13 @@ public class BuyerPage implements Initializable {
     }
 
     public void edit(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/EditPage.fxml");
+        Main.setScene("EditPage");
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
         Main.setAccount(null);
-        Main.setScene("../view/MainPage.fxml");
+        Main.setScene("MainPage");
     }
 
-    public void back(MouseEvent mouseEvent) {
 
-    }
 }

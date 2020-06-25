@@ -5,7 +5,6 @@ import models.Product;
 import models.Request;
 import view.Page;
 
-
 import java.util.ArrayList;
 
 public class SellerControl {

@@ -42,8 +42,12 @@ public class EditPage {
 
         if (email != null)account.setEmail(email);
 
-        if (credit != null)account.setCredit(credit);
+        if (creditText != null)account.setCredit(credit);
 
-        Main.setScene("../view/BuyerPage.fxml");
+
+    }
+
+    public void back(MouseEvent mouseEvent) throws IOException {
+        Main.setScene(Main.getAccount().getAccountPage());
     }
 }

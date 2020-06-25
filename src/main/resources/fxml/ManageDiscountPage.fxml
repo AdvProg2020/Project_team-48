@@ -14,14 +14,21 @@
         <Label accessibleRole="TEXT_FIELD" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="6.0" prefHeight="25.0" prefWidth="159.0" text="manage discounts" />
         <Button layoutX="100.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="25.0" prefWidth="53.0" text="logout" />
         <Button layoutX="47.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#back" text="back" />
-        <ScrollPane fx:id="scrollPane" layoutX="32.0" layoutY="72.0" prefHeight="114.0" prefWidth="135.0" />
         <VBox fx:id="userInfoVBox" layoutX="282.0" layoutY="58.0" prefHeight="175.0" prefWidth="100.0" />
         <Button layoutX="272.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#delete" prefHeight="25.0" prefWidth="119.0" text="delete" />
       <Button layoutX="459.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#create" text="create" />
       <Button layoutX="529.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#edit" text="edit" />
-      <Label layoutX="459.0" layoutY="63.0" text="Label" />
-      <Label layoutX="459.0" layoutY="104.0" text="Label" />
-      <Label layoutX="459.0" layoutY="160.0" text="Label" />
-      <Label layoutX="459.0" layoutY="198.0" text="Label" />
+      <TextField fx:id="discountCode" layoutX="433.0" layoutY="19.0" promptText="discount code" />
+      <TextField fx:id="startDate" layoutX="433.0" layoutY="46.0" promptText="start date" />
+      <TextField fx:id="finishDate" layoutX="433.0" layoutY="71.0" promptText="finish date" />
+      <ScrollPane fx:id="scrollPane" layoutX="26.0" layoutY="45.0" prefHeight="144.0" prefWidth="200.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+      <TextField fx:id="maxDate" layoutX="433.0" layoutY="96.0" promptText="max" />
+      <TextField fx:id="discountPercent" layoutX="433.0" layoutY="121.0" promptText="discount percent" />
+      <TextField fx:id="discountedUsers" layoutX="433.0" layoutY="145.0" promptText="discounted users" />
+      <TextField fx:id="repeat" layoutX="433.0" layoutY="170.0" promptText="repeat" />
     </children>
 </Pane>

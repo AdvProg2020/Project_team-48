@@ -53,11 +53,11 @@ public class ManageUserPage implements Initializable {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/MainPage.fxml");
+        Main.setScene("MainPage");
     }
 
     public void back(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/ManagerPage.fxml");
+        Main.setScene("ManagerPage");
     }
 
 

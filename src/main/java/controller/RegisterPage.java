@@ -22,24 +22,24 @@ public class RegisterPage {
     public Label warning;
 
     public void register(MouseEvent mouseEvent) throws IOException {
-        String username = usernameText.toString();
-        String password = passwordText.toString();
-        String name = nameText.toString();
-        String familyName = familyNameText.toString();
-        String phoneNumber = phoneNumberText.toString();
-        String accountType = accountTypeText.toString();
-        String email = emailText.toString();
-        String company = companyText.toString();
-
-        if (accountType == "buyer"){
+        String username = usernameText.getText();
+        String password = passwordText.getText();
+        String name = nameText.getText();
+        String familyName = familyNameText.getText();
+        String phoneNumber = phoneNumberText.getText();
+        String accountType = accountTypeText.getText();
+        String email = emailText.getText();
+        String company = companyText.getText();
+        if ((accountType.equals("seller") && company.equals("")) || accountType.equals("") || username.equals("") || password .equals("")  || name.equals("") || familyName .equals("")  || email.equals("")  || phoneNumber .equals("") ){
+            warning.setText("unfilled field exist");
+        } else if (accountType.equals( "buyer")){
             Buyer buyer = new Buyer(username);
             buyer.setFirstName(name);
             buyer.setPassword(password);
             buyer.setLastName(familyName);
             buyer.setEmail(email);
             buyer.setPhoneNumber(phoneNumber);
-            Main.setScene("../view/BuyerPage.fxml");
-        }else if (accountType == "seller"){
+        } else if (accountType.equals( "seller")){
             Seller seller = new Seller(username);
             seller.setFirstName(name);
             seller.setPassword(password);
@@ -47,7 +47,6 @@ public class RegisterPage {
             seller.setEmail(email);
             seller.setPhoneNumber(phoneNumber);
             seller.setOrganization(company);
-            Main.setScene("../view/SellerPage.fxml");
         }else{
             warning.setText("invalid account type");
         }
@@ -55,6 +54,6 @@ public class RegisterPage {
     }
 
     public void login(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/LoginPage.fxml");
+        Main.setScene("LoginPage");
     }
 }

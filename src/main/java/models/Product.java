@@ -216,5 +216,9 @@ public class Product {
         }
         return filteredProduct;
     }
+
+    public void remove() {
+        allProduct.remove(this);
+    }
 }
 

@@ -1,7 +1,5 @@
 package models;
 
-import view.usersPageCommands.managerCommands.ManageAllProducts;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -121,11 +119,11 @@ public class Account {
     public String getAccountPage() {
         switch (accountType) {
             case SELLER:
-                return "../view/SellerPage.fxml";
+                return "SellerPage";
             case BUYER:
-                return "../view/BuyerPage.fxml";
+                return "BuyerPage";
             case MANAGER:
-                return "../view/ManagerPage.fxml";
+                return "ManagerPage";
             default:
                 return "";
         }
@@ -157,5 +155,17 @@ public class Account {
 
     public ArrayList<SellLog> getSellLogsList() {
         return sellLogsList;
+    }
+
+    public ArrayList<BuyLog> getBuyLogList() {
+        return buyLogsList;
+    }
+
+    public void addSellLog(SellLog sellLog) {
+        sellLogsList.add(sellLog);
+    }
+
+    public void addBuyLog(BuyLog buyLog) {
+        buyLogsList.add(buyLog);
     }
 }

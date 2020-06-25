@@ -29,5 +29,6 @@
         <Label layoutX="431.0" layoutY="49.0" prefHeight="25.0" prefWidth="149.0" text="*" textFill="#bb1616" />
         <Label layoutX="431.0" layoutY="100.0" prefHeight="25.0" prefWidth="149.0" text="*" textFill="#b60a0a" />
       <Label fx:id="warning" layoutX="318.0" layoutY="184.0" textFill="#c60a0a" />
+      <Button layoutX="47.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#back" text="back" />
     </children>
 </Pane>

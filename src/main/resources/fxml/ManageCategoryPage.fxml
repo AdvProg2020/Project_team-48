@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageCategoryPage">
+    <children>
+        <ImageView fitHeight="361.0" fitWidth="675.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/background.png" />
+            </image></ImageView>
+        <HBox layoutX="126.0" layoutY="58.0" />
+        <Label accessibleRole="TEXT_FIELD" alignment="CENTER" contentDisplay="CENTER" layoutX="258.0" layoutY="6.0" prefHeight="25.0" prefWidth="159.0" text="manage category" />
+        <Button layoutX="100.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="25.0" prefWidth="53.0" text="logout" />
+        <Button layoutX="47.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#back" text="back" />
+        <VBox fx:id="userInfoVBox" layoutX="282.0" layoutY="58.0" prefHeight="175.0" prefWidth="100.0" />
+        <ScrollPane fx:id="scrollPane" layoutX="26.0" layoutY="45.0" prefHeight="144.0" prefWidth="200.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+            </content>
+        </ScrollPane>
+        <Button layoutX="380.0" layoutY="258.0" mnemonicParsing="false" onMouseClicked="#create" prefHeight="25.0" prefWidth="63.0" text="create" />
+      <VBox layoutX="380.0" layoutY="46.0" prefHeight="200.0" prefWidth="147.0">
+         <children>
+            <TextField fx:id="nameText" promptText="name" />
+            <TextField fx:id="specialityText" promptText="speciality" />
+            <ScrollPane fx:id="productScrollPane" prefHeight="200.0" prefWidth="200.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="productVBox" layoutY="-28.0" prefHeight="200.0" prefWidth="134.0" />
+                     </children></AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+    </children>
+</Pane>

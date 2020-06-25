@@ -20,39 +20,37 @@ public class ManagerPage implements Initializable {
     public Label creditLabel;
 
     public void showManagerRegisterPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/MainPage.fxml");
+        Main.setScene("RegisterManagerPage");
     }
 
     public void showManageUsersPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/ManageUserPage.fxml");
+        Main.setScene("ManageUserPage");
     }
 
     public void showManageDiscountPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/ManageDiscountPage.fxml");
+        Main.setScene("ManageDiscountPage");
     }
 
     public void showManageProductPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/ManageProductPage.fxml");
+        Main.setScene("ManageProductPage");
     }
 
     public void showManageRequestPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/ManageRequestPage.fxml");
+        Main.setScene("ManageRequestPage");
     }
 
     public void showManageCategoryPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/ManageCategoryPage.fxml");
+        Main.setScene("ManageCategoryPage");
     }
 
     public void edit(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/EditPage.fxml");
+        Main.setScene("EditPage");
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/MainPage.fxml");
+        Main.setScene("MainPage");
     }
 
-    public void back(MouseEvent mouseEvent) {
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,4 +63,5 @@ public class ManagerPage implements Initializable {
         phoneNumberLabel.setText(account.getPhoneNumber());
         creditLabel.setText(Integer.toString(account.getCredit()));
     }
+
 }

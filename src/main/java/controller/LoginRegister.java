@@ -2,7 +2,6 @@ package controller;
 
 
 import models.*;
-import view.LoginRegisterPage;
 import view.Page;
 
 public class LoginRegister {

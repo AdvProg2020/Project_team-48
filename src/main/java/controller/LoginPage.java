@@ -14,17 +14,22 @@ public class LoginPage {
     public PasswordField passwordText;
     public Label warning;
 
-    public void login(MouseEvent mouseEvent) {
-        String username = usernameText.toString();
-        String password = passwordText.toString();
-        if (Account.getUserByName(username).getPassword().equals(password)){
+    public void login(MouseEvent mouseEvent) throws IOException {
+        String username = usernameText.getText();
+        String password = passwordText.getText();
+        if (username.equals("") || password.equals("")) {
+            warning.setText("unfilled field exist");
+        } else if (!Account.existsUsername(username)) {
+            warning.setText("username does not exist");
+        }else if (Account.getUserByName(username).getPassword().equals(password)){
             Main.setAccount(Account.getUserByName(username));
+            Main.setScene(Main.getAccount().getAccountPage());
         }else{
-            warning.setText("invalid username or password");
+            warning.setText("invalid password");
         }
     }
 
     public void showRegisterPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("../view/RegisterPage.fxml");
+        Main.setScene("RegisterPage");
     }
 }

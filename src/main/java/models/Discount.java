@@ -127,4 +127,7 @@ public class Discount {
         this.discountPercent = discountPercent;
     }
 
+    public void addUser(Account account) {
+        allDiscountedUsers.add(account);
+    }
 }
