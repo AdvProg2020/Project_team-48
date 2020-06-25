@@ -68,4 +68,11 @@ public class SellerPage implements Initializable {
     }
 
 
+    public void sellerProduct(MouseEvent mouseEvent) throws IOException {
+        Main.setScene("SellerProduct");
+    }
+
+    public void showOffPage(MouseEvent mouseEvent) throws IOException {
+        Main.setScene("SellerOffPage");
+    }
 }

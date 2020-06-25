@@ -11,18 +11,20 @@ public class Off {
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
     private int offAmount;
+    private int percent;
     private static ArrayList<Off> offs = new ArrayList<>();
     private static ArrayList<Off> requested = new ArrayList<>();
     private static int size = 0;
 
-    public Off(String startDate, String finishDate, int offAmount, ArrayList<Product> product) {
+    public Off(String startDate, String finishDate, int offAmount, ArrayList<Product> product, int percent) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
         this.startDate = LocalDateTime.parse(startDate, formatter);
         this.finishDate = LocalDateTime.parse(finishDate, formatter);
         this.offAmount = offAmount;
         this.products = product;
         this.offId = size++;
-        this.requested.add(this);
+        this.percent = percent;
+        requested.add(this);
     }
 
     public static void addOff(Off off) {

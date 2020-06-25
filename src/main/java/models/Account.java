@@ -23,7 +23,6 @@ public class Account {
     protected String address;
     protected Date lastLoggedIn;
     private AccountType accountType;
-    private ArrayList<Off> offCodes;
     private ArrayList<SellLog> sellLogsList;
     private ArrayList<BuyLog> buyLogsList;
     private int credit;
@@ -33,6 +32,7 @@ public class Account {
         this.username = username;
         this.credit = 0 ;
     }
+
 
     public ArrayList<Discount> getAllDiscounts() {
         return allDiscounts;

@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageProductPage">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SellerProduct">
     <children>
         <ImageView fitHeight="361.0" fitWidth="675.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -15,11 +15,17 @@
         <Button layoutX="100.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="25.0" prefWidth="53.0" text="logout" />
         <Button layoutX="47.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#back" text="back" />
         <VBox fx:id="userInfoVBox" layoutX="282.0" layoutY="58.0" prefHeight="175.0" prefWidth="100.0" />
-        <Button layoutX="473.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#delete" prefHeight="25.0" prefWidth="119.0" text="delete" />
+        <Button layoutX="272.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#delete" prefHeight="25.0" prefWidth="119.0" text="delete" />
+        <Button layoutX="475.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#create" text="create" />
+        <TextField fx:id="nameText" layoutX="433.0" layoutY="19.0" promptText="name" />
+        <TextField fx:id="brandText" layoutX="433.0" layoutY="46.0" promptText="brand" />
+        <TextField fx:id="priceText" layoutX="433.0" layoutY="71.0" promptText="price" />
         <ScrollPane fx:id="scrollPane" layoutX="26.0" layoutY="45.0" prefHeight="144.0" prefWidth="200.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
             </content>
         </ScrollPane>
+        <TextField fx:id="existingText" layoutX="433.0" layoutY="96.0" promptText="existing" />
+        <TextField fx:id="detailsText" layoutX="433.0" layoutY="145.0" promptText="details" />
     </children>
 </Pane>

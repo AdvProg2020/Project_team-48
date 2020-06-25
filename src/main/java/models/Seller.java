@@ -6,6 +6,7 @@ public class Seller extends Account {
     private String organization;
     private ArrayList<Product> products = new ArrayList<>();
     private static ArrayList<Seller> allSellers = new ArrayList<>();
+    private ArrayList<Off> offs = new ArrayList<>();
 
     public Seller(String username) {
         super(username);
@@ -21,6 +22,10 @@ public class Seller extends Account {
         Account.allAccounts.add(this);
     }
 
+    public ArrayList<Off> getOffs() {
+        return offs;
+    }
+
     public String getOrganization() {
         return organization;
     }
@@ -29,4 +34,15 @@ public class Seller extends Account {
         return products;
     }
 
+    public void removeProduct(Product chosenProduct) {
+        products.remove(products);
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public void addOff(Off off) {
+        offs.add(off);
+    }
 }

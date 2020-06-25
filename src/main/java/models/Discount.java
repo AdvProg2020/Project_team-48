@@ -16,7 +16,7 @@ public class Discount {
     private static ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public Discount(int discountCode, String startDate, String finishDate, int discountPercent, int repeat, ArrayList<Account> allDiscountedUsers, int max) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm");
         this.discountCode = discountCode;
         this.startDate = LocalDateTime.parse(startDate, formatter);
         this.finishDate = LocalDateTime.parse(finishDate, formatter);
