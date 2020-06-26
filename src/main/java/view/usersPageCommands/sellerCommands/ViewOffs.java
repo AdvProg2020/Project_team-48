@@ -1,6 +1,7 @@
 package view.usersPageCommands.sellerCommands;
 
 import controller.SellerControl;
+import main.Main;
 import models.Off;
 import models.Product;
 import view.Back;
@@ -79,7 +80,8 @@ public class ViewOffs extends Page {
                 for (String s : product.split(",")) {
                     products.add(Product.getProductById(Integer.parseInt(s)));
                 }
-                SellerControl.requestAddOff(products, new Off(startDate, endDate, offAmount, products));
+                int percent = Integer.parseInt(scanner.nextLine());
+                SellerControl.requestAddOff(products, new Off(startDate, endDate, offAmount, products,percent, Main.getAccount()));
                 new Back(this).execute();
             }
         };

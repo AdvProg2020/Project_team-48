@@ -2,13 +2,14 @@ package controller;
 
 import models.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BuyerControl {
     public static boolean checkDiscount(Account account, Discount discount) {
         Buyer buyer = (Buyer) account;
-        if (discount.getStartDate().isBefore(LocalDateTime.now()) && discount.getFinishDate().isAfter(LocalDateTime.now())) {
+        if (discount.getStartDate().isBefore(LocalDate.now()) && discount.getFinishDate().isAfter(LocalDate.now())) {
             if (discount.getAllDiscountedUsers().contains(account)) {
                 return true;
             }
@@ -22,7 +23,7 @@ public class BuyerControl {
         Buyer buyer = (Buyer) account;
         int price = buyer.getCart().getTotalPrice();
         if (discount != null) {
-            if (discount.getStartDate().isBefore(LocalDateTime.now()) && discount.getFinishDate().isAfter(LocalDateTime.now())) {
+            if (discount.getStartDate().isBefore(LocalDate.now()) && discount.getFinishDate().isAfter(LocalDate.now())) {
                 for (Account user : discount.getAllDiscountedUsers()) {
                     if (account == user) {
                         if (discount.getMax() > price * discount.getDiscountPercent() / 100) {

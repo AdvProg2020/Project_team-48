@@ -118,14 +118,12 @@ public class Account {
 
     public String getAccountPage() {
         switch (accountType) {
-            case SELLER:
-                return "SellerPage";
             case BUYER:
                 return "BuyerPage";
             case MANAGER:
                 return "ManagerPage";
             default:
-                return "";
+                return "SellerPage";
         }
     }
 

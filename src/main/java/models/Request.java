@@ -18,10 +18,20 @@ public class Request {
     private static ArrayList<Account> offs = new ArrayList<>();
     private static ArrayList<Request> requests = new ArrayList<>();
 
-    public Request(Account account) {
+    public Request(Account account, Product product, Off off) {
         requestId = requests.size();
         this.account = account;
         requests.add(this);
+
+        if (product == null && off == null){
+            sellers.add((Seller) account);
+        }else if (product != null){
+            products.add(account);
+            this.product = product;
+        }else {
+            offs.add(account);
+            this.off = off;
+        }
     }
 
     public int getRequestId() {
@@ -85,7 +95,7 @@ public class Request {
             System.out.println("request does not exist");
             return;
         }
-        if (request.account != null && sellers.contains(request.account)) {
+        if (request.account != null && sellers.contains((Seller) request.account)) {
             sellers.remove(request.account);
             Seller seller = (Seller) request.account;
             seller.add();

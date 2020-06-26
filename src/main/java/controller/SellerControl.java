@@ -10,19 +10,19 @@ import java.util.ArrayList;
 public class SellerControl {
 
     public static void requestEditPrice(int price, Product product) {
-        new Request(Page.getAccount()).addProductEditRequest(Page.getAccount(), product, price, null);
+        new Request(Page.getAccount(),product,null).addProductEditRequest(Page.getAccount(), product, price, null);
     }
 
     public static void requestEditExisting(int existing, Product product) {
-        new Request(Page.getAccount()).addProductEditRequest(Page.getAccount(), product, null, existing);
+        new Request(Page.getAccount(),product,null).addProductEditRequest(Page.getAccount(), product, null, existing);
     }
 
     public static void requestAddOff(ArrayList<Product> product, Off off) {
-        new Request(Page.getAccount()).addOffRequest(Page.getAccount(), product, off);
+        new Request(Page.getAccount(),null, off).addOffRequest(Page.getAccount(), product, off);
     }
 
     public static void requestAddProduct(Product product) {
-        new Request(Page.getAccount()).addProductRequest(Page.getAccount(), product);
+        new Request(Page.getAccount(),product,null).addProductRequest(Page.getAccount(), product);
     }
 
     public static void remove(int id) {
@@ -31,6 +31,6 @@ public class SellerControl {
     }
 
     public static void requestEditOff(Off off, ArrayList<Product> products, String start, String end, int amount) {
-        new Request(Page.getAccount()).addOffEditRequest(Page.getAccount(), products, off, start, end, amount);
+        new Request(Page.getAccount(), null, off).addOffEditRequest(Page.getAccount(), products, off, start, end, amount);
     }
 }

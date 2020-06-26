@@ -1,5 +1,6 @@
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -8,23 +9,24 @@ import java.util.ArrayList;
 public class Off {
     private int offId;
     private ArrayList<Product> products;
-    private LocalDateTime startDate;
-    private LocalDateTime finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     private int offAmount;
     private int percent;
     private static ArrayList<Off> offs = new ArrayList<>();
     private static ArrayList<Off> requested = new ArrayList<>();
     private static int size = 0;
 
-    public Off(String startDate, String finishDate, int offAmount, ArrayList<Product> product, int percent) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.startDate = LocalDateTime.parse(startDate, formatter);
-        this.finishDate = LocalDateTime.parse(finishDate, formatter);
+    public Off(String startDate, String finishDate, int offAmount, ArrayList<Product> product, int percent,Account account) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
+        this.startDate = LocalDate.parse(startDate, formatter);
+        this.finishDate = LocalDate.parse(finishDate, formatter);
         this.offAmount = offAmount;
         this.products = product;
         this.offId = size++;
         this.percent = percent;
         requested.add(this);
+        new Request(account, null, this);
     }
 
     public static void addOff(Off off) {
@@ -53,11 +55,11 @@ public class Off {
         return offs;
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
@@ -85,12 +87,12 @@ public class Off {
 
     public void setStartDate(String startDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.startDate = LocalDateTime.parse(startDate, formatter);
+        this.startDate = LocalDate.parse(startDate, formatter);
     }
 
     public void setFinishDate(String finishDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.finishDate = LocalDateTime.parse(finishDate, formatter);
+        this.finishDate = LocalDate.parse(finishDate, formatter);
     }
 
     public void setOffAmount(int offAmount) {

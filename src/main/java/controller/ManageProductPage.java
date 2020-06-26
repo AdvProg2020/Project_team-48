@@ -36,7 +36,7 @@ public class ManageProductPage implements Initializable {
                         }
                         String id = name.substring(10, i);
                         for (Product product: Product.getAllProduct()) {
-                            if (product.equals(id)){
+                            if (product.getName().equals(id)){
                                 chosenProduct = product;
                                 Label info = new Label();
                                 info.setText(product.toString());
@@ -56,6 +56,7 @@ public class ManageProductPage implements Initializable {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        Main.setAccount(null);
         Main.setScene("MainPage");
     }
 

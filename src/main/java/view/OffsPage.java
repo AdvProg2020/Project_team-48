@@ -5,6 +5,7 @@ import models.Product;
 import view.allProductsPageCommands.Filtering;
 import view.allProductsPageCommands.Sorting;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OffsPage extends Page {
@@ -19,7 +20,7 @@ public class OffsPage extends Page {
     @Override
     public void execute() {
         for (Off off : Off.getOffs()) {
-            if (off.getStartDate().isBefore(LocalDateTime.now()) && off.getFinishDate().isAfter(LocalDateTime.now())) {
+            if (off.getStartDate().isBefore(LocalDate.now()) && off.getFinishDate().isAfter(LocalDate.now())) {
                 for (Product pro : off.getProducts()) {
                     System.out.println(pro.getName() + pro.getPrice());
                 }

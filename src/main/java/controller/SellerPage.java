@@ -23,22 +23,6 @@ public class SellerPage implements Initializable {
     public Label discountLabel;
     public Label companyText;
 
-    public void showCartPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("CartPage");
-    }
-
-    public void showDiscount(MouseEvent mouseEvent) {
-        Account account = Main.getAccount();
-        StringBuilder discounts = new StringBuilder();
-        for (Discount discount : account.getAllDiscounts()) {
-            discounts.append(discount.getDiscountCode());
-        }
-        discountLabel.setText(discounts.toString());
-    }
-
-    public void showLogPage(MouseEvent mouseEvent) throws IOException {
-        Main.setScene("BuyLogPage");
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,5 +58,9 @@ public class SellerPage implements Initializable {
 
     public void showOffPage(MouseEvent mouseEvent) throws IOException {
         Main.setScene("SellerOffPage");
+    }
+
+    public void showCategory(MouseEvent mouseEvent) {
+
     }
 }

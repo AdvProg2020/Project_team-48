@@ -36,7 +36,7 @@ public class ManageRequestPage implements Initializable {
                             }
                             String id = name.substring(10, i);
                             for (Request request : Request.getRequests()) {
-                                if (request.equals(id)) {
+                                if (request.getRequestId() == Integer.parseInt(id)) {
                                     chosenRequest = request;
                                     Label info = new Label();
                                     info.setText(request.toString());
@@ -56,6 +56,7 @@ public class ManageRequestPage implements Initializable {
         }
 
         public void logout(MouseEvent mouseEvent) throws IOException {
+            Main.setAccount(null);
             Main.setScene("MainPage");
         }
 

@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import main.Main;
 import models.Buyer;
+import models.Request;
 import models.Seller;
 
 
@@ -48,6 +49,7 @@ public class RegisterPage {
             seller.setEmail(email);
             seller.setPhoneNumber(phoneNumber);
             seller.setOrganization(company);
+            new Request(seller,null,null);
         }else{
             warning.setText("invalid account type");
         }

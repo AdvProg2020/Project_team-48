@@ -48,17 +48,22 @@ public class SellerLogPage implements Initializable {
                         }
                     }
                 };
-        for (SellLog sellLog: Main.getAccount().getSellLogsList()) {
-            Button button = new Button();
-            button.setId(Integer.toString(sellLog.getLogId()));
-            button.setText(Integer.toString(sellLog.getLogId()));
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-            vBox.getChildren().add(button);
+        try {
+            for (SellLog sellLog : Main.getAccount().getSellLogsList()) {
+                Button button = new Button();
+                button.setId(Integer.toString(sellLog.getLogId()));
+                button.setText(Integer.toString(sellLog.getLogId()));
+                button.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+                vBox.getChildren().add(button);
+            }
+        }catch (Exception a){
+
         }
         scrollPane.setContent(vBox);
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        Main.setAccount(null);
         Main.setScene("MainPage");
     }
 

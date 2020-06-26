@@ -1,5 +1,6 @@
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -29,8 +30,9 @@ public class Product {
         this.existing = existing;
         this.seller = seller;
         this.details = details;
-        this.requested.add(this);
+        requested.add(this);
         productId = size++;
+        new Request(seller,this,null);
     }
 
     public Product() {
@@ -137,7 +139,7 @@ public class Product {
         for (Off off : Off.getOffs()) {
             for (Product product : off.getProducts()) {
                 if (product == this) {
-                    if (off.getStartDate().isBefore(LocalDateTime.now()) && off.getFinishDate().isAfter(LocalDateTime.now())) {
+                    if (off.getStartDate().isBefore(LocalDate.now()) && off.getFinishDate().isAfter(LocalDate.now())) {
                         return (int) (price * off.getOffAmount() / 100);
                     }
                 }

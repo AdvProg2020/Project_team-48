@@ -17,7 +17,7 @@ public class LoginRegister {
             return new Manager(username);
         } else if (type.equals("seller")) {
             Seller seller = new Seller(username);
-            new Request(seller).addSeller(seller);
+            new Request(seller,null,null).addSeller(seller);
             return seller;
         } else {
             return new Buyer(username);

@@ -1,5 +1,6 @@
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -7,8 +8,8 @@ import java.util.HashMap;
 
 public class Discount {
     private int discountCode;
-    private LocalDateTime startDate;
-    private LocalDateTime finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     private int max;
     private int discountPercent;
     private HashMap<Account, Integer> repeat = new HashMap<>();
@@ -16,10 +17,10 @@ public class Discount {
     private static ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public Discount(int discountCode, String startDate, String finishDate, int discountPercent, int repeat, ArrayList<Account> allDiscountedUsers, int max) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm");
         this.discountCode = discountCode;
-        this.startDate = LocalDateTime.parse(startDate, formatter);
-        this.finishDate = LocalDateTime.parse(finishDate, formatter);
+        this.startDate = LocalDate.parse(startDate, formatter);
+        this.finishDate = LocalDate.parse(finishDate, formatter);
         this.discountPercent = discountPercent;
         this.allDiscountedUsers = allDiscountedUsers;
         for (Account user : allDiscountedUsers) {
@@ -92,11 +93,11 @@ public class Discount {
         }
     }
 
-    public LocalDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
@@ -111,12 +112,12 @@ public class Discount {
 
     public void setStartDate(String startDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.startDate = LocalDateTime.parse(startDate, formatter);
+        this.startDate = LocalDate.parse(startDate, formatter);
     }
 
     public void setFinishDate(String finishDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
-        this.finishDate = LocalDateTime.parse(finishDate, formatter);
+        this.finishDate = LocalDate.parse(finishDate, formatter);
     }
 
     public void setMax(int max) {

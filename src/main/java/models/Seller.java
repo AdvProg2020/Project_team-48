@@ -35,7 +35,7 @@ public class Seller extends Account {
     }
 
     public void removeProduct(Product chosenProduct) {
-        products.remove(products);
+        products.remove(chosenProduct);
     }
 
     public void addProduct(Product product) {

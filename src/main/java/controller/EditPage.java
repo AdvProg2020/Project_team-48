@@ -19,30 +19,31 @@ public class EditPage {
     public Label warning;
 
     public void edit(MouseEvent mouseEvent) throws IOException {
-        String password = passwordText.toString();
-        String name = nameText.toString();
-        String familyName = familyNameText.toString();
-        String phoneNumber = phoneNumberText.toString();
-        String email = emailText.toString();
+        String password = passwordText.getText();
+        String name = nameText.getText();
+        String familyName = familyNameText.getText();
+        String phoneNumber = phoneNumberText.getText();
+        String email = emailText.getText();
+        String creditt = creditText.getText();
         Account account = Main.getAccount();
         Integer credit = null;
         try {
-            credit = Integer.parseInt(creditText.toString());
+            credit = Integer.parseInt(creditText.getText());
         } catch (NumberFormatException e) {
             warning.setText("invalid credit");
             return;
         }
-        if (password != null) account.setPassword(password);
+        if (!password.equals("")) account.setPassword(password);
 
-        if (name != null) account.setFirstName(name);
+        if (!name.equals("")) account.setFirstName(name);
 
-        if (familyName != null)account.setLastName(familyName);
+        if (!familyName.equals("")) account.setLastName(familyName);
 
-        if (phoneNumber != null)account.setPhoneNumber(phoneNumber);
+        if (!account.equals("")) account.setPhoneNumber(phoneNumber);
 
-        if (email != null)account.setEmail(email);
+        if (!email.equals("")) account.setEmail(email);
 
-        if (creditText != null)account.setCredit(credit);
+        if (!creditt.equals("")) account.setCredit(credit);
 
 
     }

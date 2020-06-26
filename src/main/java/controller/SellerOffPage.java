@@ -67,6 +67,7 @@ public class SellerOffPage implements Initializable {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        Main.setAccount(null);
         Main.setScene("MainPage");
     }
 
@@ -87,7 +88,7 @@ public class SellerOffPage implements Initializable {
                product.add( Product.getProductById(Integer.parseInt(s)));
             }
             Seller seller = (Seller) Main.getAccount();
-            seller.addOff(new Off(startDate, finishDate,Integer.parseInt( amount),product, Integer.parseInt(percent)));
+            seller.addOff(new Off(startDate, finishDate,Integer.parseInt( amount),product, Integer.parseInt(percent),seller));
         }
         
     }

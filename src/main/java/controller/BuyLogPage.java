@@ -59,6 +59,7 @@ public class BuyLogPage implements Initializable {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        Main.setAccount(null);
         Main.setScene("MainPage");
     }
 
