@@ -20,8 +20,8 @@ public class Cart {
 
     public int getTotalPrice() {
         int total = 0;
-        for (Product product : amountOfProducts.keySet()) {
-            total = total + product.getPrice() * amountOfProducts.get(product);
+        for (Product product : products) {
+            total = total + product.getPrice() ;
         }
         return total;
     }

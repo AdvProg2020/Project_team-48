@@ -80,6 +80,10 @@ public class CartPage implements Initializable {
 
 
     public void purchase(MouseEvent mouseEvent) {
+        try {
             BuyerControl.purchase(Main.getAccount(), Discount.getDiscountByCode(Integer.parseInt(discountCodeText.getText())));
+        }catch (Exception e){
+            BuyerControl.purchase(Main.getAccount(), null);
+        }
     }
 }

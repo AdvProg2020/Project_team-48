@@ -48,12 +48,16 @@ public class BuyLogPage implements Initializable {
                         }
                     }
                 };
-        for (BuyLog buyLog : Main.getAccount().getBuyLogList()) {
-            Button button = new Button();
-            button.setId(Integer.toString(buyLog.getCode()));
-            button.setText(Integer.toString(buyLog.getCode()));
-            button.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-            vBox.getChildren().add(button);
+        try {
+            for (BuyLog buyLog : Main.getAccount().getBuyLogList()) {
+                Button button = new Button();
+                button.setId(Integer.toString(buyLog.getCode()));
+                button.setText(Integer.toString(buyLog.getCode()));
+                button.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+                vBox.getChildren().add(button);
+            }
+        }catch (Exception e){
+
         }
         scrollPane.setContent(vBox);
     }

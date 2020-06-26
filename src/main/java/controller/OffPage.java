@@ -66,7 +66,7 @@ public class OffPage implements Initializable {
     public void showProductPage(MouseEvent mouseEvent) throws IOException {
         if (chosenProduct != null){
             Main.setProduct(chosenProduct);
-            Main.setScene("productPage");
+            Main.setScene("ProductPage");
         }
     }
 }

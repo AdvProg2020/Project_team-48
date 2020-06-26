@@ -10,6 +10,7 @@ public class Buyer extends Account {
         super(username);
         super.setAccountType(AccountType.BUYER);
         allAccounts.add(this);
+        cart = new Cart();
     }
 
     public Cart getCart() {
