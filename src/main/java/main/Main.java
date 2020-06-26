@@ -19,6 +19,7 @@ public class Main extends Application {
     private static Stage stage;
     private static Account account = null;
     private static Product product = null;
+    private static String page = null;
 
 
     public static void setScene(String fxml) throws IOException {
@@ -33,6 +34,14 @@ public class Main extends Application {
 
     public static void setProduct(Product product) {
         Main.product = product;
+    }
+
+    public static String getPage() {
+        return page;
+    }
+
+    public static void setPage(String page) {
+        Main.page = page;
     }
 
     public static Account getAccount() {

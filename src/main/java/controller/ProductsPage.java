@@ -36,7 +36,7 @@ import java.util.ResourceBundle;
                             }
                             String id = name.substring(10, i);
                             for (Product product: Product.getAllProduct()) {
-                                if (product.equals(id)){
+                                if (product.getName().equals(id)){
                                     chosenProduct = product;
                                     Label info = new Label();
                                     info.setText(product.toString());
@@ -64,7 +64,6 @@ import java.util.ResourceBundle;
             if (chosenProduct != null){
                 Main.setProduct(chosenProduct);
                 Main.setScene("productPage");
-
             }
         }
     }
