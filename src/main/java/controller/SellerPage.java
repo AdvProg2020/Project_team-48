@@ -26,7 +26,7 @@ public class SellerPage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Account account  = Main.getAccount();
+        Account account = Main.getAccount();
         nameLabel.setText(account.getFirstName());
         familyNameLabel.setText(account.getLastName());
         passwordLabel.setText(account.getPassword());
@@ -60,7 +60,7 @@ public class SellerPage implements Initializable {
         Main.setScene("SellerOffPage");
     }
 
-    public void showCategory(MouseEvent mouseEvent) {
-
+    public void showCategory(MouseEvent mouseEvent) throws IOException {
+        Main.setScene("ManageCategoryPage");
     }
 }

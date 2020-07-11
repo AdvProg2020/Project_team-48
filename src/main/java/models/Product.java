@@ -42,6 +42,15 @@ public class Product {
         return allProduct;
     }
 
+    public static Product getProductByName(String s) {
+        for (Product product : allProduct) {
+            if (product.name.equals(s)){
+                return product;
+            }
+        }
+        return null;
+    }
+
     public void addBuyers(Account account) {
         productBuyers.add((Buyer) account);
     }
@@ -221,6 +230,10 @@ public class Product {
 
     public void remove() {
         allProduct.remove(this);
+    }
+
+    public ArrayList<Comment> getComment() {
+        return allComments;
     }
 }
 

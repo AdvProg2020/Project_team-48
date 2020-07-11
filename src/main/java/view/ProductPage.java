@@ -22,6 +22,8 @@ public class ProductPage extends Page {
             @Override
             public void execute() {
                 System.out.println(product);
+                System.out.println(product.getComment());
+                System.out.println(product.getRate());
                 new Back(this).execute();
             }
         };

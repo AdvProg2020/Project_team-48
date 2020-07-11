@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class ManageDiscountPage implements Initializable {
     public ScrollPane scrollPane;
-    public Discount chosenDiscount =null;
+    public Discount chosenDiscount = null;
     public VBox userInfoVBox;
     public TextField discountCode;
     public TextField startDate;
@@ -30,7 +30,6 @@ public class ManageDiscountPage implements Initializable {
     public TextField repeat;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         VBox vBox = new VBox();
@@ -38,14 +37,14 @@ public class ManageDiscountPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        String name =  e.getSource().toString();
+                        String name = e.getSource().toString();
                         int i = 10;
-                        while (name.charAt(i) != ','){
+                        while (name.charAt(i) != ',') {
                             i++;
                         }
                         String id = name.substring(10, i);
-                        for (Discount discount: Discount.getAllDiscounts()) {
-                            if (discount.getDiscountCode() == Integer.parseInt(id)){
+                        for (Discount discount : Discount.getAllDiscounts()) {
+                            if (discount.getDiscountCode() == Integer.parseInt(id)) {
                                 chosenDiscount = discount;
                                 Label info = new Label();
                                 info.setText(discount.toString());
@@ -76,7 +75,7 @@ public class ManageDiscountPage implements Initializable {
 
     public void delete(MouseEvent mouseEvent) {
         if (chosenDiscount != null)
-        chosenDiscount.remove();
+            chosenDiscount.remove();
     }
 
 
@@ -95,16 +94,17 @@ public class ManageDiscountPage implements Initializable {
         }
 
         if (!Discount.existCode(code)) {
-            new Discount(code, start, end, percent,repeated,discountedAccounts,max );
+            new Discount(code, start, end, percent, repeated, discountedAccounts, max);
         }
     }
 
     public void edit(MouseEvent mouseEvent) {
-        if (discountCode.getText() != "") {
+        if (discountCode.getText() .equals( "")) {
             int code = Integer.parseInt(discountCode.getText());
             Discount discount = Discount.getDiscountByCode(code);
             if (discount != null) {
-                if (startDate.getText() != "") {
+
+                if (startDate.getText() .equals( "")) {
                     discount.setStartDate(startDate.getText());
                 }
                 if (finishDate.getText() != "") {

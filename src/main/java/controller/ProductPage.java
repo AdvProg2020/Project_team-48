@@ -40,10 +40,10 @@ public class ProductPage implements Initializable {
     }
 
     public void addCart(MouseEvent mouseEvent) throws IOException {
-        if (Main.getAccount() == null){
+        if (Main.getAccount() == null) {
             Main.setPage("ProductPage");
             Main.setScene("LoginPage");
-        }else {
+        } else {
             Buyer buyer = (Buyer) Main.getAccount();
             buyer.getCart().addProductToCart(product);
         }

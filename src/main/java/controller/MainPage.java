@@ -9,9 +9,9 @@ import java.io.IOException;
 public class MainPage {
     public void showAccountPage(MouseEvent mouseEvent) throws IOException {
         Account account = Main.getAccount();
-        if (account == null){
+        if (account == null) {
             Main.setScene("LoginPage");
-        }else {
+        } else {
             Main.setScene(account.getAccountPage());
         }
     }

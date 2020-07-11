@@ -38,15 +38,15 @@ public class SellerOffPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        String name =  e.getSource().toString();
+                        String name = e.getSource().toString();
                         int i = 10;
-                        while (name.charAt(i) != ','){
+                        while (name.charAt(i) != ',') {
                             i++;
                         }
                         String id = name.substring(10, i);
                         Seller seller = (Seller) Main.getAccount();
-                        for (Off off: seller.getOffs()) {
-                            if (String.valueOf(off.getOffId()).equals(id)){
+                        for (Off off : seller.getOffs()) {
+                            if (String.valueOf(off.getOffId()).equals(id)) {
                                 chosenOff = off;
                                 Label info = new Label();
                                 info.setText(off.toString());
@@ -82,14 +82,14 @@ public class SellerOffPage implements Initializable {
         String products = productsText.getText();
         String percent = percentText.getText();
 
-        if (!startDate.equals("") && !finishDate.equals("") && !amount.equals("") && !products.equals("") && !percent.equals("") ){
+        if (!startDate.equals("") && !finishDate.equals("") && !amount.equals("") && !products.equals("") && !percent.equals("")) {
             ArrayList<Product> product = new ArrayList<>();
             for (String s : products.split("\\s")) {
-               product.add( Product.getProductById(Integer.parseInt(s)));
+                product.add(Product.getProductByName(s));
             }
             Seller seller = (Seller) Main.getAccount();
-            seller.addOff(new Off(startDate, finishDate,Integer.parseInt( amount),product, Integer.parseInt(percent),seller));
+            seller.addOff(new Off(startDate, finishDate, Integer.parseInt(amount), product, Integer.parseInt(percent), seller));
         }
-        
+
     }
 }

@@ -10,10 +10,7 @@ public class BuyerControl {
     public static boolean checkDiscount(Account account, Discount discount) {
         Buyer buyer = (Buyer) account;
         if (discount.getStartDate().isBefore(LocalDate.now()) && discount.getFinishDate().isAfter(LocalDate.now())) {
-            if (discount.getAllDiscountedUsers().contains(account)) {
-                return true;
-            }
-
+            return discount.getAllDiscountedUsers().contains(buyer);
         }
         return false;
     }
@@ -38,7 +35,12 @@ public class BuyerControl {
         }
         if (account.getCredit() >= price) {
             account.setCredit(account.getCredit() - price);
-            BuyLog buyLog = new BuyLog(((Buyer) account).getCart().getProducts(), discount.getDiscountPercent(), (Buyer) account);
+            BuyLog buyLog;
+            if (discount != null) {
+                buyLog = new BuyLog(((Buyer) account).getCart().getProducts(), discount.getDiscountPercent(), (Buyer) account);
+            } else {
+                buyLog = new BuyLog(((Buyer) account).getCart().getProducts(), 0, (Buyer) account);
+            }
             ((Buyer) account).addBuyLog(buyLog);
             Account buyerAccount = account;
             buyerAccount.addBuyLog(buyLog);
@@ -51,8 +53,13 @@ public class BuyerControl {
                 sellerAccount.addSellLog(new SellLog(product, LocalDateTime.now(), ((Buyer) account)));
             }
             ((Buyer) account).getCart().clear();
-            discount.decreaseRepeat(account);
-
+            if (discount != null) {
+                if (discount.getRepeat() == 0){
+                    discount =null ;
+                }else {
+                    discount.decreaseRepeat(account);
+                }
+            }
             return true;
         }
         return false;

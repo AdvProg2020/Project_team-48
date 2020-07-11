@@ -44,14 +44,14 @@ public class ManageCategoryPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        String name =  e.getSource().toString();
+                        String name = e.getSource().toString();
                         int i = 10;
-                        while (name.charAt(i) != ','){
+                        while (name.charAt(i) != ',') {
                             i++;
                         }
                         String id = name.substring(10, i);
-                        for (Category category: Category.getAllCategories()) {
-                            if (category.getName().equals(id)){
+                        for (Category category : Category.getAllCategories()) {
+                            if (category.getName().equals(id)) {
                                 chosenCategory = category;
                                 Label info = new Label();
                                 info.setText(category.toString());
@@ -68,5 +68,9 @@ public class ManageCategoryPage implements Initializable {
             vBox.getChildren().add(button);
         }
         scrollPane.setContent(vBox);
+    }
+
+    public void create(MouseEvent mouseEvent) {
+        new Category(nameText.getText(),specialityText.getText(),null,null);
     }
 }

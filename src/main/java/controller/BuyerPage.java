@@ -40,7 +40,7 @@ public class BuyerPage implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Account account  = Main.getAccount();
+        Account account = Main.getAccount();
         nameLabel.setText(account.getFirstName());
         familyNameLabel.setText(account.getLastName());
         passwordLabel.setText(account.getPassword());

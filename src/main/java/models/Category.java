@@ -58,8 +58,8 @@ public class Category {
     @Override
     public String toString() {
         return
-                "name='" + name +
-                        ", attribute='" + attribute +
+                "name=" + name +
+                        ", attribute=" + attribute +
                         ", subCategory=" + subCategory +
                         ", allProducts=" + allProducts;
     }

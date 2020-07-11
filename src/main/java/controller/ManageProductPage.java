@@ -18,7 +18,7 @@ public class ManageProductPage implements Initializable {
 
 
     public ScrollPane scrollPane;
-    public Product chosenProduct =null;
+    public Product chosenProduct = null;
     public VBox userInfoVBox;
 
 
@@ -29,14 +29,14 @@ public class ManageProductPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        String name =  e.getSource().toString();
+                        String name = e.getSource().toString();
                         int i = 10;
-                        while (name.charAt(i) != ','){
+                        while (name.charAt(i) != ',') {
                             i++;
                         }
                         String id = name.substring(10, i);
-                        for (Product product: Product.getAllProduct()) {
-                            if (product.getName().equals(id)){
+                        for (Product product : Product.getAllProduct()) {
+                            if (product.getName().equals(id)) {
                                 chosenProduct = product;
                                 Label info = new Label();
                                 info.setText(product.toString());
@@ -69,7 +69,6 @@ public class ManageProductPage implements Initializable {
         if (chosenProduct != null)
             chosenProduct.remove();
     }
-
 
 
 }

@@ -131,4 +131,6 @@ public class Discount {
     public void addUser(Account account) {
         allDiscountedUsers.add(account);
     }
+
+
 }

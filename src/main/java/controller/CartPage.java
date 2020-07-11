@@ -23,6 +23,7 @@ public class CartPage implements Initializable {
     public VBox userInfoVBox;
     public Label priceLabel;
     public TextField discountCodeText;
+    public Label warning;
 
 
     @Override
@@ -32,15 +33,15 @@ public class CartPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        String name =  e.getSource().toString();
+                        String name = e.getSource().toString();
                         int i = 10;
-                        while (name.charAt(i) != ','){
+                        while (name.charAt(i) != ',') {
                             i++;
                         }
                         String id = name.substring(10, i);
                         Buyer buyer = (Buyer) Main.getAccount();
-                        for (Product product: buyer.getCart().getProducts()) {
-                            if (product.getName().equals(id)){
+                        for (Product product : buyer.getCart().getProducts()) {
+                            if (product.getName().equals(id)) {
                                 chosenProduct = product;
                                 Label info = new Label();
                                 info.setText(product.toString());
@@ -72,7 +73,7 @@ public class CartPage implements Initializable {
 
 
     public void showProductPage(MouseEvent mouseEvent) throws IOException {
-        if (chosenProduct != null){
+        if (chosenProduct != null) {
             Main.setProduct(chosenProduct);
             Main.setScene("ProductPage");
         }
@@ -80,10 +81,16 @@ public class CartPage implements Initializable {
 
 
     public void purchase(MouseEvent mouseEvent) {
+        Boolean purchase = false;
         try {
-            BuyerControl.purchase(Main.getAccount(), Discount.getDiscountByCode(Integer.parseInt(discountCodeText.getText())));
-        }catch (Exception e){
+           purchase = BuyerControl.purchase(Main.getAccount(), Discount.getDiscountByCode(Integer.parseInt(discountCodeText.getText())));
+        } catch (Exception e) {
             BuyerControl.purchase(Main.getAccount(), null);
+        }
+        if (purchase){
+            warning.setText("does not purchase");
+        }else{
+            warning.setText("purchase successful");
         }
     }
 }

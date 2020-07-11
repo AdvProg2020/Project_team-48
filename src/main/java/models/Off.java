@@ -2,6 +2,7 @@ package models;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -52,7 +53,13 @@ public class Off {
     }
 
     public static ArrayList<Off> getOffs() {
-        return offs;
+        ArrayList<Off> offss = new ArrayList<>();
+        for (Off off : offss) {
+            if (LocalDateTime.now().isBefore(ChronoLocalDateTime.from(off.getFinishDate()))){
+                offss.add(off);
+            }
+        }
+        return offss;
     }
 
     public LocalDate getStartDate() {

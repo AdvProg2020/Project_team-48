@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class ManageUserPage implements Initializable {
     public ScrollPane scrollPane;
-    public Account chosenAccount =null;
+    public Account chosenAccount = null;
     public VBox userInfoVBox;
 
     @Override
@@ -26,14 +26,14 @@ public class ManageUserPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                         String name =  e.getSource().toString();
-                         int i = 10;
-                         while (name.charAt(i) != ','){
-                             i++;
-                         }
-                         String id = name.substring(10, i);
+                        String name = e.getSource().toString();
+                        int i = 10;
+                        while (name.charAt(i) != ',') {
+                            i++;
+                        }
+                        String id = name.substring(10, i);
                         for (Account account : Account.getAllAccounts()) {
-                            if (account.getUsername().equals(id)){
+                            if (account.getUsername().equals(id)) {
                                 chosenAccount = account;
                                 Label info = new Label();
                                 info.setText(account.toString());
@@ -41,7 +41,7 @@ public class ManageUserPage implements Initializable {
                             }
                         }
                     }
-        };
+                };
         for (Account account : Account.getAllAccounts()) {
             Button button = new Button();
             button.setId(account.getUsername());
@@ -64,7 +64,7 @@ public class ManageUserPage implements Initializable {
 
     public void delete(MouseEvent mouseEvent) {
         if (chosenAccount != null)
-        Account.remove(chosenAccount);
+            Account.remove(chosenAccount);
     }
 
 

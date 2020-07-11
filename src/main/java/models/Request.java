@@ -55,16 +55,16 @@ public class Request {
     public String toString() {
         if (sellers.contains(this.account)) {
             return "requestId=" + requestId + "\n" +
-                    "   account=" + account;
+                    "   account=" + account.getUsername();
         } else if (products.contains(this.account)) {
             return "requestId=" + requestId + "\n" +
-                    "   account=" + account + "\n" +
-                    "   product=" + product;
+                    "   account=" + account.getUsername() + "\n" +
+                    "   product=" + product.getName();
         } else {
             return "requestId=" + requestId + "\n" +
-                    "   account=" + account + "\n" +
+                    "   account=" + account.getUsername() + "\n" +
                     "   off=" + off + "\n" +
-                    "   product=" + product;
+                    "   product=" + product.getName();
         }
     }
 

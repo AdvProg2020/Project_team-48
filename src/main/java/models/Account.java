@@ -23,14 +23,15 @@ public class Account {
     protected String address;
     protected Date lastLoggedIn;
     private AccountType accountType;
-    private ArrayList<SellLog> sellLogsList;
-    private ArrayList<BuyLog> buyLogsList;
-    private int credit;
+    private ArrayList<SellLog> sellLogsList = new ArrayList<>();
+    private ArrayList<BuyLog> buyLogsList = new ArrayList<>();
+    private Wallet wallet;
     protected ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public Account(String username) {
         this.username = username;
-        this.credit = 0 ;
+        this.wallet = new Wallet(this);
+        this.setCredit(0);
     }
 
 
@@ -38,12 +39,12 @@ public class Account {
         return allDiscounts;
     }
 
-    public void removeDiscount(Discount discount){
+    public void removeDiscount(Discount discount) {
         allDiscounts.remove(discount);
     }
 
     public void setCredit(int credit) {
-        this.credit = credit;
+        this.wallet.setCredit(credit);
     }
 
     public String getUsername() {
@@ -71,7 +72,7 @@ public class Account {
     }
 
     public int getCredit() {
-        return credit;
+        return this.wallet.getCredit();
     }
 
     public static Account getUserByName(String username) {
@@ -139,7 +140,6 @@ public class Account {
     public String toString() {
         return
                 "username= " + username + "\n" +
-                        "password= " + password + "\n" +
                         "firstName= " + firstName + "\n" +
                         "lastName= " + lastName + "\n" +
                         "email= " + email + "\n" +

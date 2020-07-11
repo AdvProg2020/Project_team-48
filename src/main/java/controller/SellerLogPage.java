@@ -17,12 +17,9 @@ import java.util.ResourceBundle;
 public class SellerLogPage implements Initializable {
 
 
-
     public ScrollPane scrollPane;
     public SellLog chosenSellLog = null;
     public VBox userInfoVBox;
-
-
 
 
     @Override
@@ -32,14 +29,14 @@ public class SellerLogPage implements Initializable {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        String name =  e.getSource().toString();
+                        String name = e.getSource().toString();
                         int i = 10;
-                        while (name.charAt(i) != ','){
+                        while (name.charAt(i) != ',') {
                             i++;
                         }
                         String id = name.substring(10, i);
-                        for (SellLog sellLog: Main.getAccount().getSellLogsList()) {
-                            if (sellLog.getLogId() == Integer.parseInt(id)){
+                        for (SellLog sellLog : Main.getAccount().getSellLogsList()) {
+                            if (sellLog.getLogId() == Integer.parseInt(id)) {
                                 chosenSellLog = sellLog;
                                 Label info = new Label();
                                 info.setText(sellLog.toString());
@@ -56,7 +53,7 @@ public class SellerLogPage implements Initializable {
                 button.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
                 vBox.getChildren().add(button);
             }
-        }catch (Exception a){
+        } catch (Exception a) {
 
         }
         scrollPane.setContent(vBox);

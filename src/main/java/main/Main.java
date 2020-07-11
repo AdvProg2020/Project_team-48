@@ -23,7 +23,7 @@ public class Main extends Application {
 
 
     public static void setScene(String fxml) throws IOException {
-        Parent root  = FXMLLoader.load(Main.class.getResource(getAddress(fxml)));
+        Parent root = FXMLLoader.load(Main.class.getResource(getAddress(fxml)));
         stage.setScene(new Scene(root, 650, 325));
         stage.show();
     }
@@ -54,10 +54,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root ;
-        if (Manager.getAllManagers().isEmpty()){
+        Parent root;
+        if (Manager.getAllManagers().isEmpty()) {
             root = FXMLLoader.load(getClass().getResource("/fxml/RegisterManagerPAge.fxml"));
-        }else {
+        } else {
             root = FXMLLoader.load(getClass().getResource("/fxml/MainPage.fxml"));
         }
         primaryStage.setTitle("Shop!");
@@ -67,8 +67,8 @@ public class Main extends Application {
         stage = primaryStage;
     }
 
-    public static String getAddress(String fxml){
-        return  "/fxml/" + fxml + ".fxml";
+    public static String getAddress(String fxml) {
+        return "/fxml/" + fxml + ".fxml";
     }
 
 
@@ -80,5 +80,5 @@ public class Main extends Application {
         launch(args);
         //new MainPage(null).execute();
     }
-    
+
 }

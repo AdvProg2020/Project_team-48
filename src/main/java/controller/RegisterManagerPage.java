@@ -26,9 +26,9 @@ public class RegisterManagerPage {
         String familyName = familyNameText.getText();
         String email = emailText.getText();
         String phoneNumber = phoneNumberText.getText();
-        if (username.equals("") || password .equals("")  || name.equals("") || familyName .equals("")  || email.equals("")  || phoneNumber .equals("") ){
+        if (username.equals("") || password.equals("") || name.equals("") || familyName.equals("") || email.equals("") || phoneNumber.equals("")) {
             warning.setText("unfilled field exist");
-        }else {
+        } else {
             Manager manager = new Manager(username);
             manager.setFirstName(name);
             manager.setLastName(familyName);
