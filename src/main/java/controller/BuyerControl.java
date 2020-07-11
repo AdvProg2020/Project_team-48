@@ -53,13 +53,6 @@ public class BuyerControl {
                 sellerAccount.addSellLog(new SellLog(product, LocalDateTime.now(), ((Buyer) account)));
             }
             ((Buyer) account).getCart().clear();
-            if (discount != null) {
-                if (discount.getRepeat() == 0){
-                    discount =null ;
-                }else {
-                    discount.decreaseRepeat(account);
-                }
-            }
             return true;
         }
         return false;

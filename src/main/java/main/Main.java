@@ -1,5 +1,6 @@
 package main;
 
+import Server.Server;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -76,9 +77,12 @@ public class Main extends Application {
         //Filter filter1 = new Filter("brand");
         //Filter filter2 = new Filter("existing");
         //Filter filter3 = new Filter("price");
+        //new MainPage(null).execute();
+
+        Server server = new Server();
 
         launch(args);
-        //new MainPage(null).execute();
+
     }
 
 }

@@ -1,5 +1,8 @@
 package models;
 
+import Client.Client;
+import controller.LoginPage;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,12 +29,14 @@ public class Account {
     private ArrayList<SellLog> sellLogsList = new ArrayList<>();
     private ArrayList<BuyLog> buyLogsList = new ArrayList<>();
     private Wallet wallet;
+    private Client client;
     protected ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public Account(String username) {
         this.username = username;
         this.wallet = new Wallet(this);
         this.setCredit(0);
+        client = new Client(this);
     }
 
 
@@ -165,5 +170,9 @@ public class Account {
 
     public void addBuyLog(BuyLog buyLog) {
         buyLogsList.add(buyLog);
+    }
+
+    public Client getClient() {
+        return this.client;
     }
 }
