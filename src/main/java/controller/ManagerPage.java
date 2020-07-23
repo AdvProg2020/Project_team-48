@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import main.Main;
 import models.Account;
@@ -18,6 +19,8 @@ public class ManagerPage implements Initializable {
     public Label usernameLabel;
     public Label phoneNumberLabel;
     public Label creditLabel;
+    public TextField leftAmountText;
+    public TextField toolText;
 
     public void showManagerRegisterPage(MouseEvent mouseEvent) throws IOException {
         Main.setScene("RegisterManagerPage");
@@ -56,13 +59,20 @@ public class ManagerPage implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Account account = Main.getAccount();
-        nameLabel.setText(account.getFirstName());
-        familyNameLabel.setText(account.getLastName());
-        passwordLabel.setText(account.getPassword());
-        emailLabel.setText(account.getEmail());
-        usernameLabel.setText(account.getUsername());
-        phoneNumberLabel.setText(account.getPhoneNumber());
-        creditLabel.setText(Integer.toString(account.getCredit()));
+//      nameLabel.setText(account.getFirstName());
+//      familyNameLabel.setText(account.getLastName());
+//      passwordLabel.setText(account.getPassword());
+//      emailLabel.setText(account.getEmail());
+//      usernameLabel.setText(account.getUsername());
+//      phoneNumberLabel.setText(account.getPhoneNumber());
+//      creditLabel.setText(Integer.toString(account.getCredit()));
     }
 
+    public void setLeftAmount(MouseEvent mouseEvent) {
+       Main.setLeftAmount( Integer.parseInt(leftAmountText.getText()));
+    }
+
+    public void setTool(MouseEvent mouseEvent) {
+        Main.setTool(Integer.parseInt(toolText.getText()));
+    }
 }

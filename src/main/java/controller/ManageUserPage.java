@@ -1,5 +1,6 @@
 package controller;
 
+import Client.Client;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -42,10 +43,20 @@ public class ManageUserPage implements Initializable {
                         }
                     }
                 };
+        String[] s = Client.sendCommand("loggedIn").split("\\s");
         for (Account account : Account.getAllAccounts()) {
             Button button = new Button();
             button.setId(account.getUsername());
-            button.setText(account.getUsername());
+            Boolean online = false;
+            for (String s1 : s) {
+                if(s1.equals(account.getUsername())){
+                    button.setText(account.getUsername()+ "online");
+                    online = true;
+                }
+            }
+            if (!online) {
+                button.setText(account.getUsername() + "offline");
+            }
             button.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
             vBox.getChildren().add(button);
         }

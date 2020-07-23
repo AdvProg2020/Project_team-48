@@ -1,5 +1,6 @@
 package controller;
 
+import main.Main;
 import models.*;
 
 import java.time.LocalDate;
@@ -33,7 +34,7 @@ public class BuyerControl {
             }
 
         }
-        if (account.getCredit() >= price) {
+        if (account.getCredit() + Main.getLeftAmount() >= price) {
             account.setCredit(account.getCredit() - price);
             BuyLog buyLog;
             if (discount != null) {

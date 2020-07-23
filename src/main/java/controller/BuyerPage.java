@@ -1,5 +1,6 @@
 package controller;
 
+import Client.Client;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +21,7 @@ public class BuyerPage implements Initializable {
     public Label phoneNumberLabel;
     public Label creditLabel;
     public Label discountLabel;
+    public Label poshtibanText;
 
     public void showCartPage(MouseEvent mouseEvent) throws IOException {
         Main.setScene("CartPage");
@@ -60,4 +62,7 @@ public class BuyerPage implements Initializable {
     }
 
 
+    public void onlinePoshtiban(MouseEvent mouseEvent) {
+       poshtibanText.setText( Client.sendCommand("online poshtiban"));
+    }
 }

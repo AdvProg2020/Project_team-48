@@ -17,26 +17,25 @@ public class Account {
     public static ArrayList<Account> allAccounts = new ArrayList<>();
     public static boolean isAUserLoggedIn = false;
 
-    protected String username;
-    protected String password;
-    protected String firstName;
-    protected String lastName;
-    protected String email;
-    protected String phoneNumber;
+    protected String username = " ";
+    protected String password = " ";
+    protected String firstName = " ";
+    protected String lastName= " ";
+    protected String email= " ";
+    protected String phoneNumber= " ";
     protected String address;
     protected Date lastLoggedIn;
     private AccountType accountType;
     private ArrayList<SellLog> sellLogsList = new ArrayList<>();
     private ArrayList<BuyLog> buyLogsList = new ArrayList<>();
     private Wallet wallet;
-    private Client client;
     protected ArrayList<Discount> allDiscounts = new ArrayList<>();
 
     public Account(String username) {
         this.username = username;
         this.wallet = new Wallet(this);
         this.setCredit(0);
-        client = new Client(this);
+
     }
 
 
@@ -123,6 +122,9 @@ public class Account {
     }
 
     public String getAccountPage() {
+        if (Poshtiban.getAll().contains(this)){
+            return "PoshtibanPage";
+        }
         switch (accountType) {
             case BUYER:
                 return "BuyerPage";
@@ -172,7 +174,5 @@ public class Account {
         buyLogsList.add(buyLog);
     }
 
-    public Client getClient() {
-        return this.client;
-    }
+
 }

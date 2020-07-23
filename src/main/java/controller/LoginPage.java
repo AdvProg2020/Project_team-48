@@ -1,5 +1,6 @@
 package controller;
 
+import Client.Client;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -18,7 +19,11 @@ public class LoginPage {
     public void login(MouseEvent mouseEvent) throws IOException {
         String username = usernameText.getText();
         String password = passwordText.getText();
-        warning.setText( Account.getUserByName(username).getClient().login("login " + username + " " + password));
+        warning.setText( Client.sendCommand("login " + username + " " + password));
+        if (warning.getText().equals("logged in")){
+            Main.setScene(Account.getUserByName(username).getAccountPage());
+            Main.setAccount(Account.getUserByName(username));
+        }
     }
 
     public void showRegisterPage(MouseEvent mouseEvent) throws IOException {

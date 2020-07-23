@@ -10,30 +10,47 @@ public class Client {
     private Socket socket;
     private DataOutputStream output;
     private DataInputStream input;
+    private Boolean connection;
 
 
-    public Client(Account account) {
-        this.account = account;
+    public Client() {
+
         try {
-            socket = new Socket("localhost",1111);
+            socket = new Socket("localhost",6666);
             output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            output.writeUTF(account.getUsername());
-            output.flush();
+           if (input.readUTF().equals("accept")){
+               connection = true;
+           }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public String login(String out){
+    public static String sendCommand(String out)  {
+        DataOutputStream  output = null;
+        DataInputStream input = null;
         try {
+            Socket socket = new Socket("localhost",6666);
+            output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            if (input.readUTF().equals("accept")){
+                Boolean connection = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+
             output.writeUTF(out);
             output.flush();
             return input.readUTF();
+
         } catch (IOException e) {
             e.printStackTrace();
-            return "";
+            return "error";
         }
 
     }
+
 }

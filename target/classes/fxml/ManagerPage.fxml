@@ -57,5 +57,9 @@
             </children>
         </VBox>
         <Label fx:id="discountLabel" layoutX="522.0" layoutY="58.0" />
+      <TextField fx:id="leftAmountText" layoutX="539.0" layoutY="82.0" prefHeight="25.0" prefWidth="96.0" />
+      <Button layoutX="539.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#setLeftAmount" text="set left amount" />
+      <TextField fx:id="toolText" layoutX="539.0" layoutY="161.0" prefHeight="25.0" prefWidth="96.0" />
+      <Button layoutX="540.0" layoutY="186.0" mnemonicParsing="false" onMouseClicked="#setTool" prefHeight="25.0" prefWidth="96.0" text="set tool" />
     </children>
 </Pane>

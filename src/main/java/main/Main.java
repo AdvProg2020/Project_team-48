@@ -1,18 +1,17 @@
 package main;
 
+import Client.Client;
 import Server.Server;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import models.Account;
-import models.Filter;
-import models.Manager;
-import models.Product;
+import models.*;
 import view.MainPage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 
@@ -21,7 +20,9 @@ public class Main extends Application {
     private static Account account = null;
     private static Product product = null;
     private static String page = null;
-
+    private static Client client = null;
+    private static int leftAmount = 0;
+    private static int tool = 0;
 
     public static void setScene(String fxml) throws IOException {
         Parent root = FXMLLoader.load(Main.class.getResource(getAddress(fxml)));
@@ -50,8 +51,30 @@ public class Main extends Application {
     }
 
     public static void setAccount(Account account) {
+        if (account == null){
+            Client.sendCommand("logout "+ Main.account.getUsername());
+        }
+
         Main.account = account;
     }
+
+    public static Client getClient() {
+        return client;
+    }
+
+    public static void setLeftAmount(int leftAmount) {
+        Main.leftAmount = leftAmount;
+    }
+
+    public static int getLeftAmount() {
+        return leftAmount;
+    }
+
+    public static void setTool(int parseInt) {
+        Main.tool = parseInt ;
+    }
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -66,6 +89,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 650, 325));
         primaryStage.show();
         stage = primaryStage;
+
+
     }
 
     public static String getAddress(String fxml) {
@@ -79,9 +104,14 @@ public class Main extends Application {
         //Filter filter3 = new Filter("price");
         //new MainPage(null).execute();
 
-        Server server = new Server();
+
+
+        Main.client = new Client();
+
 
         launch(args);
+
+
 
     }
 
