@@ -40,7 +40,7 @@ public class BankAccount {
     }
 
     private String generateAccountNumber(){
-        String accountNum = new String();
+        String accountNum = "";
         for(int i = 0; i < 16; i++)
             accountNum.concat(Integer.toString(((int)Math.random())%10));
         return accountNum;
