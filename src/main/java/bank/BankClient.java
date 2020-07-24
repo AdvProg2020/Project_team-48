@@ -76,7 +76,7 @@ public class BankClient extends Thread {
                 client.setToken(token);
             }
             else {
-               dataOut.writeUTF("Password is invalid");
+               dataOut.writeUTF("invalid username or password");
             }
         }
         dataOut.flush();
@@ -129,12 +129,12 @@ public class BankClient extends Thread {
     public void getTransactions(String input) throws IOException {
         String[] splitInput = input.substring("get_transactions ".length()).split(" ");
         if (BankServer.getAccountByToken(splitInput[0]) == null)
-            dataOut.writeUTF("Non-existing token");
+            dataOut.writeUTF("token is invalid");
         else if (BankServer.getAccountByToken(splitInput[0]).getToken().isExpired())
-            dataOut.writeUTF("Request timed-out");
+            dataOut.writeUTF("token expired");
         else if (!Pattern.matches("[*|+|-]", splitInput[1])) {
             if (BankServer.getRecieptById(splitInput[1]) == null)
-                dataOut.writeUTF("Non-existing receipt Id");
+                dataOut.writeUTF("invalid receipt id");
             else
                 dataOut.writeUTF(BankServer.getRecieptById(splitInput[1]).toString());
         }
@@ -192,9 +192,9 @@ public class BankClient extends Thread {
     public void getBalance(String input) throws IOException {
         String tokenString = input.substring("get_balance ".length());
         if (BankServer.getAccountByToken(tokenString) == null)
-            dataOut.writeUTF("Non-existing token!");
+            dataOut.writeUTF("token is invalid");
         else if (BankServer.getAccountByToken(tokenString).getToken().isExpired())
-            dataOut.writeUTF("Request timed-out");
+            dataOut.writeUTF("token expired");
         else {
             dataOut.writeUTF("" + BankServer.getAccountByToken(tokenString).getMoney());
         }
