@@ -17,6 +17,7 @@ public class Reciept {
         this.destinationAccount = destinationAccount;
         this.value = value;
         this.isPaid = false;
+        BankServer.allReciepts.add(this);
     }
 
     public String getRecieptId() {

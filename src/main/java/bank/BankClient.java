@@ -1,8 +1,6 @@
 package bank;
 
 import com.google.gson.Gson;
-import sun.invoke.util.BytecodeName;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -84,8 +82,48 @@ public class BankClient extends Thread {
         dataOut.flush();
     }
 
-    public void createReceipt(String input)  {
-
+    public void createReceipt(String input) throws IOException {
+        String[] splitInput = input.substring("create_receipt ".length()).split(" ");
+        if (!Pattern.matches("(deposit|move|withdraw)", splitInput[1]))
+            dataOut.writeUTF("invalid receipt type");
+        else if (!Pattern.matches("[\\d]+", splitInput[2]))
+            dataOut.writeUTF("invalid money");
+        else if (BankServer.getAccountByToken(splitInput[0]).getToken().isExpired())
+            dataOut.writeUTF("token expired");
+        else if ((splitInput[1].equals("move") || splitInput[1].equals("withdraw")) && BankServer.getAccountByAccountNumber(splitInput[3]) == null)
+            dataOut.writeUTF("source account id is invalid");
+        else if ((splitInput[1].equals("move") || splitInput[1].equals("withdraw")) &&
+                (BankServer.getAccountByToken(splitInput[0]).getToken() == null || !BankServer.getAccountByToken(splitInput[0]).getUsername().equals(BankServer.getAccountByAccountNumber(splitInput[3]).getUsername())))
+            dataOut.writeUTF("token is invalid");
+        else if (splitInput[1].equals("move") && BankServer.getAccountByAccountNumber(splitInput[4]) == null)
+            dataOut.writeUTF("dest account id is invalid");
+        else if (splitInput[1].equals("move") && splitInput[3].equals(splitInput[4]))
+            dataOut.writeUTF("equal source and dest account");
+        else if (splitInput[1].equals("deposit") && BankServer.getAccountByToken(splitInput[0]) == null)
+            dataOut.writeUTF("token is invalid");
+        else if (splitInput[1].equals("deposit") && BankServer.getAccountByAccountNumber(splitInput[4]) == null)
+            dataOut.writeUTF("dest account id is invalid");
+        else if ((splitInput[1].equals("deposit") && !splitInput[3].equals("-1")) || (splitInput[1].equals("withdraw") && !splitInput[4].equals("-1")))
+            dataOut.writeUTF("invalid account id");
+        else {
+            int pointer = 0;
+            for(int i = input.length() - 1; i >= 0; i--) {
+                if (input.charAt(i) == ' ') {
+                    pointer = i;
+                    break;
+                }
+            }
+            String description = input.substring(pointer);
+            if (!Pattern.matches("[\\w|\\s]*", description))
+                dataOut.writeUTF("your input contains invalid characters");
+            else {
+                String id;
+                Reciept reciept = new Reciept(splitInput[1], BankServer.getAccountByAccountNumber(splitInput[3]), BankServer.getAccountByAccountNumber(splitInput[4]) , Integer.parseInt(splitInput[2]));
+                BankServer.allReciepts.add(reciept);
+                dataOut.writeUTF(reciept.getRecieptId());
+            }
+        }
+        dataOut.flush();
     }
 
     public void getTransactions(String input) throws IOException {
