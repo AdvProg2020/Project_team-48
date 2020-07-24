@@ -1,5 +1,6 @@
 package bank;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 public class BankAccount {
@@ -21,12 +22,12 @@ public class BankAccount {
     LocalDate expirationDate;
     int deposit;
 
-    public BankAccount(String firstName, String lastName, String username, String password) {
+    public BankAccount(String firstName, String lastName, String username, String password) throws NoSuchAlgorithmException {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.accountNumber = generateAccountNumber();
+        this.accountNumber = Hashing.toHexString(Hashing.getSHA(generateAccountNumber()));
         this.username = username;
-        this.password = password;
+        this.password = Hashing.toHexString(Hashing.getSHA(password));
         this.token = null;
         this.expirationDate = LocalDate.now().plusYears(3);
         this.deposit = 0;

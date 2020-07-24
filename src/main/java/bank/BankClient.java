@@ -5,12 +5,17 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class BankClient extends Thread {
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
     private Socket socket;
+
+    private ArrayList<BankRequest> allBankRequests = new ArrayList<>();
 
     public BankClient(DataOutputStream dataOut, DataInputStream dataIn, Socket socket) {
         this.dataOut = dataOut;
@@ -23,35 +28,56 @@ public class BankClient extends Thread {
         while (true) {
             try {
                 String input = dataIn.readUTF();
-                if (Pattern.matches("create_account [\\S]+ [\\S]+ [\\S]+ [\\S]+ [\\S]+", input))
-                    createAccount(input);
-                else if (Pattern.matches("get_token [\\S]+ [\\S]+", input))
-                    getToken(input);
-                else if (Pattern.matches("create_receipt [\\S]+ [\\S]+ [\\S]+ [\\S]+ [\\S]+ .*", input))
-                    createReceipt(input);
-                else if (Pattern.matches("get_balance [\\S]+", input))
-                    getBalance(input);
-                else if (Pattern.matches("pay [\\d]+", input))
-                    pay(input);
-                else if (Pattern.matches("get_transactions [\\S]+ .+", input))
-                    getTransactions(input);
-                else if (input.equals("exit")) {
-                    dataOut.writeUTF("disconnected successfully");
-                    dataOut.flush();
-                    socket.close();
-                    System.out.println("client disconnected");
-                    break;
-                } else {
-                    dataOut.writeUTF("invalid input");
-                    dataOut.flush();
+                try {
+                    //DoS attack prevention
+                    int throttle = 0;
+                    for (BankRequest bankRequest : allBankRequests) {
+                        if(bankRequest.getRequestTime().plusMinutes(10).isAfter(LocalTime.now()))
+                            throttle++;
+                    }
+                    if(throttle >= 100)
+                        throw new Exception("Denial of service attack!");
+                    //Not accepting too long inputs
+                    if(input.length() >= 200)
+                        throw new Exception("Unusually long server input");
+                    if (Pattern.matches("create_account [\\S]+ [\\S]+ [\\S]+ [\\S]+ [\\S]+", input))
+                        createAccount(input);
+                    else if (Pattern.matches("get_token [\\S]+ [\\S]+", input))
+                        getToken(input);
+                    else if (Pattern.matches("create_receipt [\\S]+ [\\S]+ [\\S]+ [\\S]+ [\\S]+ .*", input))
+                        createReceipt(input);
+                    else if (Pattern.matches("get_balance [\\S]+", input))
+                        getBalance(input);
+                    else if (Pattern.matches("pay [\\d]+", input))
+                        pay(input);
+                    else if (Pattern.matches("get_transactions [\\S]+ .+", input))
+                        getTransactions(input);
+                    else if (input.equals("exit")) {
+                        dataOut.writeUTF("disconnected successfully");
+                        dataOut.flush();
+                        socket.close();
+                        System.out.println("client disconnected");
+                        break;
+                    } else {
+                        dataOut.writeUTF("invalid input");
+                        dataOut.flush();
+                    }
+                    allBankRequests.add(new BankRequest(socket.getChannel() , LocalTime.now()));
+                } catch (IOException e) {
+                    System.err.println("Something in connecting process happened...");
                 }
-            } catch (IOException e) {
-                System.err.println("Something in connecting process happened...");
+            }
+            catch(Exception e){
+                try {
+                    dataOut.writeUTF("Some attack is going on the server");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         }
     }
 
-    public void createAccount(String input) throws IOException {
+    public void createAccount(String input) throws IOException, NoSuchAlgorithmException {
         String[] splitInput = input.substring("create_account ".length()).split(" ");
         if (!splitInput[3].equals(splitInput[4]))
             dataOut.writeUTF("passwords do not match");
