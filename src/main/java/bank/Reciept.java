@@ -54,4 +54,14 @@ public class Reciept {
             digits[i] = (char) (rnd.nextInt(10) + '0');
         return new String(digits);
     }
+
+    @Override
+    public String toString(){
+        return "{\"reciept_id\":" + recieptId
+                + "\n,\"reciept_type\":" + recieptType
+                + "\n,\"value\":" + Integer.toString(value)
+                + "\n,\"source_account\":" + sourceAccount
+                + "\n,\"destination_account\":" + destinationAccount
+                + "\n,\"isPaid\":" + isPaid;
+    }
 }

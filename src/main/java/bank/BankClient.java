@@ -1,5 +1,8 @@
 package bank;
 
+import com.google.gson.Gson;
+import sun.invoke.util.BytecodeName;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,13 +13,11 @@ public class BankClient extends Thread {
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
     private Socket socket;
-    private BankServer bank;
 
-    public BankClient(DataOutputStream dataOut, DataInputStream dataIn, Socket socket, BankServer bank) {
+    public BankClient(DataOutputStream dataOut, DataInputStream dataIn, Socket socket) {
         this.dataOut = dataOut;
         this.dataIn = dataIn;
         this.socket = socket;
-        this.bank = bank;
     }
 
     @Override
@@ -71,6 +72,7 @@ public class BankClient extends Thread {
             dataOut.writeUTF("this username doesn't have account");
         else {
             BankAccount client = BankServer.getAccountByUsername(splitInput[0]);
+            assert client != null;
             if (client.getPassword().equals(splitInput[1])){
                 Token token = new Token(client);
                 client.setToken(token);
@@ -86,15 +88,58 @@ public class BankClient extends Thread {
 
     }
 
-    public void getBalance(String input) {
-
+    public void getTransactions(String input) throws IOException {
+        String[] splitInput = input.substring("get_transactions ".length()).split(" ");
+        if (BankServer.getAccountByToken(splitInput[0]) == null)
+            dataOut.writeUTF("Non-existing token");
+        else if (BankServer.getAccountByToken(splitInput[0]).getToken().isExpired())
+            dataOut.writeUTF("Request timed-out");
+        else if (!Pattern.matches("[*|+|-]", splitInput[1])) {
+            if (BankServer.getRecieptById(splitInput[1]) == null)
+                dataOut.writeUTF("Non-existing receipt Id");
+            else
+                dataOut.writeUTF(BankServer.getRecieptById(splitInput[1]).toString());
+        }
+        else {
+            String transactions = "";
+            BankAccount bankClient = BankServer.getAccountByToken(splitInput[0]);
+            if(splitInput[1].equals("*")){
+                for(Reciept reciept : BankServer.allReciepts){
+                    if((reciept.getSourceAccount() == bankClient || reciept.getDestinationAccount() == bankClient) && reciept.isPaid())
+                        transactions += new Gson().toJson(reciept);
+                }
+            }
+            else if (splitInput[1].equals("+")){
+                for(Reciept reciept : BankServer.allReciepts){
+                    if(reciept.getDestinationAccount() == bankClient && reciept.isPaid())
+                        transactions += new Gson().toJson(reciept);
+                }
+            }
+            else if (splitInput[1].equals("-")){
+                for(Reciept reciept : BankServer.allReciepts){
+                    if(reciept.getSourceAccount() == bankClient && reciept.isPaid())
+                        transactions += new Gson().toJson(reciept);
+                }
+            }
+            dataOut.writeUTF(transactions);
+        }
+        dataOut.flush();
     }
 
     public void pay(String input) {
 
     }
 
-    public void getTransactions(String input) {
-
+    public void getBalance(String input) throws IOException {
+        String tokenString = input.substring("get_balance ".length());
+        if (BankServer.getAccountByToken(tokenString) == null)
+            dataOut.writeUTF("Non-existing token!");
+        else if (BankServer.getAccountByToken(tokenString).getToken().isExpired())
+            dataOut.writeUTF("Request timed-out");
+        else {
+            dataOut.writeUTF("" + BankServer.getAccountByToken(tokenString).getMoney());
+        }
+        dataOut.flush();
     }
+
 }
