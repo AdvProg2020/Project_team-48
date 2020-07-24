@@ -6,18 +6,29 @@ public class BankAccount {
     String firstName;
     String lastName;
     String accountNumber;
+    String username;
     String password;
+    Token token;
+
+    public void setToken(Token token) {
+        this.token = token;
+    }
+
     LocalDate expirationDate;
     int deposit;
 
-    public BankAccount(String firstName, String lastName, String password) {
+    public BankAccount(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountNumber = generateAccountNumber();
+        this.username = username;
         this.password = password;
+        this.token = null;
         this.expirationDate = LocalDate.now().plusYears(3);
         this.deposit = 0;
     }
+
+    public String getUsername() {return this.username;}
 
     public String getPassword() {
         return this.password;
