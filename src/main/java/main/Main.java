@@ -97,7 +97,6 @@ public class Main extends Application {
         return "/fxml/" + fxml + ".fxml";
     }
 
-
     public static void main(String[] args) {
         //Filter filter1 = new Filter("brand");
         //Filter filter2 = new Filter("existing");
@@ -109,7 +108,7 @@ public class Main extends Application {
         Main.client = new Client();
 
 
-        launch(args);
+        //launch(args);
 
 
 

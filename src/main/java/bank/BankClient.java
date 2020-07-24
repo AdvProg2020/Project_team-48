@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalTime;
@@ -11,16 +12,28 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class BankClient extends Thread {
+    public static final int PORT = 6666;
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
+    private ServerSocket serverSocket;
     private Socket socket;
 
     private ArrayList<BankRequest> allBankRequests = new ArrayList<>();
 
-    public BankClient(DataOutputStream dataOut, DataInputStream dataIn, Socket socket) {
-        this.dataOut = dataOut;
-        this.dataIn = dataIn;
-        this.socket = socket;
+    public BankClient() {
+        try {
+            establishConnection();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void establishConnection() throws IOException {
+        serverSocket = new ServerSocket(PORT);
+        socket = serverSocket.accept();
+        dataOut = new DataOutputStream(socket.getOutputStream());
+        dataIn = new DataInputStream(socket.getInputStream());
     }
 
     @Override
@@ -55,7 +68,6 @@ public class BankClient extends Thread {
                     else if (input.equals("exit")) {
                         dataOut.writeUTF("disconnected successfully");
                         dataOut.flush();
-                        socket.close();
                         System.out.println("client disconnected");
                         break;
                     } else {

@@ -21,6 +21,7 @@ public class Client {
             input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
            if (input.readUTF().equals("accept")){
                connection = true;
+               System.out.println("Client connected");
            }
         } catch (IOException e) {
             e.printStackTrace();
