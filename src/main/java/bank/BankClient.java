@@ -126,8 +126,29 @@ public class BankClient extends Thread {
         dataOut.flush();
     }
 
-    public void pay(String input) {
-
+    public void pay(String input) throws IOException {
+        String receiptId = input.substring("pay ".length());
+        if (BankServer.getRecieptById(receiptId) == null)
+            dataOut.writeUTF("invalid receipt id");
+        else {
+            Reciept reciept = BankServer.getRecieptById(receiptId);
+            if (reciept.isPaid())
+                dataOut.writeUTF("receipt is paid before");
+            else if (reciept.getSourceAccount() != null && reciept.getSourceAccount().getMoney() < reciept.getValue())
+                dataOut.writeUTF("source account does not have enough money");
+            else if (BankServer.getAccountByUsername(reciept.getSourceAccount().getUsername()) == null
+                    || BankServer.getAccountByAccountNumber(reciept.getDestinationAccount().getAccountNumber()) == null)
+                dataOut.writeUTF("invalid account id");
+            else {
+                BankAccount sourceAccount = BankServer.getAccountByUsername(reciept.getSourceAccount().getUsername());
+                BankAccount destinationAccount = BankServer.getAccountByUsername(reciept.getDestinationAccount().getUsername());
+                sourceAccount.setMoney(sourceAccount.getMoney() - reciept.getValue());
+                destinationAccount.setMoney(destinationAccount.getMoney() + reciept.getValue());
+                dataOut.writeUTF("done successfully");
+                reciept.payReciept();
+            }
+            dataOut.flush();
+        }
     }
 
     public void getBalance(String input) throws IOException {

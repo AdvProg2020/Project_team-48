@@ -38,7 +38,7 @@ public class BankAccount {
         return this.password;
     }
 
-    public synchronized long getMoney() {
+    public synchronized int getMoney() {
         return this.deposit;
     }
 

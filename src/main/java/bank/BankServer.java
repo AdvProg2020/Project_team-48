@@ -35,6 +35,14 @@ public class BankServer {
         return null;
     }
 
+    public static BankAccount getAccountByAccountNumber(String accountNumber){
+        for(BankAccount bankAccount : allBankAccounts) {
+            if (accountNumber.equals(bankAccount.getAccountNumber()))
+                return bankAccount;
+        }
+        return null;
+    }
+
     public static Reciept getRecieptById(String id){
         for(Reciept reciept : allReciepts){
             if(reciept.getRecieptId().equals(id))
